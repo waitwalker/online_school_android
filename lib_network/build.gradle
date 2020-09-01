@@ -1,17 +1,18 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion this.rootProject.android.compileSdkVersion
+    buildToolsVersion this.rootProject.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion this.rootProject.android.minSdkVersion
+        targetSdkVersion this.rootProject.android.targetSdkVersion
+        versionCode this.rootProject.android.versionCode
+        versionName this.rootProject.android.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+
+        testInstrumentationRunner this.rootProject.android.testInstrumentationRunner
+        consumerProguardFiles this.rootProject.android.consumerProguardFiles
     }
 
     buildTypes {
@@ -24,9 +25,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation this.rootProject.dependenciesLibrary.appcompat
+    testImplementation this.rootProject.dependenciesLibrary.junit
+    androidTestImplementation this.rootProject.dependenciesLibrary.extJunit
+    androidTestImplementation this.rootProject.dependenciesLibrary.espressoCore
+
+    // 引入okhttp依赖
+    api rootProject.dependenciesLibrary.okhttp
+
+    // 引入Gson依赖
+    api rootProject.dependenciesLibrary.gson
 
 }
