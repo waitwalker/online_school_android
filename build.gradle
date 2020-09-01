@@ -1,4 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: this.rootProject.file('online.gradle')
+
+// 这里声明的时候gradle自己需要的资源
 buildscript {
     repositories {
         google()
@@ -12,6 +14,7 @@ buildscript {
     }
 }
 
+// 这里声明的时候项目需要的资源
 allprojects {
     repositories {
         google()
@@ -19,6 +22,7 @@ allprojects {
     }
 }
 
+// 和clean操作类似 清空编译缓存
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
