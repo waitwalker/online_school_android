@@ -90,10 +90,30 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
             HashMap hashMap = (HashMap) object;
             int errorCode = (int) hashMap.get("errorCode");
             String message = (String) hashMap.get("message");
+            String errorMsg;
 
             Log.d("1","错误码:" + errorCode + "\n" + "错误消息:" + message);
-            if (errorCode == 401) {
-                navigateTo(LoginActivity.class);
+
+            switch (errorCode) {
+                case 401:
+                    showToast("授权失败");
+                    navigateTo(LoginActivity.class);
+                    break;
+                case 403:
+                    showToast("禁止访问");
+                    break;
+                case 404:
+                    showToast("网络错误404");
+                    break;
+                case 413:
+                    showToast("上传文件太大");
+                    break;
+                case 500:
+                    showToast("服务器错误");
+                    break;
+                default:
+                    // Fluttertoast.showToast(msg: '网络请求失败');
+                    break;
             }
 
         }
