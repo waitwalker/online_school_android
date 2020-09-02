@@ -12,8 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".entrance.TabBarNavigationActivity"></activity>
-        <activity android:name=".modules.welcome.WelcomeActivity" />
+        <activity android:name=".entrance.TabBarNavigationActivity">
+
+        </activity>
+        <activity android:name=".modules.welcome.WelcomeActivity"
+            android:launchMode="singleTask">
+
+        </activity>
         <activity android:name=".entrance.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
         <activity android:name=".MainActivity">

@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
+import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.welcome.WelcomeActivity;
 import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
 
             // 到首页
             if (token.length() > 0 && savedExpiration > currentTimestamp) {
-
+                navigateTo(TabBarNavigationActivity.class);
             } else {
                 // 到登录页
                 navigateTo(LoginActivity.class);

@@ -13,4 +13,9 @@ public class TabBarNavigationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_bar_navigation);
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

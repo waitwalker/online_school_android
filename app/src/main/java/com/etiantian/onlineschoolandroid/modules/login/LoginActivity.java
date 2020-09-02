@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,12 +18,14 @@ import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 public class LoginActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
     private Button loginButton;
+    private String canBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
+        initData();
     }
 
     ///
@@ -35,6 +38,16 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     private void initView() {
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(this);
+    }
+
+    private void initData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String back = intent.getStringExtra("back");
+            if (back != null) {
+                canBack = back;
+            }
+        }
     }
 
     ///
@@ -72,6 +85,11 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     ///
     /// @description 处理安卓物理返回键
     /// @param
@@ -81,6 +99,9 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     ///
     @Override
     public void onBackPressed() {
+        if (canBack != null && canBack.equals("yes")) {
+            super.onBackPressed();
+        }
         return;
     }
 }
