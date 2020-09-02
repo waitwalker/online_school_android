@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.entrance;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.tools.StatusBarUtil;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        StatusBarUtil.statusBarLightMode(this);
         mContext = this;
     }
 
@@ -58,6 +61,34 @@ public class BaseActivity extends AppCompatActivity {
     public void navigateTo(Class cls) {
         Intent intent = new Intent(mContext, cls);
         startActivity(intent);
+    }
+    
+    ///
+    /// @description 隐藏顶部ActionBar
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/2 4:20 PM
+    ///
+    public void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+    }
+
+    ///
+    /// @description 显示顶部ActionBar
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 4:20 PM
+    ///
+    public void showActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.show();
+        }
     }
 
 }

@@ -78,4 +78,13 @@ public class PackageInfoManager {
 
         return null;
     }
+
+    public static boolean isDebug(Context context) {
+        try {
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e){
+            return false;
+        }
+    }
 }

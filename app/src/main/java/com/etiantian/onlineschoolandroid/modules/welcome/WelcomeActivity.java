@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.welcome;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

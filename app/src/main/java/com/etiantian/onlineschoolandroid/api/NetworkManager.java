@@ -7,6 +7,7 @@ import com.etiantian.lib_network.request.CommonRequest;
 import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.lib_network.response_handler.ResponseHandler;
+import com.etiantian.onlineschoolandroid.app.App;
 import com.etiantian.onlineschoolandroid.constant.Const;
 import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
@@ -32,10 +33,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NetworkManager {
     static class HttpConstants {
 
-        private static final String AppId = "C2ABCA7EBE1A93D1F0A1C3D9E8D6B79E";
-        private static final String AppSecret = "2765F72C83B05066CB7B65F3650E3440";
+        private static final String AppId = App.DEBUG()? "071DC04BB4053F236AD7DF478A8E4A17" : "C2ABCA7EBE1A93D1F0A1C3D9E8D6B79E";
+        private static final String AppSecret = App.DEBUG()? "BA451F0E9F31B3A270C08F3BB38E33BE" : "2765F72C83B05066CB7B65F3650E3440";
 
-        private static final String Base_URL = "https://school.etiantian.com/";
+        private static final String Base_URL = App.DEBUG() ? "http://gw5.bj.etiantian.net:42393/" : "https://school.etiantian.com/";
 
         // 登录
         public static String Login_URL = Base_URL + "authentication-center/authentication/login?";
