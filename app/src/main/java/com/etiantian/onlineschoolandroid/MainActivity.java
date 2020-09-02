@@ -10,12 +10,15 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.modules.welcome.WelcomeActivity;
+import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.Date;
 import java.util.HashMap;
 
 ///
@@ -30,6 +33,9 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        gotoPage();
+
+
         EventBus.getDefault().register(this);
 
         SharedPreferencesManager.instance().putString("name","张三");
@@ -40,19 +46,41 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
 
 
 
-        NetworkManager.activityCourseAlert(new NormalResponseCallBack() {
-            @Override
-            public void onSuccess(Object responseObj) {
-                Log.d("1","响应成功");
+//        NetworkManager.activityCourseAlert(new NormalResponseCallBack() {
+//            @Override
+//            public void onSuccess(Object responseObj) {
+//                Log.d("1","响应成功");
+//            }
+//
+//            @Override
+//            public void onFailure(Object responseObj) {
+//                Log.d("1","响应失败");
+//            }
+//        });
+    }
+
+    private void gotoPage() {
+        int versionCode = PackageInfoManager.getVersionCode(this);
+        int savedVersionCode = SharedPreferencesManager.instance().getInt("versionCode");
+
+        Log.d("1","App版本号:" + versionCode);
+        // 版本号一致 跳到首页 不需要展示欢迎引导页
+        if (versionCode == savedVersionCode) {
+            String token = SharedPreferencesManager.instance().getString("token");
+            long savedExpiration = SharedPreferencesManager.instance().getLong("expiration");
+            long currentTimestamp = new Date().getTime();
+
+            // 到首页
+            if (token.length() > 0 && savedExpiration > currentTimestamp) {
+
+            } else {
+                // 到登录页
+                navigateTo(LoginActivity.class);
             }
-
-            @Override
-            public void onFailure(Object responseObj) {
-                Log.d("1","响应失败");
-            }
-        });
-
-
+        } else {
+            // 到欢迎引导页
+            navigateTo(WelcomeActivity.class);
+        }
     }
 
     @Override

@@ -52,6 +52,17 @@ public class SharedPreferencesManager {
     }
 
     ///
+    /// @description 存储长数值
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 11:01 AM
+    ///
+    public void putLong(String key, int value) {
+        sharedPreferences.edit().putLong(key,value).apply();
+    }
+
+    ///
     /// @description 获取字符串
     /// @param
     /// @return
@@ -71,6 +82,17 @@ public class SharedPreferencesManager {
     ///
     public int getInt(String key) {
         return sharedPreferences.getInt(key,666666);
+    }
+
+    ///
+    /// @description 获取长数值
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 11:02 AM
+    ///
+    public long getLong(String key) {
+        return sharedPreferences.getLong(key,666666);
     }
 
     ///
