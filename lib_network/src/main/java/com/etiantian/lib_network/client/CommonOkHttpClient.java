@@ -21,7 +21,7 @@ import okhttp3.Response;
 ///
 /// @description okHttp客户端封装
 /// @author waitwalker
-/// @time 2020/9/1 1:59 PM
+/// @time 2020/9/1 3:14 PM
 ///
 public class CommonOkHttpClient {
     private static final int TIME_OUT = 30;
