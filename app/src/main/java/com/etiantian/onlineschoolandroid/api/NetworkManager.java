@@ -7,8 +7,13 @@ import com.etiantian.lib_network.request.CommonRequest;
 import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.lib_network.response_handler.ResponseHandler;
+import com.etiantian.onlineschoolandroid.constant.Const;
+import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
+import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -30,7 +35,11 @@ public class NetworkManager {
 
         private static final String Base_URL = "https://school.etiantian.com/";
 
+        // 登录
         public static String Login_URL = Base_URL + "authentication-center/authentication/login?";
+
+        // 活动课
+        public static String Activity_URL = Base_URL + "api-study-service/api/activity/prompt";
     }
 
     ///
@@ -75,6 +84,13 @@ public class NetworkManager {
         return joinedStr;
     }
 
+    ///
+    /// @description 登录请求
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 11:27 AM
+    ///
     public static void login(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Login_URL + mapToQuery(params);
         RequestParams headers = new RequestParams();
@@ -82,6 +98,31 @@ public class NetworkManager {
         String base64 = Base64.getEncoder().encodeToString(basic.getBytes());
         headers.put("Authorization", "Basic " + base64);
         postRequest(url,null, headers, callBack, LoginModel.class);
+    }
+
+    public static void activityCourseAlert(NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Activity_URL;
+        RequestParams headers = new RequestParams();
+        String token = getToken();
+        if (token == null) return;
+        headers.put("Authorization", "Bearer " + token);
+        getRequest(url,null, headers, callBack, LoginModel.class);
+    }
+
+    ///
+    /// @description 获取token
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 11:42 AM
+    ///
+    private static String getToken() {
+        String token = SharedPreferencesManager.instance().getString("token");
+        if (token.length() == 0) {
+            EventBus.getDefault().post(new TokenEvent(Const.kCommonErrorCode, Const.kTokenIsEmpty));
+            return null;
+        }
+        return token;
     }
 }
 

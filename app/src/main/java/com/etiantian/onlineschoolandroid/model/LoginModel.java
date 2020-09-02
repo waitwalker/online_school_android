@@ -3,7 +3,7 @@ package com.etiantian.onlineschoolandroid.model;
 ///
 /// @description 登录model 返回access_token&超时时间等
 /// @author waitwalker
-/// @time 2020/9/2 9:43 AM
+/// @time 2020/9/2 11:32 AM
 ///
 public class LoginModel {
 
