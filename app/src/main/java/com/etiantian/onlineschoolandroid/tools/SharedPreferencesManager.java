@@ -72,4 +72,15 @@ public class SharedPreferencesManager {
     public int getInt(String key) {
         return sharedPreferences.getInt(key,666666);
     }
+
+    ///
+    /// @description 移除存储
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 12:00 PM
+    ///
+    public void remove(String key) {
+        sharedPreferences.edit().remove(key).apply();
+    }
 }

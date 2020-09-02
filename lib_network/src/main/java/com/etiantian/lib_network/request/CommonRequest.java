@@ -79,14 +79,20 @@ public class CommonRequest {
     /// @date 2020/8/13
     ///
     public static Request createGetRequest(String url, RequestParams params, RequestParams headers) {
-        StringBuilder urlBuilder = new StringBuilder(url).append("?");
 
-        // 构建请求参数
-        for (Map.Entry<String,String> entry:params.urlParams.entrySet()) {
-            urlBuilder.append(entry.getKey()).append("=").append(entry.getValue());
+        StringBuilder urlBuilder;
+        if (params != null) {
+            urlBuilder = new StringBuilder(url).append("?");
+
+            // 构建请求参数
+            for (Map.Entry<String,String> entry:params.urlParams.entrySet()) {
+                urlBuilder.append(entry.getKey()).append("=").append(entry.getValue());
+            }
+
+            Log.d("1","get请求完整链接:" + urlBuilder.toString());
+        } else {
+            urlBuilder = new StringBuilder(url);
         }
-
-        Log.d("1","get请求完整链接:" + urlBuilder.toString());
 
         // 构建请求头
         Headers.Builder mHeadersBuilder = new Headers.Builder();

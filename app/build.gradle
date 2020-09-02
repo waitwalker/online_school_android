@@ -29,6 +29,8 @@ dependencies {
     implementation this.rootProject.dependenciesLibrary.okhttp
     implementation this.rootProject.dependenciesLibrary.appcompat
     implementation this.rootProject.dependenciesLibrary.constraintlayout
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     testImplementation this.rootProject.dependenciesLibrary.junit
     androidTestImplementation this.rootProject.dependenciesLibrary.extJunit
     androidTestImplementation this.rootProject.dependenciesLibrary.espressoCore

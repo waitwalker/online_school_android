@@ -3,7 +3,7 @@ package com.etiantian.onlineschoolandroid.model;
 ///
 /// @description 活动课弹框model
 /// @author waitwalker
-/// @time 2020/9/2 11:50 AM
+/// @time 2020/9/2 11:52 AM
 ///
 public class ActivityCourseAlertModel {
 
