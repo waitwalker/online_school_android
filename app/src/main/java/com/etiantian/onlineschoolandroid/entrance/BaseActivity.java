@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.pages;
+package com.etiantian.onlineschoolandroid.entrance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
