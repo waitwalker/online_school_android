@@ -11,6 +11,8 @@ import android.widget.CompoundButton;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
+import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 public class WelcomeActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
@@ -31,6 +33,8 @@ public class WelcomeActivity extends BaseActivity implements CompoundButton.OnCl
             case R.id.welcome_to_login_button:
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra("back","yes");
+                int versionCode = PackageInfoManager.getVersionCode(this);
+                SharedPreferencesManager.instance().putInt("versionCode", versionCode);
                 startActivity(intent);
         }
     }

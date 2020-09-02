@@ -36,28 +36,8 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
 
         gotoPage();
 
-
-        EventBus.getDefault().register(this);
-
-        SharedPreferencesManager.instance().putString("name","张三");
-        SharedPreferencesManager.instance().putString("token","fkssfgdsg");
-
         Button button = findViewById(R.id.button);
         button.setOnClickListener(this);
-
-
-
-//        NetworkManager.activityCourseAlert(new NormalResponseCallBack() {
-//            @Override
-//            public void onSuccess(Object responseObj) {
-//                Log.d("1","响应成功");
-//            }
-//
-//            @Override
-//            public void onFailure(Object responseObj) {
-//                Log.d("1","响应失败");
-//            }
-//        });
     }
 
     private void gotoPage() {
@@ -94,52 +74,11 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
         }
     }
 
-    ///
-    /// @description 处理EventBus发来的消息
-    /// @param 
-    /// @return 
-    /// @author waitwalker
-    /// @time 2020/9/2 2:05 PM
-    ///
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void handleEventBus(Object object){
 
-        Log.d("1","消息:");
-        if (object instanceof HashMap) {
-            HashMap hashMap = (HashMap) object;
-            int errorCode = (int) hashMap.get("errorCode");
-            String message = (String) hashMap.get("message");
-            String errorMsg;
-
-            Log.d("1","错误码:" + errorCode + "\n" + "错误消息:" + message);
-
-            switch (errorCode) {
-                case 401:
-                    showToast("授权失败");
-                    navigateTo(LoginActivity.class);
-                    break;
-                case 403:
-                    showToast("禁止访问");
-                    break;
-                case 404:
-                    showToast("网络错误404");
-                    break;
-                case 413:
-                    showToast("上传文件太大");
-                    break;
-                case 500:
-                    showToast("服务器错误");
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 
 
     @Override
     protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

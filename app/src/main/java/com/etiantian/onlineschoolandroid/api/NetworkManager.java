@@ -9,6 +9,7 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.lib_network.response_handler.ResponseHandler;
 import com.etiantian.onlineschoolandroid.constant.Const;
 import com.etiantian.onlineschoolandroid.event.TokenEvent;
+import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
@@ -17,6 +18,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -106,7 +108,7 @@ public class NetworkManager {
         String token = getToken();
         if (token == null) return;
         headers.put("Authorization", "Bearer " + token);
-        getRequest(url,null, headers, callBack, LoginModel.class);
+        getRequest(url,null, headers, callBack, ActivityCourseAlertModel.class);
     }
 
     ///
@@ -119,7 +121,10 @@ public class NetworkManager {
     private static String getToken() {
         String token = SharedPreferencesManager.instance().getString("token");
         if (token.length() == 0) {
-            EventBus.getDefault().post(new TokenEvent(Const.kCommonErrorCode, Const.kTokenIsEmpty));
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("errorCode", -1);
+            map.put("message", "token为空");
+            EventBus.getDefault().post(map);
             return null;
         }
         return token;

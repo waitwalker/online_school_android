@@ -58,7 +58,7 @@ public class SharedPreferencesManager {
     /// @author waitwalker
     /// @time 2020/9/2 11:01 AM
     ///
-    public void putLong(String key, int value) {
+    public void putLong(String key, long value) {
         sharedPreferences.edit().putLong(key,value).apply();
     }
 

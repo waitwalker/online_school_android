@@ -11,6 +11,7 @@ import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
+import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
@@ -66,6 +67,7 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         }
     }
 
+    /// 登录按钮点击事件
     private void loginAction() {
         RequestParams map =new RequestParams();
         map.put("username","18600000001");
@@ -75,7 +77,13 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
             public void onSuccess(Object responseObj) {
                 Log.d("1","响应成功");
                 LoginModel loginModel = (LoginModel) responseObj;
+
+                // 缓存数据
                 SharedPreferencesManager.instance().putString("token", loginModel.getAccess_token());
+                SharedPreferencesManager.instance().putLong("expiration", loginModel.getExpiration());
+
+                // 跳转到首页
+                navigateTo(TabBarNavigationActivity.class);
             }
 
             @Override
@@ -100,6 +108,7 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     @Override
     public void onBackPressed() {
         if (canBack != null && canBack.equals("yes")) {
+            canBack = null;
             super.onBackPressed();
         }
         return;
