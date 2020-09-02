@@ -8,10 +8,12 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.lib_network.response_handler.ResponseHandler;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -63,23 +65,29 @@ public class CommonResponse implements Callback {
 
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-
-        final ResponseBody responseBody = response.body();
-        if (responseBody != null) {
-            final String result = responseBody.string();
-            mDeliverHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    handleResponse(result);
-                }
-            });
+        if (response.code() == 200) {
+            final ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                final String result = responseBody.string();
+                mDeliverHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handleResponse(result);
+                    }
+                });
+            } else {
+                mDeliverHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mResponseCallBack.onFailure(new OkHttpException(Network_Error, Empty_Message));
+                    }
+                });
+            }
         } else {
-            mDeliverHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    mResponseCallBack.onFailure(new OkHttpException(Network_Error, Empty_Message));
-                }
-            });
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("errorCode", response.code());
+            map.put("message", response.body().string());
+            EventBus.getDefault().post(map);
         }
     }
 

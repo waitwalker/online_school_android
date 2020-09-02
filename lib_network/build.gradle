@@ -36,4 +36,6 @@ dependencies {
     // 引入Gson依赖
     api rootProject.dependenciesLibrary.gson
 
+    api rootProject.dependenciesLibrary.eventbus
+
 }

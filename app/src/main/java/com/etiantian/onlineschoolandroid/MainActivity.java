@@ -1,7 +1,5 @@
 package com.etiantian.onlineschoolandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +11,8 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
+import com.etiantian.onlineschoolandroid.pages.BaseActivity;
+import com.etiantian.onlineschoolandroid.pages.LoginActivity;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements CompoundButton.OnClickListener {
+public class MainActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +82,21 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void handleEventBus(TokenEvent event){
+    public void handleEventBus(Object object){
 
-        TokenEvent event1 = event;
-        Log.d("1","消息:" + event1.getMessage());
+        Object event1 = object;
+        Log.d("1","消息:");
+        if (object instanceof HashMap) {
+            HashMap hashMap = (HashMap) object;
+            int errorCode = (int) hashMap.get("errorCode");
+            String message = (String) hashMap.get("message");
+
+            Log.d("1","错误码:" + errorCode + "\n" + "错误消息:" + message);
+            if (errorCode == 401) {
+                navigateTo(LoginActivity.class);
+            }
+
+        }
     }
 
 
