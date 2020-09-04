@@ -12,6 +12,7 @@ import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.welcome.WelcomeActivity;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
@@ -53,9 +54,11 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
 
             // 到首页
             if (token.length() > 0 && savedExpiration > currentTimestamp) {
+                RuntimeDataManager.instance().setToken(token);
                 navigateTo(TabBarNavigationActivity.class);
             } else {
                 // 到登录页
+                RuntimeDataManager.instance().setToken(null);
                 navigateTo(LoginActivity.class);
             }
         } else {

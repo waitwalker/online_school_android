@@ -12,6 +12,7 @@ import com.etiantian.onlineschoolandroid.constant.Const;
 import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 
@@ -120,8 +121,8 @@ public class NetworkManager {
     /// @time 2020/9/2 11:42 AM
     ///
     private static String getToken() {
-        String token = SharedPreferencesManager.instance().getString("token");
-        if (token.length() == 0) {
+        String token = RuntimeDataManager.instance().getToken();
+        if (token == null || token.length() == 0) {
             HashMap<String, Object> map = new HashMap<>();
             map.put("errorCode", -1);
             map.put("message", "token为空");

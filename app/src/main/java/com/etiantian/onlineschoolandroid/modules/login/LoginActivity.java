@@ -28,6 +28,7 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -239,6 +240,8 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
 
                 SharedPreferencesManager.instance().putString("account", account_input.getText().toString());
                 SharedPreferencesManager.instance().putString("password", password_input.getText().toString());
+
+                RuntimeDataManager.instance().setToken(loginModel.getAccess_token());
 
                 // 跳转到首页
                 navigateTo(TabBarNavigationActivity.class);
