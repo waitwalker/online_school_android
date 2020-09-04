@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+
 import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
@@ -63,7 +65,11 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
         initView();
         initData();
     }
@@ -196,6 +202,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
             case R.id.check_button:
                 break;
             case R.id.user_privacy_button:
+                navigateTo(UserPrivacyActivity.class);
                 break;
         }
     }
