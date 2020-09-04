@@ -3,7 +3,10 @@ package com.etiantian.onlineschoolandroid.modules.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -64,6 +67,36 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         account_input = findViewById(R.id.account_input);
         account_delete = findViewById(R.id.account_delete);
         account_delete.setOnClickListener(this);
+
+        /// 监听用户名文本框变化
+        account_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                Log.d("1","输入完成点击确认,调用此方法");
+                return false;
+            }
+        });
+        account_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("1","文本输入之前");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("1","文本输入发生变化");
+                if (account_input.getText().toString().length() > 0) {
+                    account_delete.setVisibility(View.VISIBLE);
+                } else {
+                    account_delete.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("1","文本输入之后");
+            }
+        });
     }
 
     private void initData() {
@@ -91,6 +124,9 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                 break;
             case R.id.login_button:
                 loginAction();
+                break;
+            case R.id.account_delete:
+                account_input.setText("");
                 break;
         }
     }
