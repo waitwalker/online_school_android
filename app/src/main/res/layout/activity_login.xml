@@ -125,10 +125,26 @@
     </RelativeLayout>
 
     <Button
-        android:layout_centerInParent="true"
-        android:text="登录"
-        android:id="@+id/login_button"
+        android:id="@+id/forget_button"
+        android:textColor="#b7b7b7"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="24dp"
+        android:layout_below="@id/middle_container"
+        android:text="忘记密码"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/login_button_selector"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/forget_button"
+        android:text="登录"
+        android:id="@+id/login_button"
+        android:layout_width="220dp"
+        android:layout_height="50dp"/>
 
 </RelativeLayout>
