@@ -3,7 +3,7 @@ package com.etiantian.onlineschoolandroid.singleton;
 ///
 /// @description APP 运行时数据管理
 /// @author waitwalker
-/// @time 2020/9/4 2:29 PM
+/// @time 2020/9/4 3:14 PM
 ///
 public class RuntimeDataManager {
     private volatile static RuntimeDataManager instance = null;

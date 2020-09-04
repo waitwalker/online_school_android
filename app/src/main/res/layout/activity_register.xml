@@ -11,9 +11,15 @@
         android:id="@+id/register_top_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:background="@mipmap/register_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
         <TextView
             android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="90dp"
             android:textStyle="bold"
             android:typeface="monospace"
             android:textSize="24sp"
@@ -250,11 +256,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <CheckBox
+                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                android:gravity="center"
                 android:layout_centerVertical="true"
                 android:id="@+id/check_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+                android:layout_width="26dp"
+                android:layout_height="26dp"/>
             <Button
+                android:layout_marginStart="10dp"
                 android:background="@android:color/transparent"
                 android:text="阅读并同意用户服务协议"
                 android:layout_toRightOf="@id/check_button"

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="register_normal">#5480FA</color>
+
+    <color name="register_pressed">#3F66CC</color>
 </resources>
