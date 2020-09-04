@@ -239,5 +239,35 @@
         android:id="@+id/register_button"
         android:layout_width="220dp"
         android:layout_height="50dp"/>
+    
+    <RelativeLayout
+        android:layout_below="@id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_centerVertical="true"
+                android:id="@+id/check_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:text="阅读并同意用户服务协议"
+                android:layout_toRightOf="@id/check_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        
+    </RelativeLayout>
+    
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/login_background_down"
+        android:layout_width="300dp"
+        android:layout_height="156dp"/>
 
 </RelativeLayout>
