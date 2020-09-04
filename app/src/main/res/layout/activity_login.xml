@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/login_background"
     tools:context="com.etiantian.onlineschoolandroid.modules.login.LoginActivity">
 
     <RelativeLayout
@@ -64,8 +65,10 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <EditText
+                android:hint="用户名/手机号"
+                android:layout_marginStart="5dp"
                 android:id="@+id/account_input"
-                android:background="null"
+                android:background="@null"
                 android:layout_toEndOf="@id/account_icon"
                 android:layout_toStartOf="@id/account_delete"
                 android:layout_width="wrap_content"
