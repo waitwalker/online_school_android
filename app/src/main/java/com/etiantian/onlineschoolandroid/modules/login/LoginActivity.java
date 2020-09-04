@@ -34,6 +34,7 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class LoginActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
+    /// 登录按钮
     private Button loginButton;
     private String canBack;
 
