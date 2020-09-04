@@ -95,7 +95,7 @@
                 android:id="@+id/register_code_icon"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/password_placeholder_icon"
+                android:background="@mipmap/code_placeholder_iconx"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <ImageView
@@ -187,7 +187,7 @@
                 android:id="@+id/register_area_icon"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/password_placeholder_icon"
+                android:background="@mipmap/location_placeholder_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <ImageView
