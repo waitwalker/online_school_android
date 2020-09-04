@@ -36,6 +36,7 @@ dependencies {
     androidTestImplementation this.rootProject.dependenciesLibrary.espressoCore
 
     implementation rootProject.dependenciesLibrary.eventbus
+    implementation rootProject.dependenciesLibrary.shadowView
 
 
     // 网络库
