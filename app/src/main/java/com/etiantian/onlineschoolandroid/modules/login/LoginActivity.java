@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
@@ -20,6 +21,7 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
 
     private Button loginButton;
     private String canBack;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     private void initView() {
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(this);
+
+        textView = findViewById(R.id.textView);
     }
 
     private void initData() {

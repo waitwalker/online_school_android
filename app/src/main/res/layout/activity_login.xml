@@ -8,14 +8,53 @@
     tools:context="com.etiantian.onlineschoolandroid.modules.login.LoginActivity">
 
     <RelativeLayout
+        android:id="@+id/top_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textFontWeight="1200"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             android:textSize="24sp"
-            android:text="用户登录"
+            android:text="@string/user_login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginTop="0dp"
+            android:layout_alignParentEnd="true"
+            android:scaleType="fitCenter"
+            android:background="@mipmap/login_background_top"
+            android:layout_width="200dp"
+            android:layout_height="160dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/top_container"
+        android:id="@+id/middle_container"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:background="@android:color/holo_red_dark"
+            android:id="@+id/account_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        </RelativeLayout>
+        <View
+            android:layout_below="@id/account_container"
+            android:id="@+id/margin"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <RelativeLayout
+            android:background="@android:color/holo_red_dark"
+            android:layout_below="@id/margin"
+            android:id="@+id/password_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <Button
