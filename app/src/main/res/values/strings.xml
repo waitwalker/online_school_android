@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">onlineSchoolAndroid</string>
     <string name="user_login_text">用户登录</string>
+    <string name="register_text">注册</string>
 </resources>
