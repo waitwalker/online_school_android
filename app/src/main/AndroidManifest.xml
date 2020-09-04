@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.etiantian.onlineschoolandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,13 +15,22 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        tools:replace="android:allowBackup"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.login.RegisterActivity"></activity>
-        <activity android:name=".modules.login.LogoutActivity"></activity>
-        <activity android:name=".entrance.TabBarNavigationActivity"></activity>
+        <activity android:name=".modules.login.RegisterActivity">
+
+        </activity>
+        <activity android:name=".modules.login.LogoutActivity">
+
+        </activity>
+        <activity android:name=".entrance.TabBarNavigationActivity">
+
+        </activity>
         <activity
             android:name=".modules.welcome.WelcomeActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask">
+
+        </activity>
         <activity android:name=".entrance.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
         <activity android:name=".MainActivity">

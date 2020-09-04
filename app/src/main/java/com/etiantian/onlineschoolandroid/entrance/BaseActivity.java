@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import com.etiantian.onlineschoolandroid.tools.StatusBarUtil;
 
@@ -87,6 +88,18 @@ public class BaseActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.show();
         }
+    }
+
+    ///
+    /// @description 隐藏键盘
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/4 1:58 PM
+    ///
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

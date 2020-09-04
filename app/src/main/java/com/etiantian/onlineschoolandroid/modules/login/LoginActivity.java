@@ -29,6 +29,7 @@ import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class LoginActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
@@ -160,6 +161,17 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                 canBack = back;
             }
         }
+
+        String account = SharedPreferencesManager.instance().getString("account");
+        String password = SharedPreferencesManager.instance().getString("password");
+        if (account.length() > 0) {
+            account_input.setText(account);
+        }
+
+        if (password.length() > 0) {
+            password_input.setText(password);
+        }
+
     }
 
     ///
@@ -197,19 +209,27 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         }
     }
 
-    public void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-
     /// 登录按钮点击事件
     private void loginAction() {
+
+        if (account_input.getText().length() == 0 || password_input.getText().length() == 0) {
+            showToast("请输入完整账号密码后,登录!");
+            return;
+        }
+
+        final KProgressHUD hud = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("登录中...")
+                .show();
+
         RequestParams map =new RequestParams();
-        map.put("username","18600000001");
-        map.put("password","a11111");
+        map.put("username",account_input.getText().toString());
+        map.put("password",password_input.getText().toString());
         NetworkManager.login((RequestParams) map, new NormalResponseCallBack() {
+
             @Override
             public void onSuccess(Object responseObj) {
+                hud.dismiss();
                 Log.d("1","响应成功");
                 LoginModel loginModel = (LoginModel) responseObj;
 
@@ -217,12 +237,16 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                 SharedPreferencesManager.instance().putString("token", loginModel.getAccess_token());
                 SharedPreferencesManager.instance().putLong("expiration", loginModel.getExpiration());
 
+                SharedPreferencesManager.instance().putString("account", account_input.getText().toString());
+                SharedPreferencesManager.instance().putString("password", password_input.getText().toString());
+
                 // 跳转到首页
                 navigateTo(TabBarNavigationActivity.class);
             }
 
             @Override
             public void onFailure(Object responseObj) {
+                hud.dismiss();
                 Log.d("1","响应失败");
             }
         });

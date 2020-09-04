@@ -37,6 +37,7 @@ dependencies {
 
     implementation rootProject.dependenciesLibrary.eventbus
     implementation rootProject.dependenciesLibrary.shadowView
+    implementation rootProject.dependenciesLibrary.progresshud
 
 
     // 网络库
