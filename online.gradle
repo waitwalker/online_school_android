@@ -36,6 +36,7 @@ ext{
             material        : 'com.google.android.material:material:1.2.0',
             recyclerview    : 'androidx.recyclerview:recyclerview:1.1.0',
             shadowView      :  "com.github.amikoj:ShadowView:${dependenciesVersion.shadowView}",
-            progresshud     : 'com.kaopiz:kprogresshud:1.0.2'
+            progresshud     : 'com.kaopiz:kprogresshud:1.0.2',
+            citypicker      : 'liji.library.dev:citypickerview:5.2.2',
     ]
 }

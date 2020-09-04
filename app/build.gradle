@@ -38,6 +38,7 @@ dependencies {
     implementation rootProject.dependenciesLibrary.eventbus
     implementation rootProject.dependenciesLibrary.shadowView
     implementation rootProject.dependenciesLibrary.progresshud
+    implementation rootProject.dependenciesLibrary.citypicker
 
 
     // 网络库
