@@ -2,9 +2,13 @@ package com.etiantian.onlineschoolandroid.modules.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,6 +45,15 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     /// 删除用户名
     private ImageView account_delete;
 
+    /// 密码输入框
+    private EditText password_input;
+
+    /// 显示与隐藏密码
+    private ImageView password_visible_imageView;
+
+    /// 密码是否可见
+    private boolean password_visible_ = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +81,10 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         account_delete = findViewById(R.id.account_delete);
         account_delete.setOnClickListener(this);
 
+        password_input = findViewById(R.id.password_input);
+        password_visible_imageView = findViewById(R.id.password_visible);
+        password_visible_imageView.setOnClickListener(this);
+
         /// 监听用户名文本框变化
         account_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -89,6 +106,36 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                     account_delete.setVisibility(View.VISIBLE);
                 } else {
                     account_delete.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("1","文本输入之后");
+            }
+        });
+
+        /// 监听密码文本框变化
+        password_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                Log.d("1","输入完成点击确认,调用此方法");
+                return false;
+            }
+        });
+        password_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("1","文本输入之前");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("1","文本输入发生变化");
+                if (password_input.getText().toString().length() > 0) {
+                    password_visible_imageView.setVisibility(View.VISIBLE);
+                } else {
+                    password_visible_imageView.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -127,6 +174,16 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                 break;
             case R.id.account_delete:
                 account_input.setText("");
+                break;
+            case R.id.password_visible:
+                password_visible_ = !password_visible_;
+                if (password_visible_) {
+                    password_input.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    password_input.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                password_input.setSelection(password_input.getText().length());
+                password_visible_imageView.setSelected(password_visible_);
                 break;
         }
     }

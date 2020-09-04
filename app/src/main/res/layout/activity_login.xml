@@ -91,6 +91,35 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/password_icon"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/password_placeholder_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/password_visible"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/password_visible_selector"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <EditText
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:hint="密码"
+                android:layout_marginStart="5dp"
+                android:id="@+id/password_input"
+                android:background="@null"
+                android:layout_toEndOf="@id/password_icon"
+                android:layout_toStartOf="@id/password_visible"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
     </RelativeLayout>
