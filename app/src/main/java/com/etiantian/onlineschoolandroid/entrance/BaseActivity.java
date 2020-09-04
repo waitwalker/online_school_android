@@ -3,14 +3,12 @@ package com.etiantian.onlineschoolandroid.entrance;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import com.etiantian.onlineschoolandroid.R;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.widget.Toast;
-
-import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.tools.StatusBarUtil;
 
 public class BaseActivity extends AppCompatActivity {

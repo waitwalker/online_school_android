@@ -54,6 +54,9 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
     /// 密码是否可见
     private boolean password_visible_ = false;
 
+    /// 注册按钮
+    private Button register_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,9 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         password_input = findViewById(R.id.password_input);
         password_visible_imageView = findViewById(R.id.password_visible);
         password_visible_imageView.setOnClickListener(this);
+
+        register_button = findViewById(R.id.register_button);
+        register_button.setOnClickListener(this);
 
         /// 监听用户名文本框变化
         account_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -184,6 +190,9 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
                 }
                 password_input.setSelection(password_input.getText().length());
                 password_visible_imageView.setSelected(password_visible_);
+                break;
+            case R.id.register_button:
+                navigateTo(RegisterActivity.class);
                 break;
         }
     }

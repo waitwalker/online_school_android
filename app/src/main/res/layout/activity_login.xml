@@ -135,6 +135,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:elevation="12dp"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@android:color/white"
@@ -146,5 +147,16 @@
         android:id="@+id/login_button"
         android:layout_width="220dp"
         android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:layout_below="@id/login_button"
+        android:textSize="16sp"
+        android:text="去注册"
+        android:textColor="#6793FC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
