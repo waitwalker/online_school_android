@@ -11,11 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textFontWeight="1200"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             android:textSize="24sp"
             android:text="用户登录"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:scaleType="fitCenter"
+            android:background="@mipmap/login_background_top"
+            android:layout_width="200dp"
+            android:layout_height="160dp"/>
     </RelativeLayout>
 
     <Button
