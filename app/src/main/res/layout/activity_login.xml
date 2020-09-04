@@ -45,6 +45,31 @@
             android:id="@+id/account_container"
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/account_icon"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/account_placeholder_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/account_delete"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/account_placeholder_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <EditText
+                android:id="@+id/account_input"
+                android:background="null"
+                android:layout_toEndOf="@id/account_icon"
+                android:layout_toStartOf="@id/account_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
         <View
             android:layout_below="@id/account_container"
