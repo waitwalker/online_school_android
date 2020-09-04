@@ -71,8 +71,9 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <EditText
+                android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:hint="用户名/手机号"
+                android:hint="手机号"
                 android:layout_marginStart="5dp"
                 android:id="@+id/register_account_input"
                 android:background="@null"
@@ -116,7 +117,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <EditText
-                android:inputType="textPassword"
+                android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:hint="验证码"
                 android:layout_marginStart="5dp"
@@ -197,17 +198,18 @@
                 android:background="@mipmap/location_placeholder_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
+
             <ImageView
                 android:layout_marginEnd="10dp"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/register_area_drop"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/password_visible_selector"
+                android:background="@mipmap/register_dropdown"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <EditText
-                android:inputType="textPassword"
+                android:inputType="none"
                 android:maxLines="1"
                 android:hint="请选择所在地区"
                 android:layout_marginStart="5dp"

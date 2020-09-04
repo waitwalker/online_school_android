@@ -54,6 +54,10 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     /// 密码是否可见
     private boolean password_visible_ = false;
 
+    /// 选择地区
+    private EditText area_input;
+    private ImageView area_dropdown;
+
     /// 注册按钮
     private Button register_button;
     /// 用户协议选中
@@ -95,6 +99,16 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         password_input = findViewById(R.id.register_password_input);
         password_visible_imageView = findViewById(R.id.register_password_visible);
         password_visible_imageView.setOnClickListener(this);
+
+        area_input = findViewById(R.id.register_area_input);
+        area_input.setClickable(true);
+        area_input.setFocusable(false);
+        area_input.setFocusableInTouchMode(false);
+        area_input.setLongClickable(false);
+        area_input.setOnClickListener(this);
+
+        area_dropdown = findViewById(R.id.register_area_drop);
+        area_dropdown.setOnClickListener(this);
 
         register_button = findViewById(R.id.register_button);
         register_button.setOnClickListener(this);
@@ -203,6 +217,12 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 break;
             case R.id.user_privacy_button:
                 navigateTo(UserPrivacyActivity.class);
+                break;
+            case R.id.register_area_input:
+                showToast("地区输入框点击了");
+                break;
+            case R.id.register_area_drop:
+                showToast("地区输入框点击了");
                 break;
         }
     }
