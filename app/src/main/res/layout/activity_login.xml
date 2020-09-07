@@ -61,7 +61,7 @@
                 android:id="@+id/account_delete"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/account_placeholder_icon"
+                android:background="@mipmap/account_delete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
             <EditText
