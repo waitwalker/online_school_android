@@ -73,7 +73,7 @@
             <EditText
                 android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:hint="手机号"
+                android:hint="输入手机号"
                 android:layout_marginStart="5dp"
                 android:id="@+id/register_account_input"
                 android:background="@null"
@@ -119,7 +119,7 @@
             <EditText
                 android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:hint="验证码"
+                android:hint="输入验证码"
                 android:layout_marginStart="5dp"
                 android:id="@+id/register_code_input"
                 android:background="@null"
@@ -165,7 +165,7 @@
             <EditText
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:hint="密码"
+                android:hint="输入"
                 android:layout_marginStart="5dp"
                 android:id="@+id/register_password_input"
                 android:background="@null"
