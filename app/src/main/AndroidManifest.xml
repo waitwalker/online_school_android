@@ -15,20 +15,20 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:allowBackup">
-        <activity android:name=".modules.login.UserPrivacyActivity">
+        android:theme="@style/MyBaseTheme"
+        tools:replace="android:allowBackup, android:theme">
+        <activity android:name=".modules.splash.LaunchActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".modules.login.RegisterActivity">
-
-        </activity>
-        <activity android:name=".modules.login.LogoutActivity">
-
-        </activity>
-        <activity android:name=".entrance.TabBarNavigationActivity">
-
-        </activity>
+        <activity android:name=".modules.login.UserPrivacyActivity"></activity>
+        <activity android:name=".modules.login.RegisterActivity"></activity>
+        <activity android:name=".modules.login.LogoutActivity"></activity>
+        <activity android:name=".entrance.TabBarNavigationActivity"></activity>
         <activity
             android:name=".modules.welcome.WelcomeActivity"
             android:launchMode="singleTask">
@@ -36,12 +36,9 @@
         </activity>
         <activity android:name=".entrance.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".MainActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

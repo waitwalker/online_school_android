@@ -33,19 +33,13 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*还没有加载布局是睡眠1秒，确保黑屏或白屏效果明显*/
-        try {
-            Thread.sleep(12000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         setContentView(R.layout.activity_main);
-
-
-        gotoPage();
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(this);
+
+        gotoPage();
+
     }
 
     ///

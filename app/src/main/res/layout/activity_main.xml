@@ -8,13 +8,6 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:layout_centerInParent="true"
-        android:background="@mipmap/img_start_zhongxia_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
     <Button
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
