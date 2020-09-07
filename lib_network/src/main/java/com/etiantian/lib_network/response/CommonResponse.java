@@ -88,6 +88,14 @@ public class CommonResponse implements Callback {
             map.put("errorCode", response.code());
             map.put("message", response.body().string());
             EventBus.getDefault().post(map);
+            final int error_code = response.code();
+            final String msg = response.body().string();
+            mDeliverHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mResponseCallBack.onFailure(new OkHttpException(error_code, msg));
+                }
+            });
         }
     }
 

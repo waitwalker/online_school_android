@@ -269,6 +269,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
             public void onSuccess(Object responseObj) {
                 Log.d("1","验证码请求成功");
                 CodeModel codeModel = (CodeModel)responseObj;
+                showToast(codeModel.getMsg());
                 cancelTimer();
             }
 
