@@ -37,7 +37,7 @@
         <activity android:name=".entrance.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
         <activity
-            android:name=".MainActivity">
+            android:name=".modules.splash.SplashActivity">
 
         </activity>
     </application>

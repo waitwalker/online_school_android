@@ -10,9 +10,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.etiantian.onlineschoolandroid.MainActivity;
-import com.etiantian.onlineschoolandroid.R;
-
 public class LaunchActivity extends AppCompatActivity {
 
     @Override
@@ -23,7 +20,7 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Intent it = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent it = new Intent(getApplicationContext(), SplashActivity.class);
                     startActivity(it);
                     finish();//关闭当前活动
                 } catch (Exception e) {

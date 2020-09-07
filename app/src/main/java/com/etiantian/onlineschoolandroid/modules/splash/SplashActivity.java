@@ -1,12 +1,17 @@
-package com.etiantian.onlineschoolandroid;
+package com.etiantian.onlineschoolandroid.modules.splash;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieOnCompositionLoadedListener;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
+import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
@@ -28,24 +33,38 @@ import java.util.HashMap;
 /// @author waitwalker
 /// @time 2020/9/2 2:28 PM
 ///
-public class MainActivity extends BaseActivity implements CompoundButton.OnClickListener {
+public class SplashActivity extends BaseActivity implements CompoundButton.OnClickListener {
+
+    private LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(this);
-
-        gotoPage();
+        lottieAnimationView = findViewById(R.id.lottie_layer);
+        //自定义动画的速率和时长
+        ValueAnimator valueAnimator = ValueAnimator
+                .ofFloat(0f, 1f)
+                .setDuration(3000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                Log.d("1","动画进度:" + value);
+                if (value == 1.0) {
+                    gotoPage();
+                }
+            }
+        });
+        valueAnimator.start();
 
     }
 
     ///
     /// @description 跳转到相应页面
-    /// @param 
-    /// @return 
+    /// @param
+    /// @return
     /// @author waitwalker
     /// @time 2020/9/7 3:16 PM
     ///
@@ -78,10 +97,6 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.button:
-                String name = SharedPreferencesManager.instance().getString("name");
-                Log.d("1","获取到的name:" + name);
-                break;
         }
     }
 
