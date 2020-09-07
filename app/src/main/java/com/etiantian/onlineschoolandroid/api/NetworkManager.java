@@ -35,10 +35,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NetworkManager {
     static class HttpConstants {
 
-        private static final String AppId = App.DEBUG()? "071DC04BB4053F236AD7DF478A8E4A17" : "C2ABCA7EBE1A93D1F0A1C3D9E8D6B79E";
-        private static final String AppSecret = App.DEBUG()? "BA451F0E9F31B3A270C08F3BB38E33BE" : "2765F72C83B05066CB7B65F3650E3440";
+        private static final String AppId = !App.DEBUG()? "071DC04BB4053F236AD7DF478A8E4A17" : "C2ABCA7EBE1A93D1F0A1C3D9E8D6B79E";
+        private static final String AppSecret = !App.DEBUG()? "BA451F0E9F31B3A270C08F3BB38E33BE" : "2765F72C83B05066CB7B65F3650E3440";
 
-        private static final String Base_URL = App.DEBUG() ? "http://gw5.bj.etiantian.net:42393/" : "https://school.etiantian.com/";
+        private static final String Base_URL = !App.DEBUG() ? "http://gw5.bj.etiantian.net:42393/" : "https://school.etiantian.com/";
 
         // 登录
         public static String Login_URL = Base_URL + "authentication-center/authentication/login?";
@@ -70,6 +70,17 @@ public class NetworkManager {
     ///
     public static void postRequest(String url, RequestParams params, RequestParams headers, NormalResponseCallBack callBack, Class<?> clazz) {
         CommonOkHttpClient.post(CommonRequest.createPostRequest(url, params, headers), new ResponseHandler(callBack, clazz));
+    }
+
+    ///
+    /// @description post 请求通用方法
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 9:03 AM
+    ///
+    public static void postRequestWithJsonParameter(String url, RequestParams params, RequestParams headers, NormalResponseCallBack callBack, Class<?> clazz) {
+        CommonOkHttpClient.post(CommonRequest.createPostRequestWithJsonParameter(url, params, headers), new ResponseHandler(callBack, clazz));
     }
 
     ///
@@ -112,8 +123,10 @@ public class NetworkManager {
     /// @time 2020/9/7 10:15 AM
     ///
     public static void codeFetch(RequestParams params, NormalResponseCallBack callBack) {
-        String url =  HttpConstants.Code_URL + mapToQuery(params);
-        postRequest(url, params, getBasicHeaders(), callBack, CodeModel.class);
+        String url =  HttpConstants.Code_URL;
+        RequestParams headers = getBasicHeaders();
+        headers.put("content-type","application/json");
+        postRequestWithJsonParameter(url, params, headers, callBack, CodeModel.class);
     }
 
     ///

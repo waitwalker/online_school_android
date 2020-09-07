@@ -31,11 +31,11 @@ dependencies {
     androidTestImplementation this.rootProject.dependenciesLibrary.espressoCore
 
     // 引入okhttp依赖
-    api rootProject.dependenciesLibrary.okhttp
+    implementation rootProject.dependenciesLibrary.okhttp
 
     // 引入Gson依赖
-    api rootProject.dependenciesLibrary.gson
+    implementation rootProject.dependenciesLibrary.gson
 
-    api rootProject.dependenciesLibrary.eventbus
+    implementation rootProject.dependenciesLibrary.eventbus
 
 }

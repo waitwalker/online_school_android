@@ -233,7 +233,7 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         RequestParams map =new RequestParams();
         map.put("username",account_input.getText().toString());
         map.put("password",password_input.getText().toString());
-        NetworkManager.login((RequestParams) map, new NormalResponseCallBack() {
+        NetworkManager.loginFetch((RequestParams) map, new NormalResponseCallBack() {
 
             @Override
             public void onSuccess(Object responseObj) {

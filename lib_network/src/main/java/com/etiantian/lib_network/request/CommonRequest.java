@@ -2,6 +2,10 @@ package com.etiantian.lib_network.request;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.Map;
 
@@ -58,6 +62,39 @@ public class CommonRequest {
                 .url(url)
                 .headers(mHeadersBuilder.build())
                 .post(mFormBodyBuilder.build())
+                .build();
+        return request;
+    }
+
+    ///
+    /// @name createPostRequest
+    /// @description 构建post 请求对象
+    /// @author liuca
+    /// @date 2020/8/13
+    ///
+    public static Request createPostRequestWithJsonParameter(String url, RequestParams params, RequestParams headers) {
+        String json = new Gson().toJson(params.urlParams);
+        MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(json, mediaType);
+
+        Log.d("1","post请求完整参数:" + url);
+
+        // 构建请求头
+        Headers.Builder mHeadersBuilder = new Headers.Builder();
+        if (headers != null) {
+            for (Map.Entry<String,String> entry: headers.urlParams.entrySet()) {
+                //请求头遍历
+                mHeadersBuilder.add(entry.getKey(),entry.getValue());
+            }
+        }
+
+        Log.d("1","post请求完整请求头:" + mHeadersBuilder.build().toString());
+
+        // 构建Request对象 构建者模式,将请求url,请求头,请全体传进去
+        Request request = new Request.Builder()
+                .url(url)
+                .headers(mHeadersBuilder.build())
+                .post(body)
                 .build();
         return request;
     }

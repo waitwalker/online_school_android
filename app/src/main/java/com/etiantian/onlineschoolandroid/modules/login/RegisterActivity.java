@@ -26,9 +26,11 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
+import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
+import com.etiantian.onlineschoolandroid.tools.StringUtil;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class RegisterActivity extends BaseActivity implements CompoundButton.OnClickListener {
@@ -247,9 +249,35 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 showToast("地区输入框点击了");
                 break;
             case R.id.register_code_visible:
-                codeCountDownTimer.start();
+                codeAction();
                 break;
         }
+    }
+
+    /// 获取验证码事件
+    private void codeAction() {
+        if (!StringUtil.matchedMobile(account_input.getText().toString())) {
+            showToast("手机号格式不正确");
+            return;
+        }
+        codeCountDownTimer.start();
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("mobile", account_input.getText().toString());
+        requestParams.put("smsType","102");
+        NetworkManager.codeFetch(requestParams, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                Log.d("1","验证码请求成功");
+                CodeModel codeModel = (CodeModel)responseObj;
+                cancelTimer();
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","验证码请求失败");
+                cancelTimer();
+            }
+        });
     }
 
     /// 登录按钮点击事件
@@ -268,7 +296,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         RequestParams map =new RequestParams();
         map.put("username",account_input.getText().toString());
         map.put("password",password_input.getText().toString());
-        NetworkManager.login((RequestParams) map, new NormalResponseCallBack() {
+        NetworkManager.loginFetch((RequestParams) map, new NormalResponseCallBack() {
 
             @Override
             public void onSuccess(Object responseObj) {
@@ -312,6 +340,21 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    ///
+    /// @description 取消倒计时
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 11:25 AM
+    ///
+    private void cancelTimer() {
+        if (codeCountDownTimer != null) {
+            codeCountDownTimer.cancel();
+            code_button.setClickable(true);
+            code_button.setText("重新获取");
+        }
     }
 
     ///
