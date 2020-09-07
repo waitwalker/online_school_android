@@ -28,6 +28,7 @@ import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
+import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 import com.etiantian.onlineschoolandroid.tools.StringUtil;
@@ -288,27 +289,24 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                     .show();
 
             RequestParams map =new RequestParams();
-            map.put("username",account_input.getText().toString());
+            map.put("mobile",account_input.getText().toString());
+            map.put("phoneCode",code_input.getText().toString());
             map.put("password",password_input.getText().toString());
-            NetworkManager.loginFetch((RequestParams) map, new NormalResponseCallBack() {
+            map.put("province",account_input.getText().toString());
+            map.put("city",password_input.getText().toString());
+            map.put("regionId",password_input.getText().toString());
+            NetworkManager.registerFetch((RequestParams) map, new NormalResponseCallBack() {
 
                 @Override
                 public void onSuccess(Object responseObj) {
                     hud.dismiss();
                     Log.d("1","响应成功");
-                    LoginModel loginModel = (LoginModel) responseObj;
-
-                    // 缓存数据
-                    SharedPreferencesManager.instance().putString("token", loginModel.getAccess_token());
-                    SharedPreferencesManager.instance().putLong("expiration", loginModel.getExpiration());
-
-                    SharedPreferencesManager.instance().putString("account", account_input.getText().toString());
-                    SharedPreferencesManager.instance().putString("password", password_input.getText().toString());
-
-                    RuntimeDataManager.instance().setToken(loginModel.getAccess_token());
-
-                    // 跳转到首页
-                    navigateTo(TabBarNavigationActivity.class);
+                    RegisterModel registerModel = (RegisterModel) responseObj;
+                    showToast(registerModel.getMsg());
+                    if (registerModel.getCode() == 1) {
+                        // 跳转到登录页
+                        finish();
+                    }
                 }
 
                 @Override

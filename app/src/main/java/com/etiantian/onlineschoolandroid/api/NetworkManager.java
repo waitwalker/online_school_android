@@ -13,6 +13,7 @@ import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
+import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
@@ -48,6 +49,9 @@ public class NetworkManager {
 
         // 获取验证码
         public static String Code_URL = Base_URL + "api-cloudaccount-service/api/user/sms";
+
+        // 注册
+        public static String Register_URL = Base_URL + "api-cloudaccount-service/api/user/register";
     }
 
     ///
@@ -127,6 +131,20 @@ public class NetworkManager {
         RequestParams headers = getBasicHeaders();
         headers.put("content-type","application/json");
         postRequestWithJsonParameter(url, params, headers, callBack, CodeModel.class);
+    }
+
+    ///
+    /// @description 注册请求
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 1:29 PM
+    ///
+    public static void registerFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Code_URL;
+        RequestParams headers = getBasicHeaders();
+        headers.put("content-type","application/json");
+        postRequestWithJsonParameter(url, params, headers, callBack, RegisterModel.class);
     }
 
     ///
