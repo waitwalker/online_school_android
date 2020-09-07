@@ -33,7 +33,14 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*还没有加载布局是睡眠1秒，确保黑屏或白屏效果明显*/
+        try {
+            Thread.sleep(12000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
+
 
         gotoPage();
 
@@ -41,6 +48,13 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnClick
         button.setOnClickListener(this);
     }
 
+    ///
+    /// @description 跳转到相应页面
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/7 3:16 PM
+    ///
     private void gotoPage() {
         int versionCode = PackageInfoManager.getVersionCode(this);
         int savedVersionCode = SharedPreferencesManager.instance().getInt("versionCode");
