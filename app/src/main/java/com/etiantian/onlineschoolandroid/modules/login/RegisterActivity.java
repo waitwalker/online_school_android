@@ -41,7 +41,7 @@ import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 
-public class RegisterActivity extends BaseActivity implements CompoundButton.OnClickListener {
+public class RegisterActivity extends BaseActivity implements CompoundButton.OnClickListener, CompoundButton.OnCheckedChangeListener{
 
     /// 登录整体背景
     ViewGroup backgroundView;
@@ -77,6 +77,8 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     private CheckBox checkBox;
     /// 用户协议按钮
     private Button user_privacy_button;
+    /// 复选框是否选中 默认false
+    private boolean checked = false;
 
     /// 城市选择器
     CityPickerView mCityPickerView = new CityPickerView();
@@ -145,6 +147,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
 
         /// 单选框按钮
         checkBox = findViewById(R.id.check_button);
+        checkBox.setOnCheckedChangeListener(this);
 
         /// 用户协议
         user_privacy_button = findViewById(R.id.user_privacy_button);
@@ -410,10 +413,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
 
     /// 匹配用户协议
     private boolean matchedUserPrivacy() {
-        boolean isSelected = checkBox.isSelected();
-        Log.d("1","是否选中:" + isSelected);
-
-        if (!checkBox.isSelected()) {
+        if (!checked) {
             showToast("请先阅读并同意用户服务协议");
             return false;
         }
@@ -471,6 +471,17 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
             code_button.setClickable(true);
             code_button.setText("重新获取");
         }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        Log.d("1","是否选中用户隐私政策:" + b);
+        checked = b;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     ///
