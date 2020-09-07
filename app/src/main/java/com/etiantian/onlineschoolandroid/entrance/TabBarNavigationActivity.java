@@ -62,7 +62,7 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
     }
 
     private void testAPI() {
-        NetworkManager.activityCourseAlert(new NormalResponseCallBack() {
+        NetworkManager.activityCourseAlertFetch(new NormalResponseCallBack() {
             @Override
             public void onSuccess(Object responseObj) {
                 Log.d("1","响应成功");

@@ -1,5 +1,7 @@
 package com.etiantian.onlineschoolandroid.singleton;
 
+import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
+
 ///
 /// @description APP 运行时数据管理
 /// @author waitwalker
@@ -30,4 +32,16 @@ public class RuntimeDataManager {
 
     /// token
     private String token;
+
+    ///
+    /// @description 清空token
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:05 AM
+    ///
+    public void clearToken() {
+        SharedPreferencesManager.instance().remove("token");
+        SharedPreferencesManager.instance().remove("expiration");
+    }
 }

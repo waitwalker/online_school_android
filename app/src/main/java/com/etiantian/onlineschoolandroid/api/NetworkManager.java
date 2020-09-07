@@ -11,6 +11,7 @@ import com.etiantian.onlineschoolandroid.app.App;
 import com.etiantian.onlineschoolandroid.constant.Const;
 import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
+import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
@@ -44,6 +45,9 @@ public class NetworkManager {
 
         // 活动课
         public static String Activity_URL = Base_URL + "api-study-service/api/activity/prompt";
+
+        // 获取验证码
+        public static String Code_URL = Base_URL + "api-cloudaccount-service/api/user/sms";
     }
 
     ///
@@ -95,24 +99,37 @@ public class NetworkManager {
     /// @author waitwalker
     /// @time 2020/9/2 11:27 AM
     ///
-    public static void login(RequestParams params, NormalResponseCallBack callBack) {
+    public static void loginFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Login_URL + mapToQuery(params);
-        RequestParams headers = new RequestParams();
-        String basic = HttpConstants.AppId + ":" + HttpConstants.AppSecret;
-        String base64 = Base64.getEncoder().encodeToString(basic.getBytes());
-        headers.put("Authorization", "Basic " + base64);
-        postRequest(url,null, headers, callBack, LoginModel.class);
+        postRequest(url,null, getBasicHeaders(), callBack, LoginModel.class);
     }
 
-    public static void activityCourseAlert(NormalResponseCallBack callBack) {
+    ///
+    /// @description 获取验证码请求: 登录101, 注册102, 忘记密码103, 绑定手机号104
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:15 AM
+    ///
+    public static void codeFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Code_URL + mapToQuery(params);
+        postRequest(url, params, getBasicHeaders(), callBack, CodeModel.class);
+    }
+
+    ///
+    /// @description 获取活动课弹框数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:02 AM
+    ///
+    public static void activityCourseAlertFetch(NormalResponseCallBack callBack) {
         String url =  HttpConstants.Activity_URL;
-        RequestParams headers = new RequestParams();
-        String token = getToken();
-        if (token == null) return;
-        headers.put("Authorization", "Bearer " + token);
-        getRequest(url,null, headers, callBack, ActivityCourseAlertModel.class);
+        getRequest(url,null, getBearerHeaders(), callBack, ActivityCourseAlertModel.class);
     }
 
+
+    /////////========== 请求参数 请求头处理封装 =========/////////
     ///
     /// @description 获取token
     /// @param
@@ -130,6 +147,49 @@ public class NetworkManager {
             return null;
         }
         return token;
+    }
+
+    ///
+    /// @description 情况token
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:03 AM
+    ///
+    private static void clearBearerToken() {
+        RuntimeDataManager.instance().clearToken();
+    }
+
+    ///
+    /// @description 拼接Bearer类型请求头
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:11 AM
+    ///
+    private static RequestParams getBearerHeaders() {
+        RequestParams headers = new RequestParams();
+        String token = getToken();
+        if (token == null) {
+            headers.put("Authorization", "");
+        }
+        headers.put("Authorization", "Bearer " + token);
+        return headers;
+    }
+
+    ///
+    /// @description 拼接Basic类型请求头
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:12 AM
+    ///
+    private static RequestParams getBasicHeaders() {
+        RequestParams headers = new RequestParams();
+        String basic = HttpConstants.AppId + ":" + HttpConstants.AppSecret;
+        String base64 = Base64.getEncoder().encodeToString(basic.getBytes());
+        headers.put("Authorization", "Basic " + base64);
+        return headers;
     }
 }
 
