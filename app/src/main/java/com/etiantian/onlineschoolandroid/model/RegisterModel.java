@@ -3,7 +3,7 @@ package com.etiantian.onlineschoolandroid.model;
 ///
 /// @description 注册model
 /// @author waitwalker
-/// @time 2020/9/7 1:28 PM
+/// @time 2020/9/7 2:41 PM
 ///
 public class RegisterModel {
     /**

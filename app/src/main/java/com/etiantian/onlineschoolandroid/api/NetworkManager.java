@@ -141,7 +141,7 @@ public class NetworkManager {
     /// @time 2020/9/7 1:29 PM
     ///
     public static void registerFetch(RequestParams params, NormalResponseCallBack callBack) {
-        String url =  HttpConstants.Code_URL;
+        String url =  HttpConstants.Register_URL;
         RequestParams headers = getBasicHeaders();
         headers.put("content-type","application/json");
         postRequestWithJsonParameter(url, params, headers, callBack, RegisterModel.class);
