@@ -37,7 +37,7 @@ public class StringUtil {
     /// @param 
     /// @return 
     /// @author waitwalker
-    /// @time 2020/9/7 11:58 AM
+    /// @time 2020/9/7 2:18 PM
     ///
     public static boolean matchedPassword(String pass) {
         String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";

@@ -33,6 +33,13 @@ import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 import com.etiantian.onlineschoolandroid.tools.StringUtil;
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.lljjcoder.Interface.OnCityItemClickListener;
+import com.lljjcoder.bean.CityBean;
+import com.lljjcoder.bean.DistrictBean;
+import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.citywheel.CityConfig;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.lljjcoder.style.citypickerview.CityPickerView;
 
 public class RegisterActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
@@ -70,6 +77,13 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     private CheckBox checkBox;
     /// 用户协议按钮
     private Button user_privacy_button;
+
+    /// 城市选择器
+    CityPickerView mCityPickerView = new CityPickerView();
+    private String defaultProvince = "";
+    private String defaultCity = "";
+    private String defaultArea = "";
+    private String areaId = "";
 
 
     @Override
@@ -195,6 +209,8 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 Log.d("1","文本输入之后");
             }
         });
+
+        mCityPickerView.init(this);
     }
 
     ///
@@ -244,15 +260,62 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 navigateTo(UserPrivacyActivity.class);
                 break;
             case R.id.register_area_input:
-                showToast("地区输入框点击了");
-                break;
             case R.id.register_area_drop:
-                showToast("地区输入框点击了");
+                wheel();
                 break;
             case R.id.register_code_visible:
                 codeAction();
                 break;
         }
+    }
+
+    /**
+     * 弹出选择器
+     */
+    private void wheel() {
+
+        CityConfig cityConfig = new CityConfig.Builder()
+                .title("选择城市")
+                .visibleItemsCount(8)
+                .province(defaultProvince)
+                .city(defaultCity)
+                .district(defaultArea)
+                .provinceCyclic(false)
+                .cityCyclic(false)
+                .districtCyclic(false)
+                .setCityWheelType(CityConfig.WheelType.PRO_CITY_DIS)
+                .setShowGAT(true)
+                .build();
+
+        mCityPickerView.setConfig(cityConfig);
+        mCityPickerView.setOnCityItemClickListener(new OnCityItemClickListener() {
+            @Override
+            public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("选择的结果：\n");
+                if (province != null) {
+                    defaultProvince = province.getName();
+                }
+
+                if (city != null) {
+                    defaultCity = city.getName();
+                }
+
+                if (district != null) {
+                    defaultArea = district.getName();
+                    areaId = district.getId();
+                }
+
+                String fullArea = defaultProvince + " | " + defaultCity + " | " + defaultArea;
+                area_input.setText(fullArea);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+        mCityPickerView.showCityPicker();
     }
 
     /// 获取验证码事件
@@ -292,9 +355,9 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
             map.put("mobile",account_input.getText().toString());
             map.put("phoneCode",code_input.getText().toString());
             map.put("password",password_input.getText().toString());
-            map.put("province",account_input.getText().toString());
-            map.put("city",password_input.getText().toString());
-            map.put("regionId",password_input.getText().toString());
+            map.put("province",defaultProvince);
+            map.put("city",defaultCity);
+            map.put("regionId",areaId);
             NetworkManager.registerFetch((RequestParams) map, new NormalResponseCallBack() {
 
                 @Override
@@ -347,6 +410,9 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
 
     /// 匹配用户协议
     private boolean matchedUserPrivacy() {
+        boolean isSelected = checkBox.isSelected();
+        Log.d("1","是否选中:" + isSelected);
+
         if (!checkBox.isSelected()) {
             showToast("请先阅读并同意用户服务协议");
             return false;
