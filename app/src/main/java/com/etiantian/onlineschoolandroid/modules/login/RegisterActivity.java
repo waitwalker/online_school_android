@@ -2,6 +2,7 @@ package com.etiantian.onlineschoolandroid.modules.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -46,6 +47,8 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     private EditText code_input;
     /// 验证码按钮
     private Button code_button;
+    /// 验证码倒计时
+    private CodeCountDownTimer codeCountDownTimer;
 
     /// 密码输入框
     private EditText password_input;
@@ -87,19 +90,28 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     ///
     private void initView() {
 
+        /// 背景
         backgroundView = findViewById(R.id.register_background);
         backgroundView.setOnClickListener(this);
         textView = findViewById(R.id.textView);
+
+        /// 账号相关
         account_input = findViewById(R.id.register_account_input);
         account_delete = findViewById(R.id.register_account_delete);
         account_delete.setOnClickListener(this);
 
+        /// 验证码相关
         code_input = findViewById(R.id.register_code_input);
+        code_button = findViewById(R.id.register_code_visible);
+        code_button.setOnClickListener(this);
+        codeCountDownTimer = new CodeCountDownTimer(60000, 1000);
 
+        /// 密码相关
         password_input = findViewById(R.id.register_password_input);
         password_visible_imageView = findViewById(R.id.register_password_visible);
         password_visible_imageView.setOnClickListener(this);
 
+        /// 选择地区相关
         area_input = findViewById(R.id.register_area_input);
         area_input.setClickable(true);
         area_input.setFocusable(false);
@@ -110,11 +122,14 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         area_dropdown = findViewById(R.id.register_area_drop);
         area_dropdown.setOnClickListener(this);
 
+        /// 注册按钮
         register_button = findViewById(R.id.register_button);
         register_button.setOnClickListener(this);
 
+        /// 单选框按钮
         checkBox = findViewById(R.id.check_button);
 
+        /// 用户协议
         user_privacy_button = findViewById(R.id.user_privacy_button);
         user_privacy_button.setOnClickListener(this);
 
@@ -179,6 +194,13 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         });
     }
 
+    ///
+    /// @description 初始化数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 9:34 AM
+    ///
     private void initData() {
 
 
@@ -223,6 +245,9 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 break;
             case R.id.register_area_drop:
                 showToast("地区输入框点击了");
+                break;
+            case R.id.register_code_visible:
+                codeCountDownTimer.start();
                 break;
         }
     }
@@ -287,5 +312,29 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    ///
+    /// @description 验证码倒计时类
+    /// @author waitwalker
+    /// @time 2020/9/7 9:37 AM
+    ///
+    private class CodeCountDownTimer extends CountDownTimer {
+
+        public CodeCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long l) {
+            code_button.setClickable(false);
+            code_button.setText("重新获取" + l/1000 + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            code_button.setText("获取验证码");
+            code_button.setClickable(true);
+        }
     }
 }
