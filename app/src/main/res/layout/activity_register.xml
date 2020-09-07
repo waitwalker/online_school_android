@@ -106,16 +106,24 @@
                 android:background="@mipmap/code_placeholder_iconx"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
-            <ImageView
-                android:visibility="invisible"
+            <Button
+                android:textColor="@color/code_button_selector"
                 android:layout_marginEnd="10dp"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/register_code_visible"
-                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:textSize="15sp"
+                android:text="获取验证码"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"/>
+            <View
+                android:layout_marginEnd="10dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/password_visible_selector"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+                android:layout_toLeftOf="@id/register_code_visible"
+                android:background="@android:color/black"
+                android:id="@+id/vertical_line"
+                android:layout_width="1dp"
+                android:layout_height="16dp"/>
             <EditText
                 android:inputType="numberDecimal"
                 android:maxLines="1"
@@ -165,7 +173,7 @@
             <EditText
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:hint="输入"
+                android:hint="输入密码"
                 android:layout_marginStart="5dp"
                 android:id="@+id/register_password_input"
                 android:background="@null"
