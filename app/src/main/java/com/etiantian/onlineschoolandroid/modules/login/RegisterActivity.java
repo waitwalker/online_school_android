@@ -235,7 +235,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
                 password_visible_imageView.setSelected(password_visible_);
                 break;
             case R.id.register_button:
-                loginAction();
+                registerAction();
                 break;
             case R.id.check_button:
                 break;
@@ -256,10 +256,7 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
 
     /// 获取验证码事件
     private void codeAction() {
-        if (!StringUtil.matchedMobile(account_input.getText().toString())) {
-            showToast("手机号格式不正确");
-            return;
-        }
+        if (!matchedMobile()) return;
         codeCountDownTimer.start();
         RequestParams requestParams = new RequestParams();
         requestParams.put("mobile", account_input.getText().toString());
@@ -282,48 +279,102 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     }
 
     /// 登录按钮点击事件
-    private void loginAction() {
+    private void registerAction() {
 
-        if (account_input.getText().length() == 0 || password_input.getText().length() == 0) {
-            showToast("请输入完整账号密码后,登录!");
-            return;
+        if (matchedMobile() && matchedCode() && matchedPassword() && matchedArea() && matchedUserPrivacy()) {
+            final KProgressHUD hud = KProgressHUD.create(this)
+                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                    .setLabel("注册中...")
+                    .show();
+
+            RequestParams map =new RequestParams();
+            map.put("username",account_input.getText().toString());
+            map.put("password",password_input.getText().toString());
+            NetworkManager.loginFetch((RequestParams) map, new NormalResponseCallBack() {
+
+                @Override
+                public void onSuccess(Object responseObj) {
+                    hud.dismiss();
+                    Log.d("1","响应成功");
+                    LoginModel loginModel = (LoginModel) responseObj;
+
+                    // 缓存数据
+                    SharedPreferencesManager.instance().putString("token", loginModel.getAccess_token());
+                    SharedPreferencesManager.instance().putLong("expiration", loginModel.getExpiration());
+
+                    SharedPreferencesManager.instance().putString("account", account_input.getText().toString());
+                    SharedPreferencesManager.instance().putString("password", password_input.getText().toString());
+
+                    RuntimeDataManager.instance().setToken(loginModel.getAccess_token());
+
+                    // 跳转到首页
+                    navigateTo(TabBarNavigationActivity.class);
+                }
+
+                @Override
+                public void onFailure(Object responseObj) {
+                    hud.dismiss();
+                    Log.d("1","响应失败");
+                }
+            });
         }
+    }
 
-        final KProgressHUD hud = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("登录中...")
-                .show();
+    /// 匹配手机号
+    private boolean matchedMobile() {
+        if (!StringUtil.matchedMobile(account_input.getText().toString())) {
+            showToast("手机号格式不正确");
+            return false;
+        }
+        return true;
+    }
 
-        RequestParams map =new RequestParams();
-        map.put("username",account_input.getText().toString());
-        map.put("password",password_input.getText().toString());
-        NetworkManager.loginFetch((RequestParams) map, new NormalResponseCallBack() {
+    /// 匹配验证码
+    private boolean matchedCode() {
+        if (code_input.getText().length() == 0) {
+            showToast("验证码不能为空");
+            return false;
+        }
+        return true;
+    }
 
-            @Override
-            public void onSuccess(Object responseObj) {
-                hud.dismiss();
-                Log.d("1","响应成功");
-                LoginModel loginModel = (LoginModel) responseObj;
+    /// 匹配地区
+    private boolean matchedArea() {
+        if (area_input.getText().length() == 0) {
+            showToast("所在地区不能为空");
+            return false;
+        }
+        return true;
+    }
 
-                // 缓存数据
-                SharedPreferencesManager.instance().putString("token", loginModel.getAccess_token());
-                SharedPreferencesManager.instance().putLong("expiration", loginModel.getExpiration());
+    /// 匹配用户协议
+    private boolean matchedUserPrivacy() {
+        if (!checkBox.isSelected()) {
+            showToast("请先阅读并同意用户服务协议");
+            return false;
+        }
+        return true;
+    }
 
-                SharedPreferencesManager.instance().putString("account", account_input.getText().toString());
-                SharedPreferencesManager.instance().putString("password", password_input.getText().toString());
-
-                RuntimeDataManager.instance().setToken(loginModel.getAccess_token());
-
-                // 跳转到首页
-                navigateTo(TabBarNavigationActivity.class);
+    /// 匹配密码
+    private boolean matchedPassword() {
+        if (password_input.getText().toString().length() == 0) {
+            showToast("密码不能为空");
+            return false;
+        } else if (password_input.getText().toString().length() < 6) {
+            showToast("密码不能小于6个字符");
+            return false;
+        } else if (password_input.getText().toString().length() > 16) {
+            showToast("密码不能超过16个字符");
+            return false;
+        } else {
+            if (!StringUtil.matchedPassword(password_input.getText().toString())) {
+                showToast("密码只能由字母、数字和下划线组成，长度6~16位");
+                return false;
+            } else {
+                return true;
             }
-
-            @Override
-            public void onFailure(Object responseObj) {
-                hud.dismiss();
-                Log.d("1","响应失败");
-            }
-        });
+        }
     }
 
     @Override

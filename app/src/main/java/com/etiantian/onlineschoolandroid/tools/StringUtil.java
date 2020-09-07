@@ -31,4 +31,16 @@ public class StringUtil {
             return mobile.matches(telRegex);
 
     }
+
+    ///
+    /// @description 匹配6-16字母和数字组合密码
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/7 11:58 AM
+    ///
+    public static boolean matchedPassword(String pass) {
+        String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+        return !TextUtils.isEmpty(pass) && pass.matches(passRegex);
+    }
 }
