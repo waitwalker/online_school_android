@@ -25,10 +25,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.login.UserPrivacyActivity"></activity>
-        <activity android:name=".modules.login.RegisterActivity"></activity>
-        <activity android:name=".modules.login.LogoutActivity"></activity>
-        <activity android:name=".entrance.TabBarNavigationActivity"></activity>
+        <activity android:name=".modules.login.UserPrivacyActivity">
+
+        </activity>
+        <activity android:name=".modules.login.RegisterActivity">
+
+        </activity>
+        <activity android:name=".modules.login.LogoutActivity">
+
+        </activity>
+        <activity android:name=".entrance.TabBarNavigationActivity">
+
+        </activity>
         <activity
             android:name=".modules.welcome.WelcomeActivity"
             android:launchMode="singleTask">

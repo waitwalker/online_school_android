@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
+import androidx.appcompat.app.ActionBar;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.LottieOnCompositionLoadedListener;
@@ -41,6 +43,10 @@ public class SplashActivity extends BaseActivity implements CompoundButton.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         lottieAnimationView = findViewById(R.id.lottie_layer);
         //自定义动画的速率和时长
