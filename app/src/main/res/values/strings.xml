@@ -2,4 +2,6 @@
     <string name="app_name">北京四中网校</string>
     <string name="user_login_text">用户登录</string>
     <string name="register_text">注册</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
