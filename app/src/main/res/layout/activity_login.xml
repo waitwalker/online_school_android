@@ -155,7 +155,7 @@
         android:layout_below="@id/login_button"
         android:textSize="16sp"
         android:text="去注册"
-        android:textColor="#6793FC"
+        android:textColor="@color/regitser_button_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
