@@ -2,13 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/page_background_color"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_marginTop="25dp"
+    <RelativeLayout
+        android:elevation="5dp"
+        android:background="@drawable/my_course_navigation_bar_shape"
+        android:id="@+id/account_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我的课程" />
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:text="我的课程"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

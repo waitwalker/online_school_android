@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"/>
 
     <com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager
-        android:background="@android:color/holo_red_dark"
         android:layout_above="@id/bottom_navigation"
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
