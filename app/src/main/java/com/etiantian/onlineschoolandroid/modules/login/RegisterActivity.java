@@ -46,7 +46,10 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
     /// 登录整体背景
     ViewGroup backgroundView;
 
-    /// 用户登录
+    /// 返回图标
+    private ImageView backImageView;
+
+    /// 注册
     private TextView textView;
     /// 用户名输入框
     private EditText account_input;
@@ -112,6 +115,8 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         /// 背景
         backgroundView = findViewById(R.id.register_background);
         backgroundView.setOnClickListener(this);
+        backImageView = findViewById(R.id.register_back);
+        backImageView.setOnClickListener(this);
         textView = findViewById(R.id.textView);
 
         /// 账号相关
@@ -240,6 +245,9 @@ public class RegisterActivity extends BaseActivity implements CompoundButton.OnC
         switch (view.getId()) {
             case R.id.register_background:
                 hideKeyboard();
+                break;
+            case R.id.register_back:
+                finish();
                 break;
             case R.id.register_account_delete:
                 account_input.setText("");
