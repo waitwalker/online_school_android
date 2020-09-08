@@ -8,8 +8,10 @@
     tools:context="com.etiantian.onlineschoolandroid.modules.welcome.WelcomeActivity">
 
     <TextView
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/textView"
-        android:text="欢迎页"
+        android:text="这个是欢迎页"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
