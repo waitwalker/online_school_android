@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    未选中颜色-->
+    <item android:color="#8E8E8E" android:state_selected="false"/>
+
+    <!--    选中颜色-->
+    <item android:color="#FFA750" android:state_selected="true"/>
+
+    <!--    未选中颜色-->
+    <item android:color="#8E8E8E"/>
+</selector>

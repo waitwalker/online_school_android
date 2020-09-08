@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:checked="true"
+        android:id="@+id/menu_item_my_course"
+        android:title="我的课程"
+        android:icon="@mipmap/tab_button_class_selected"/>
+
+    <item
+        android:id="@+id/menu_item_personal"
+        android:title="个人中心"
+        android:icon="@mipmap/tab_button_personal_center"/>
+</menu>
