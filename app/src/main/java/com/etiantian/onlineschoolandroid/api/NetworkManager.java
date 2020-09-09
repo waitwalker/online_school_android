@@ -14,6 +14,7 @@ import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseCardModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
@@ -52,6 +53,9 @@ public class NetworkManager {
 
         // 注册
         public static String Register_URL = Base_URL + "api-cloudaccount-service/api/user/register";
+
+        /// 我的课程卡片接口
+        public static String MyCourse_Subject_URL = Base_URL +"api-study-service/api/course/v2.3/courses";
     }
 
     ///
@@ -145,6 +149,17 @@ public class NetworkManager {
         RequestParams headers = getBasicHeaders();
         headers.put("content-type","application/json");
         postRequestWithJsonParameter(url, params, headers, callBack, RegisterModel.class);
+    }
+
+    ///
+    /// @description 我的课程学科列表
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/2 11:27 AM
+    ///
+    public static void myCourseSubjectFetch(NormalResponseCallBack callBack) {
+        getRequest(HttpConstants.MyCourse_Subject_URL,null, getBearerHeaders(), callBack, MyCourseCardModel.class);
     }
 
     ///

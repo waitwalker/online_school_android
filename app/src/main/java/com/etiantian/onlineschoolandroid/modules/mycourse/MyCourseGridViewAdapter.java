@@ -4,28 +4,60 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.etiantian.onlineschoolandroid.R;
+
+import java.util.ArrayList;
+
+///
+/// @description 首页我的课程Grid Adapter 这个相当于Controller
+/// @author waitwalker
+/// @time 2020/9/9 4:29 PM
+///
 public class MyCourseGridViewAdapter extends BaseAdapter {
 
     private Context context;
+    /// 数据源
+    private ArrayList<MyCourseCardModel.DataBean> dataSource;
+
+    public MyCourseGridViewAdapter(Context context, ArrayList<MyCourseCardModel.DataBean> dataSource) {
+        this.context = context;
+        this.dataSource = dataSource;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return dataSource.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return dataSource.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        ViewHolder viewHolder;
+        if (view == null) {
+            view = View.inflate(context, R.layout.my_course_grid_item_layout, null);
+            viewHolder = new ViewHolder();
+            viewHolder.textView = view.findViewById(R.id.item_text);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        MyCourseCardModel.DataBean itemData = dataSource.get(i);
+        viewHolder.textView.setText(itemData.getSubjectName());
+        return view;
+    }
+
+    private class ViewHolder {
+        TextView textView;
     }
 }

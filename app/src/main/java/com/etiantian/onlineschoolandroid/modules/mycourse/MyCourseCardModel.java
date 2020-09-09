@@ -2,6 +2,11 @@ package com.etiantian.onlineschoolandroid.modules.mycourse;
 
 import java.util.List;
 
+///
+/// @description 首页我的课程年级卡片布局
+/// @author waitwalker
+/// @time 2020/9/9 4:29 PM
+///
 public class MyCourseCardModel {
 
     /**
