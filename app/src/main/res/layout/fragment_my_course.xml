@@ -47,17 +47,19 @@
                         android:background="@mipmap/course_menu"
                         android:layout_width="36dp"
                         android:layout_height="36dp"/>
-                    <TextView
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:padding="0dp"
                         android:textStyle="bold"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/course_menu_selector"
                         android:textSize="18dp"
                         android:layout_marginStart="5dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/course_menu"
-                        android:id="@+id/course_text"
+                        android:id="@+id/course_button"
                         android:text="课程"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="40dp"
+                        android:layout_height="44dp"/>
                 </RelativeLayout>
 
             </RelativeLayout>

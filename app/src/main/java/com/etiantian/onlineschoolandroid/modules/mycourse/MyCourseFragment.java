@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 
 import com.etiantian.onlineschoolandroid.R;
@@ -16,6 +17,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
 
     private View root;
     private ViewGroup course_menu_container;
+    private Button course_menu_button;
 
     public MyCourseFragment() {
         // Required empty public constructor
@@ -34,6 +36,9 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_my_course, container, false);
         course_menu_container = root.findViewById(R.id.course_menu_container);
+        course_menu_container.setOnClickListener(this);
+        course_menu_button = root.findViewById(R.id.course_button);
+        course_menu_button.setOnClickListener(this);
         return root;
     }
 
@@ -41,7 +46,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.course_menu_container:
-
+            case R.id.course_button:
+                showToast("点击了课程按钮,这里应该跳转到课程表");
                 break;
         }
     }
