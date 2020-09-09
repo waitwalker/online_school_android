@@ -34,7 +34,6 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchSubjectData();
     }
 
     @Override
@@ -44,6 +43,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         course_menu_container.setOnClickListener(this);
         course_menu_button = root.findViewById(R.id.course_button);
         course_menu_button.setOnClickListener(this);
+        fetchSubjectData();
         return root;
     }
 

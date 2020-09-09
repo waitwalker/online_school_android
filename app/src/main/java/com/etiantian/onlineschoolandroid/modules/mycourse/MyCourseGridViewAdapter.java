@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
@@ -48,7 +50,9 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
         if (view == null) {
             view = View.inflate(context, R.layout.my_course_grid_item_layout, null);
             viewHolder = new ViewHolder();
+            viewHolder.relativeLayout = view.findViewById(R.id.item_container);
             viewHolder.textView = view.findViewById(R.id.item_text);
+            viewHolder.imageView = view.findViewById(R.id.item_image);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -60,5 +64,7 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView textView;
+        RelativeLayout relativeLayout;
+        ImageView imageView;
     }
 }
