@@ -64,6 +64,9 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             public void onSuccess(Object responseObj) {
 
                 MyCourseSubjectModel courseSubjectModel = (MyCourseSubjectModel) responseObj;
+                gridView = root.findViewById(R.id.my_course_grid);
+                MyCourseGridViewAdapter adapter = new MyCourseGridViewAdapter(getContext(),courseSubjectModel.getData());
+                gridView.setAdapter(adapter);
                 Log.d("1","获取数据成功");
             }
 

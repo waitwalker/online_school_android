@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.etiantian.onlineschoolandroid.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 ///
 /// @description 首页我的课程Grid Adapter 这个相当于Controller
@@ -19,9 +20,9 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
 
     private Context context;
     /// 数据源
-    private ArrayList<MyCourseSubjectModel.DataBean> dataSource;
+    private List<MyCourseSubjectModel.DataBean> dataSource;
 
-    public MyCourseGridViewAdapter(Context context, ArrayList<MyCourseSubjectModel.DataBean> dataSource) {
+    public MyCourseGridViewAdapter(Context context, List<MyCourseSubjectModel.DataBean> dataSource) {
         this.context = context;
         this.dataSource = dataSource;
     }
