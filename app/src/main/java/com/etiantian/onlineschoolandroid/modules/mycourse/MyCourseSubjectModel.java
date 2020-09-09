@@ -7,7 +7,7 @@ import java.util.List;
 /// @author waitwalker
 /// @time 2020/9/9 4:29 PM
 ///
-public class MyCourseCardModel {
+public class MyCourseSubjectModel {
 
     /**
      * code : 1

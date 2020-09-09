@@ -19,9 +19,9 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
 
     private Context context;
     /// 数据源
-    private ArrayList<MyCourseCardModel.DataBean> dataSource;
+    private ArrayList<MyCourseSubjectModel.DataBean> dataSource;
 
-    public MyCourseGridViewAdapter(Context context, ArrayList<MyCourseCardModel.DataBean> dataSource) {
+    public MyCourseGridViewAdapter(Context context, ArrayList<MyCourseSubjectModel.DataBean> dataSource) {
         this.context = context;
         this.dataSource = dataSource;
     }
@@ -52,7 +52,7 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        MyCourseCardModel.DataBean itemData = dataSource.get(i);
+        MyCourseSubjectModel.DataBean itemData = dataSource.get(i);
         viewHolder.textView.setText(itemData.getSubjectName());
         return view;
     }

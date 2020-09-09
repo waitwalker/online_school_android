@@ -81,15 +81,6 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         if (actionBar != null) {
             actionBar.hide();
         }
-
-        int statusBarHeight1 = -1;
-        //获取status_bar_height资源的ID
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            statusBarHeight1 = getResources().getDimensionPixelSize(resourceId);
-        }
-        Log.e("WangJ", "状态栏-方法1:" + statusBarHeight1);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView.setItemIconTintList(null);

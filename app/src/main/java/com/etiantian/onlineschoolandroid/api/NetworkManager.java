@@ -8,15 +8,12 @@ import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.lib_network.response_handler.ResponseHandler;
 import com.etiantian.onlineschoolandroid.app.App;
-import com.etiantian.onlineschoolandroid.constant.Const;
-import com.etiantian.onlineschoolandroid.event.TokenEvent;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
-import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseCardModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
-import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -26,7 +23,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 ///
@@ -159,7 +155,7 @@ public class NetworkManager {
     /// @time 2020/9/2 11:27 AM
     ///
     public static void myCourseSubjectFetch(NormalResponseCallBack callBack) {
-        getRequest(HttpConstants.MyCourse_Subject_URL,null, getBearerHeaders(), callBack, MyCourseCardModel.class);
+        getRequest(HttpConstants.MyCourse_Subject_URL,null, getBearerHeaders(), callBack, MyCourseSubjectModel.class);
     }
 
     ///
