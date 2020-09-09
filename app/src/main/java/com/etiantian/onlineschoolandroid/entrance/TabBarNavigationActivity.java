@@ -59,14 +59,19 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     @Override
     public void onClick(View view) {
-        SharedPreferencesManager.instance().remove("token");
-        SharedPreferencesManager.instance().remove("expiration");
-        navigateTo(LoginActivity.class);
+
         switch (view.getId()) {
 
         }
     }
 
+    ///
+    /// @description 物理键返回操作
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/9 1:43 PM
+    ///
     @Override
     public void onBackPressed() {
 
@@ -105,11 +110,13 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         testAPI();
     }
 
+    /// 初始化adapter
     private void initAdapter() {
         pagerAdapter = new HomePageFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
     }
 
+    /// 监听事件
     private void initEvent() {
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         viewPager.addOnPageChangeListener(this);
@@ -186,6 +193,13 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     }
 
+    ///
+    /// @description viewPager 翻页回调
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/9 1:42 PM
+    ///
     @Override
     public void onPageSelected(int position) {
         defaultIcon();
@@ -203,6 +217,13 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     }
 
+    ///
+    /// @description item 被选中回调
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/9 1:41 PM
+    ///
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = 0;
@@ -222,6 +243,13 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         return true;
     }
 
+    ///
+    /// @description 设置未选中状态icon
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/9 1:41 PM
+    ///
     private void defaultIcon() {
         MenuItem myCourseItem = bottomNavigationView.getMenu().findItem(R.id.menu_item_my_course);
         MenuItem personalItem = bottomNavigationView.getMenu().findItem(R.id.menu_item_personal);
@@ -234,6 +262,13 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     }
 
+    ///
+    /// @description 私有类 adapter
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/9 1:41 PM
+    ///
     private class HomePageFragmentAdapter extends FragmentPagerAdapter {
 
         public HomePageFragmentAdapter(@NonNull FragmentManager fm, int behavior) {
