@@ -42,7 +42,7 @@
             android:launchMode="singleTask">
 
         </activity>
-        <activity android:name=".entrance.BaseActivity" />
+        <activity android:name=".base.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
         <activity
             android:name=".modules.splash.SplashActivity">

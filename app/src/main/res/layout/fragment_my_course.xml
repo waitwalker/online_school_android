@@ -6,23 +6,87 @@
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        android:elevation="5dp"
-        android:background="@drawable/my_course_navigation_bar_shape"
-        android:id="@+id/account_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_marginStart="20dp"
-            android:layout_centerVertical="true"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:text="我的课程"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+<!--            顶部栏-->
+            <RelativeLayout
+                android:elevation="5dp"
+                android:background="@drawable/my_course_navigation_bar_shape"
+                android:id="@+id/top_bar_container"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_marginStart="20dp"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:text="我的课程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/course_menu_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/course_menu"
+                        android:background="@mipmap/course_menu"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/course_menu"
+                        android:id="@+id/course_text"
+                        android:text="课程"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/text_1"
+                android:layout_below="@id/top_bar_container"
+                android:textSize="40sp"
+                android:text="1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <TextView
+                android:id="@+id/text_2"
+                android:layout_below="@id/text_1"
+                android:textSize="40sp"
+                android:text="2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <TextView
+                android:id="@+id/text_3"
+                android:layout_below="@id/text_2"
+                android:textSize="40sp"
+                android:text="3"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

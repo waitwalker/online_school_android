@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.entrance;
+package com.etiantian.onlineschoolandroid.base;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

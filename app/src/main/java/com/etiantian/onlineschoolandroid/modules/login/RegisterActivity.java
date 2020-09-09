@@ -1,6 +1,5 @@
 package com.etiantian.onlineschoolandroid.modules.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -24,13 +23,9 @@ import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
-import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
-import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
+import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
-import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
-import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
-import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 import com.etiantian.onlineschoolandroid.tools.StringUtil;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.lljjcoder.Interface.OnCityItemClickListener;
@@ -38,7 +33,6 @@ import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
 import com.lljjcoder.bean.ProvinceBean;
 import com.lljjcoder.citywheel.CityConfig;
-import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 
 public class RegisterActivity extends BaseActivity implements CompoundButton.OnClickListener, CompoundButton.OnCheckedChangeListener{

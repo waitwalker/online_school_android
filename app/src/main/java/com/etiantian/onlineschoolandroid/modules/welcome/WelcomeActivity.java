@@ -1,8 +1,5 @@
 package com.etiantian.onlineschoolandroid.modules.welcome;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +7,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 
 import com.etiantian.onlineschoolandroid.R;
-import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
+import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;

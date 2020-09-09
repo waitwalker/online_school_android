@@ -2,10 +2,8 @@ package com.etiantian.onlineschoolandroid.modules.login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,7 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.etiantian.onlineschoolandroid.R;
-import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
+import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class UserPrivacyActivity extends BaseActivity {

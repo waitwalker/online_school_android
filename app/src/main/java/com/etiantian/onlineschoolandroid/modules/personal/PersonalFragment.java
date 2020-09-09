@@ -12,10 +12,11 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
-public class PersonalFragment extends Fragment implements CompoundButton.OnClickListener {
+public class PersonalFragment extends BaseFragment implements CompoundButton.OnClickListener {
 
     private View root;
     private Button logoutButton;
@@ -50,8 +51,7 @@ public class PersonalFragment extends Fragment implements CompoundButton.OnClick
             case R.id.logout_button_id:
                 SharedPreferencesManager.instance().remove("token");
                 SharedPreferencesManager.instance().remove("expiration");
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
+                navigateTo(LoginActivity.class);
                 break;
         }
     }

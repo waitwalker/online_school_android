@@ -4,18 +4,13 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 
 import androidx.appcompat.app.ActionBar;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieComposition;
-import com.airbnb.lottie.LottieOnCompositionLoadedListener;
-import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
-import com.etiantian.onlineschoolandroid.api.NetworkManager;
-import com.etiantian.onlineschoolandroid.entrance.BaseActivity;
+import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.welcome.WelcomeActivity;
@@ -23,12 +18,7 @@ import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.PackageInfoManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.Date;
-import java.util.HashMap;
 
 ///
 /// @description 入口页:执行splash动画,然后依据逻辑跳转到:1)欢迎页或者2)主页或者3)登录页
