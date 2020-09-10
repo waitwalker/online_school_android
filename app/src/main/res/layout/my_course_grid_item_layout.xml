@@ -25,6 +25,7 @@
             android:layout_width="44dp"
             android:layout_height="44dp"/>
         <TextView
+            android:id="@+id/experience_text"
             android:background="@drawable/experience_shape"
             android:gravity="center"
             android:layout_alignParentTop="true"
@@ -51,13 +52,13 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_6"
+                    android:id="@+id/item_1"
                     android:layout_centerVertical="true"
                     android:text="初一"
                     android:layout_width="35dp"
                     android:layout_height="32dp"/>
                 <View
-                    android:layout_toEndOf="@id/item_grade_6"
+                    android:layout_toEndOf="@id/item_1"
                     android:id="@+id/grade_margin_1"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"/>
@@ -69,13 +70,13 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_5"
+                    android:id="@+id/item_2"
                     android:layout_centerVertical="true"
                     android:text="初二"
                     android:layout_width="35dp"
                     android:layout_height="35dp"/>
                 <View
-                    android:layout_toEndOf="@id/item_grade_5"
+                    android:layout_toEndOf="@id/item_2"
                     android:id="@+id/grade_margin_2"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"/>
@@ -87,13 +88,13 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_4"
+                    android:id="@+id/item_3"
                     android:layout_centerVertical="true"
                     android:text="初三"
                     android:layout_width="35dp"
                     android:layout_height="35dp"/>
                 <View
-                    android:layout_toEndOf="@id/item_grade_4"
+                    android:layout_toEndOf="@id/item_3"
                     android:id="@+id/grade_margin_3"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"/>
@@ -105,13 +106,13 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_3"
+                    android:id="@+id/item_4"
                     android:layout_centerVertical="true"
                     android:text="高一"
                     android:layout_width="35dp"
                     android:layout_height="35dp"/>
                 <View
-                    android:layout_toEndOf="@id/item_grade_3"
+                    android:layout_toEndOf="@id/item_4"
                     android:id="@+id/grade_margin_4"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"/>
@@ -123,13 +124,13 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_2"
+                    android:id="@+id/item_5"
                     android:layout_centerVertical="true"
                     android:text="高二"
                     android:layout_width="35dp"
                     android:layout_height="35dp"/>
                 <View
-                    android:layout_toEndOf="@id/item_grade_2"
+                    android:layout_toEndOf="@id/item_5"
                     android:id="@+id/grade_margin_5"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"/>
@@ -141,7 +142,7 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:background="@drawable/grid_item_grade_shape"
-                    android:id="@+id/item_grade_1"
+                    android:id="@+id/item_6"
                     android:layout_centerVertical="true"
                     android:text="高三"
                     android:layout_width="35dp"

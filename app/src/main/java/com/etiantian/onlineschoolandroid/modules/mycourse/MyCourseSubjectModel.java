@@ -101,7 +101,9 @@ public class MyCourseSubjectModel {
             }
 
             public String getGradeName() {
-                return gradeName;
+                String first = gradeName.substring(0,1);
+                String third = gradeName.substring(2,3);
+                return first+third;
             }
 
             public void setGradeName(String gradeName) {

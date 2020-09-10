@@ -58,17 +58,98 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
             viewHolder.relativeLayout = view.findViewById(R.id.item_container);
             viewHolder.textView = view.findViewById(R.id.item_text);
             viewHolder.iconImageView = view.findViewById(R.id.item_image);
+            viewHolder.experienceText = view.findViewById(R.id.experience_text);
             viewHolder.grade_container_relative = view.findViewById(R.id.grade_container_relative);
+            viewHolder.item_grade_num_1 = view.findViewById(R.id.item_1);
+            viewHolder.item_grade_num_2 = view.findViewById(R.id.item_2);
+            viewHolder.item_grade_num_3 = view.findViewById(R.id.item_3);
+            viewHolder.item_grade_num_4 = view.findViewById(R.id.item_4);
+            viewHolder.item_grade_num_5 = view.findViewById(R.id.item_5);
+            viewHolder.item_grade_num_6 = view.findViewById(R.id.item_6);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+
         MyCourseSubjectModel.DataBean itemData = dataSource.get(i);
-
-        for (int j =0; j < itemData.getGrades().size(); j++) {
-
+        if (itemData.getGrades().size() == 0) {
+            viewHolder.item_grade_num_1.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_2.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_3.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_4.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_5.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 1) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_3.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_4.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_5.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 2) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_2.setText(itemData.getGrades().get(1).getGradeName());
+            viewHolder.item_grade_num_3.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_4.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_5.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 3) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_2.setText(itemData.getGrades().get(1).getGradeName());
+            viewHolder.item_grade_num_3.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_3.setText(itemData.getGrades().get(2).getGradeName());
+            viewHolder.item_grade_num_4.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_5.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 4) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_2.setText(itemData.getGrades().get(1).getGradeName());
+            viewHolder.item_grade_num_3.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_3.setText(itemData.getGrades().get(2).getGradeName());
+            viewHolder.item_grade_num_4.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_4.setText(itemData.getGrades().get(3).getGradeName());
+            viewHolder.item_grade_num_5.setVisibility(View.INVISIBLE);
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 5) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_2.setText(itemData.getGrades().get(1).getGradeName());
+            viewHolder.item_grade_num_3.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_3.setText(itemData.getGrades().get(2).getGradeName());
+            viewHolder.item_grade_num_4.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_4.setText(itemData.getGrades().get(3).getGradeName());
+            viewHolder.item_grade_num_5.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_5.setText(itemData.getGrades().get(4).getGradeName());
+            viewHolder.item_grade_num_6.setVisibility(View.INVISIBLE);
+        } else if (itemData.getGrades().size() == 6) {
+            viewHolder.item_grade_num_1.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_1.setText(itemData.getGrades().get(0).getGradeName());
+            viewHolder.item_grade_num_2.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_2.setText(itemData.getGrades().get(1).getGradeName());
+            viewHolder.item_grade_num_3.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_3.setText(itemData.getGrades().get(2).getGradeName());
+            viewHolder.item_grade_num_4.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_4.setText(itemData.getGrades().get(3).getGradeName());
+            viewHolder.item_grade_num_5.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_5.setText(itemData.getGrades().get(4).getGradeName());
+            viewHolder.item_grade_num_6.setVisibility(View.VISIBLE);
+            viewHolder.item_grade_num_6.setText(itemData.getGrades().get(5).getGradeName());
         }
+
         viewHolder.textView.setText(itemData.getSubjectName());
+        if (itemData.getGrades().size() > 0) {
+            viewHolder.experienceText.setVisibility(View.INVISIBLE);
+        } else {
+            viewHolder.experienceText.setVisibility(View.VISIBLE);
+        }
         switch (itemData.getSubjectId()) {
             case 1:
                 viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.language_background_shape, null));
@@ -119,5 +200,13 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
         RelativeLayout relativeLayout;
         ImageView iconImageView;
         RelativeLayout grade_container_relative;
+        TextView experienceText;
+        TextView item_grade_num_1;
+        TextView item_grade_num_2;
+        TextView item_grade_num_3;
+        TextView item_grade_num_4;
+        TextView item_grade_num_5;
+        TextView item_grade_num_6;
+
     }
 }
