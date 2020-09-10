@@ -64,17 +64,80 @@
 
             </RelativeLayout>
 
-            <com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseGridView
+            <RelativeLayout
+                android:id="@+id/zhiling_title_relative"
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/top_bar_container"
-                android:id="@+id/my_course_grid"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+                <View
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/my_course_activity_title_icon"
+                    android:elevation="5dp"
+                    android:id="@+id/zhiling_icon"
+                    android:layout_width="5dp"
+                    android:layout_height="14dp"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"
+                    android:layout_marginStart="5dp"
+                    android:text="智领课"
+                    android:layout_toEndOf="@id/zhiling_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
+
+            <com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseGridView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/zhiling_title_relative"
+                android:id="@+id/my_course_zhiling_grid"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:verticalSpacing="20dp"
                 android:horizontalSpacing="20dp"
                 android:numColumns="2"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"/>
+                android:layout_height="240dp"/>
+
+            <RelativeLayout
+                android:id="@+id/union_activity_relative"
+                android:layout_below="@id/my_course_zhiling_grid"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <RelativeLayout
+                    android:id="@+id/union_title_relative"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <View
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/my_course_activity_title_icon"
+                        android:elevation="5dp"
+                        android:id="@+id/union_icon"
+                        android:layout_width="5dp"
+                        android:layout_height="14dp"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="中国联通·北京四中网校名师课堂"
+                        android:layout_toEndOf="@id/union_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:background="@mipmap/u_banner_enterance"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@id/union_title_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"/>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 
