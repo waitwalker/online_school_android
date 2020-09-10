@@ -1,6 +1,10 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.etiantian.onlineschoolandroid.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 ///
@@ -52,19 +57,57 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.relativeLayout = view.findViewById(R.id.item_container);
             viewHolder.textView = view.findViewById(R.id.item_text);
-            viewHolder.imageView = view.findViewById(R.id.item_image);
+            viewHolder.iconImageView = view.findViewById(R.id.item_image);
+            viewHolder.grade_container_relative = view.findViewById(R.id.grade_container_relative);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
         MyCourseSubjectModel.DataBean itemData = dataSource.get(i);
+
+        for (int j =0; j < itemData.getGrades().size(); j++) {
+
+        }
         viewHolder.textView.setText(itemData.getSubjectName());
+        switch (itemData.getSubjectId()) {
+            case 1:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.language_bitmap, null));
+            break;
+            case 2:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.math_bitmap, null));
+                break;
+            case 3:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.english_bitmap, null));
+                break;
+            case 4:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.physics_bitmap, null));
+                break;
+            case 5:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.chemistry_bitmap, null));
+                break;
+            case 6:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.history_bitmap, null));
+                break;
+            case 7:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.biology_bitmap, null));
+                break;
+            case 8:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.geography_bitmap, null));
+                break;
+            case 9:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.politics_bitmap, null));
+                break;
+            case 10:
+                viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.science_bitmap, null));
+                break;
+        }
         return view;
     }
 
     private class ViewHolder {
         TextView textView;
         RelativeLayout relativeLayout;
-        ImageView imageView;
+        ImageView iconImageView;
+        RelativeLayout grade_container_relative;
     }
 }

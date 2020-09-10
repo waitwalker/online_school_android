@@ -65,6 +65,7 @@
             </RelativeLayout>
 
             <com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseGridView
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/top_bar_container"
                 android:id="@+id/my_course_grid"
                 android:layout_marginStart="20dp"
@@ -74,31 +75,6 @@
                 android:numColumns="2"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"/>
-
-
-            <TextView
-                android:id="@+id/text_1"
-                android:layout_below="@id/my_course_grid"
-                android:textSize="40sp"
-                android:text="1"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
-            <TextView
-                android:id="@+id/text_2"
-                android:layout_below="@id/text_1"
-                android:textSize="40sp"
-                android:text="2"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
-            <TextView
-                android:id="@+id/text_3"
-                android:layout_below="@id/text_2"
-                android:textSize="40sp"
-                android:text="3"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
         </RelativeLayout>
     </ScrollView>
 

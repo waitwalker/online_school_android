@@ -10,18 +10,57 @@
         android:layout_height="120dp">
         <TextView
             android:textStyle="bold"
-            android:layout_centerInParent="true"
             android:textSize="28sp"
             android:id="@+id/item_text"
             android:text="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:layout_marginEnd="12dp"
+            android:layout_alignParentEnd="true"
             android:id="@+id/item_image"
-            android:background="@android:color/holo_blue_bright"
             android:layout_centerVertical="true"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:layout_width="44dp"
+            android:layout_height="44dp"/>
+
+        <HorizontalScrollView
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/holo_red_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+            <RelativeLayout
+                android:id="@+id/grade_container_relative"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_centerVertical="true"
+                    android:text="1"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_toRightOf="@id/text1"
+                    android:layout_centerVertical="true"
+                    android:text="2"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_toRightOf="@id/text2"
+                    android:layout_centerVertical="true"
+                    android:text="3"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/text4"
+                    android:layout_toRightOf="@id/text3"
+                    android:layout_centerVertical="true"
+                    android:text="4"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+        </HorizontalScrollView>
     </RelativeLayout>
 
 </RelativeLayout>
