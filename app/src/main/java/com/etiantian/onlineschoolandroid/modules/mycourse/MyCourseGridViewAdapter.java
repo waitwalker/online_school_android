@@ -71,43 +71,43 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
         viewHolder.textView.setText(itemData.getSubjectName());
         switch (itemData.getSubjectId()) {
             case 1:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF65D2FE);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.language_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.language_bitmap, null));
             break;
             case 2:
-                viewHolder.relativeLayout.setBackgroundColor(0xFFFFCE65);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.math_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.math_bitmap, null));
                 break;
             case 3:
-                viewHolder.relativeLayout.setBackgroundColor(0xFFFDAD58);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.english_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.english_bitmap, null));
                 break;
             case 4:
-                viewHolder.relativeLayout.setBackgroundColor(0xFFAA91FF);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.physics_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.physics_bitmap, null));
                 break;
             case 5:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF9191FF);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.chemistry_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.chemistry_bitmap, null));
                 break;
             case 6:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF8AACFF);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.history_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.history_bitmap, null));
                 break;
             case 7:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF9ADE4D);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.biology_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.biology_bitmap, null));
                 break;
             case 8:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF5B9EFF);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.geography_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.geography_bitmap, null));
                 break;
             case 9:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF9191FF);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.politics_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.politics_bitmap, null));
                 break;
             case 10:
-                viewHolder.relativeLayout.setBackgroundColor(0xFF80E06C);
+                viewHolder.relativeLayout.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.science_background_shape, null));
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.science_bitmap, null));
                 break;
         }
