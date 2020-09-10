@@ -67,6 +67,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
 
                 MyCourseSubjectModel courseSubjectModel = (MyCourseSubjectModel) responseObj;
                 zhiLingGridView = root.findViewById(R.id.my_course_zhiling_grid);
+                zhiXueGridView = root.findViewById(R.id.my_course_zhixue_grid);
                 List<MyCourseSubjectModel.DataBean> zhiLingList = new ArrayList<>();
                 List<MyCourseSubjectModel.DataBean> zhiXueList = new ArrayList<>();
                 for (int i = 0; i < courseSubjectModel.getData().size(); i++) {
@@ -78,8 +79,11 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                     }
                 }
 
-                MyCourseGridViewAdapter adapter = new MyCourseGridViewAdapter(getContext(), zhiLingList);
-                zhiLingGridView.setAdapter(adapter);
+                MyCourseGridViewAdapter zhiLingAdapter = new MyCourseGridViewAdapter(getContext(), zhiLingList);
+                zhiLingGridView.setAdapter(zhiLingAdapter);
+
+                MyCourseGridViewAdapter zhiXueAdapter = new MyCourseGridViewAdapter(getContext(), zhiXueList);
+                zhiXueGridView.setAdapter(zhiXueAdapter);
                 Log.d("1","获取数据成功");
             }
 
