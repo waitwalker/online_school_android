@@ -105,7 +105,7 @@
                 android:id="@+id/union_activity_relative"
                 android:layout_below="@id/my_course_zhiling_grid"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="187dp">
                 <RelativeLayout
                     android:id="@+id/union_title_relative"
                     android:layout_marginStart="20dp"
@@ -135,6 +135,84 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="12dp"
                     android:layout_below="@id/union_title_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/primary_activity_relative"
+                android:layout_below="@id/union_activity_relative"
+                android:layout_width="match_parent"
+                android:layout_height="187dp">
+                <RelativeLayout
+                    android:id="@+id/primary_title_relative"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <View
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/my_course_activity_title_icon"
+                        android:elevation="5dp"
+                        android:id="@+id/primary_icon"
+                        android:layout_width="5dp"
+                        android:layout_height="14dp"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="小升初暑期课"
+                        android:layout_toEndOf="@id/primary_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:background="@mipmap/p_banner_home"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@id/primary_title_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/new_semester_activity_relative"
+                android:layout_below="@id/primary_activity_relative"
+                android:layout_width="match_parent"
+                android:layout_height="187dp">
+                <RelativeLayout
+                    android:id="@+id/new_semester_title_relative"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <View
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/my_course_activity_title_icon"
+                        android:elevation="5dp"
+                        android:id="@+id/new_semester_icon"
+                        android:layout_width="5dp"
+                        android:layout_height="14dp"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="四中名师新学期直通车"
+                        android:layout_toEndOf="@id/new_semester_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:background="@mipmap/n_semester_home_banner"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@id/new_semester_title_relative"
                     android:layout_width="match_parent"
                     android:layout_height="155dp"/>
             </RelativeLayout>
