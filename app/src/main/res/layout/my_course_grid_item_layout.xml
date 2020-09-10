@@ -24,20 +24,30 @@
             android:layout_height="44dp"/>
 
         <HorizontalScrollView
+            android:scrollbars="none"
             android:layout_alignParentBottom="true"
-            android:background="@android:color/holo_red_dark"
             android:layout_width="wrap_content"
-            android:layout_height="50dp">
+            android:layout_height="30dp">
             <RelativeLayout
+                android:layout_marginBottom="10dp"
                 android:id="@+id/grade_container_relative"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <TextView
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:background="@drawable/grid_item_grade_shape"
                     android:id="@+id/text1"
                     android:layout_centerVertical="true"
-                    android:text="1"
-                    android:layout_width="150dp"
+                    android:text="初一"
+                    android:layout_width="40dp"
                     android:layout_height="30dp"/>
+
+                <View
+                    android:id="@+id/grade_margin_1"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/text2"
                     android:layout_toRightOf="@id/text1"
