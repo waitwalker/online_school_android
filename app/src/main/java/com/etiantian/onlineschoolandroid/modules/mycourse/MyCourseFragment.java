@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
@@ -19,11 +20,30 @@ import java.util.List;
 
 public class MyCourseFragment extends BaseFragment implements CompoundButton.OnClickListener {
 
+    /// 根布局
     private View root;
+    /// 课程表容器
     private ViewGroup course_menu_container;
     private Button course_menu_button;
+    
+    /// 智领课卡片布局
     private MyCourseGridView zhiLingGridView;
+    
+    /// 智学课卡片布局
     private MyCourseGridView zhiXueGridView;
+    
+    /// 联通活动课
+    private ViewGroup union_relative;
+
+    /// 小升初活动课
+    private ViewGroup primary_relative;
+
+    /// 四中名师活动课
+    private ViewGroup new_semester_relative;
+
+    /// 普通活动课
+    private ViewGroup normal_relative;
+    
 
     public MyCourseFragment() {
         // Required empty public constructor
@@ -45,6 +65,18 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         course_menu_container.setOnClickListener(this);
         course_menu_button = root.findViewById(R.id.course_button);
         course_menu_button.setOnClickListener(this);
+        zhiLingGridView = root.findViewById(R.id.my_course_zhiling_grid);
+        zhiXueGridView = root.findViewById(R.id.my_course_zhixue_grid);
+        
+        union_relative = root.findViewById(R.id.union_activity_relative);
+        union_relative.setOnClickListener(this);
+        primary_relative = root.findViewById(R.id.primary_activity_relative);
+        primary_relative.setOnClickListener(this);
+        new_semester_relative = root.findViewById(R.id.new_semester_activity_relative);
+        new_semester_relative.setOnClickListener(this);
+        normal_relative = root.findViewById(R.id.normal_activity_relative);
+        normal_relative.setOnClickListener(this);
+        
         fetchSubjectData();
         return root;
     }
@@ -56,6 +88,18 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.course_button:
                 showToast("点击了课程按钮,这里应该跳转到课程表");
                 break;
+            case R.id.union_activity_relative:
+                showToast("点击了联通活动课");
+                break;
+            case R.id.primary_activity_relative:
+                showToast("点击了小升初活动课");
+                break;
+            case R.id.new_semester_activity_relative:
+                showToast("点击了四中名师活动课");
+                break;
+            case R.id.normal_activity_relative:
+                showToast("点击了普通活动课");
+                break;
         }
     }
 
@@ -66,8 +110,6 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             public void onSuccess(Object responseObj) {
 
                 MyCourseSubjectModel courseSubjectModel = (MyCourseSubjectModel) responseObj;
-                zhiLingGridView = root.findViewById(R.id.my_course_zhiling_grid);
-                zhiXueGridView = root.findViewById(R.id.my_course_zhixue_grid);
                 List<MyCourseSubjectModel.DataBean> zhiLingList = new ArrayList<>();
                 List<MyCourseSubjectModel.DataBean> zhiXueList = new ArrayList<>();
                 for (int i = 0; i < courseSubjectModel.getData().size(); i++) {
