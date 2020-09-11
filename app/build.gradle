@@ -42,6 +42,8 @@ dependencies {
     implementation rootProject.dependenciesLibrary.citypicker
     implementation rootProject.dependenciesLibrary.lottie
     implementation rootProject.dependenciesLibrary.material
+    implementation rootProject.dependenciesLibrary.glide
+    implementation rootProject.dependenciesLibrary.glidecompiler
 
     // 网络库
     implementation project(':lib_network')

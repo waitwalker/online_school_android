@@ -22,6 +22,10 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
+import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageAlertCallBack;
+import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageDialogAlert;
+import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,6 +137,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         wisdom_time_text.setText(wisdomSpannableString);
         
         fetchSubjectData();
+        //fetchActivityCourseData();
+        fetchRecommendData();
         return root;
     }
 
@@ -145,6 +151,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.union_activity_relative:
                 showToast("点击了联通活动课");
+                fetchActivityCourseData();
                 break;
             case R.id.primary_activity_relative:
                 showToast("点击了小升初活动课");
@@ -199,4 +206,51 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             }
         });
     }
+
+    /// 获取活动课数据
+    private void fetchRecommendData() {
+        NetworkManager.recommendFetch(new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                Log.d("1","响应成功");
+                RecommendModel recommendModel = (RecommendModel) responseObj;
+
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","响应失败");
+            }
+        });
+    }
+
+    /// 获取活动课数据
+    private void fetchActivityCourseData() {
+        NetworkManager.activityCourseAlertFetch(new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                Log.d("1","响应成功");
+                ActivityCourseAlertModel activityCourseAlertModel = (ActivityCourseAlertModel) responseObj;
+                Log.d("1","活动课接口:" + activityCourseAlertModel.getMsg());
+                if (activityCourseAlertModel.getCode() == 1 && activityCourseAlertModel.getData() != null) {
+                    if (activityCourseAlertModel.getData().getIsOpen() == 1 && activityCourseAlertModel.getData().getPicture() != null) {
+                        final ImageDialogAlert dialogAlert = new ImageDialogAlert.Builder(getContext(), new ImageAlertCallBack() {
+                            @Override
+                            public void imageClickAction() {
+                                Log.d("1","点击了图片弹出框");
+                            }
+                        }).setImage(activityCourseAlertModel.getData().getPicture()).create();
+                        dialogAlert.show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","响应失败");
+            }
+        });
+    }
+
 }

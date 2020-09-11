@@ -39,5 +39,7 @@ ext{
             progresshud     : 'com.kaopiz:kprogresshud:1.0.2',
             citypicker      : 'liji.library.dev:citypickerview:5.2.2',
             lottie          : 'com.airbnb.android:lottie:3.4.2',
+            glide  : 'com.github.bumptech.glide:glide:4.11.0',
+            glidecompiler :'com.github.bumptech.glide:compiler:4.11.0',
     ]
 }
