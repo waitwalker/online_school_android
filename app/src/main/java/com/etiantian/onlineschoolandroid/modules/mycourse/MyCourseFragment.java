@@ -54,6 +54,9 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
 
     /// 推荐学习中AI时间
     private TextView ai_time_text;
+
+    /// 推荐学习中智慧学习时间
+    private TextView wisdom_time_text;
     
 
     public MyCourseFragment() {
@@ -99,6 +102,18 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         spannableString.setSpan(new AbsoluteSizeSpan(20, true),
                 4, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ai_time_text.setText(spannableString);
+
+        wisdom_time_text = root.findViewById(R.id.wisdom_time_text);
+        SpannableString wisdomSpannableString = new SpannableString("15分钟搞定难点");
+        wisdomSpannableString.setSpan(new AbsoluteSizeSpan(12, true),
+                0, 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wisdomSpannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#4A90E2")),
+                0, 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wisdomSpannableString.setSpan(new StyleSpan(Typeface.BOLD),
+                0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wisdomSpannableString.setSpan(new AbsoluteSizeSpan(20, true),
+                0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wisdom_time_text.setText(wisdomSpannableString);
         
         fetchSubjectData();
         return root;

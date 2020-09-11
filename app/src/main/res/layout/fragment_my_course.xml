@@ -18,6 +18,7 @@
 
 
         <RelativeLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/recommend_ai_relative"
             android:layout_width="match_parent"
             android:layout_height="90dp">
@@ -65,7 +66,7 @@
             <TextView
                 android:gravity="center"
                 android:background="@drawable/recommand_time_shape"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/ai_time_text"
@@ -128,7 +129,7 @@
             <TextView
                 android:gravity="center"
                 android:background="@drawable/recommand_time_shape"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/wisdom_time_text"
