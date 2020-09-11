@@ -13,6 +13,7 @@ import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
 
@@ -52,6 +53,9 @@ public class NetworkManager {
 
         /// 我的课程卡片接口
         public static String MyCourse_Subject_URL = Base_URL +"api-study-service/api/course/v2.3/courses";
+
+        /// 我的课程推荐学习接口
+        public static String MyCourse_Recommend_URL = Base_URL +"api-study-service/api/course/home/recommend";
     }
 
     ///
@@ -168,6 +172,18 @@ public class NetworkManager {
     public static void activityCourseAlertFetch(NormalResponseCallBack callBack) {
         String url =  HttpConstants.Activity_URL;
         getRequest(url,null, getBearerHeaders(), callBack, ActivityCourseAlertModel.class);
+    }
+
+    ///
+    /// @description 推荐学习接口
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:02 AM
+    ///
+    public static void recommendFetch(NormalResponseCallBack callBack) {
+        String url =  HttpConstants.MyCourse_Recommend_URL;
+        getRequest(url,null, getBearerHeaders(), callBack, RecommendModel.class);
     }
 
 
