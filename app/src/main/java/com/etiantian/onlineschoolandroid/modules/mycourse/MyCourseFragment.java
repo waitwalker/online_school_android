@@ -52,6 +52,15 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     /// 普通活动课
     private ViewGroup normal_relative;
 
+    /// 推荐学习AI
+    private ViewGroup ai_relative;
+
+    /// 推荐学习智慧学习
+    private ViewGroup wisdom_relative;
+
+    /// 推荐学习大师直播
+    private ViewGroup live_relative;
+
     /// 推荐学习中AI时间
     private TextView ai_time_text;
 
@@ -90,6 +99,14 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         new_semester_relative.setOnClickListener(this);
         normal_relative = root.findViewById(R.id.normal_activity_relative);
         normal_relative.setOnClickListener(this);
+
+        ai_relative = root.findViewById(R.id.recommend_ai_relative);
+        wisdom_relative = root.findViewById(R.id.recommend_wisdom_relative);
+        live_relative = root.findViewById(R.id.recommend_live_relative);
+        ai_relative.setOnClickListener(this);
+        wisdom_relative.setOnClickListener(this);
+        live_relative.setOnClickListener(this);
+
 
         ai_time_text = root.findViewById(R.id.ai_time_text);
         SpannableString spannableString = new SpannableString("每天只需10分钟");
