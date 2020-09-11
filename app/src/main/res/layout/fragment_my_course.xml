@@ -6,6 +6,145 @@
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/recommand_shape"
+        android:elevation="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+
+        <RelativeLayout
+            android:id="@+id/recommend_ai_relative"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <ImageView
+                android:id="@+id/ai_image_icon"
+                android:layout_marginStart="20dp"
+                android:layout_width="46dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/image_courses_recommend_1" />
+
+            <RelativeLayout
+                android:layout_marginStart="24dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/ai_image_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:id="@+id/ai_title"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="AI测试"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/ai_title"
+                        android:id="@+id/ai_subtitle"
+                        android:textStyle="normal"
+                        android:textSize="12sp"
+                        android:text="AI智能推送 快速高效刷题"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:gravity="center"
+                android:background="@drawable/recommand_time_shape"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/ai_time_text"
+                android:layout_width="110dp"
+                android:layout_height="26dp"/>
+            <View
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@id/recommend_ai_relative"
+            android:id="@+id/recommend_wisdom_relative"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <ImageView
+                android:id="@+id/wisdom_image_icon"
+                android:layout_marginStart="20dp"
+                android:layout_width="46dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/image_courses_recommend_2" />
+
+            <RelativeLayout
+                android:layout_marginStart="24dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/wisdom_image_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:id="@+id/wisdom_title"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="智慧学习"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/wisdom_title"
+                        android:id="@+id/wisdom_subtitle"
+                        android:textStyle="normal"
+                        android:textSize="12sp"
+                        android:text="四中老师微课等你学"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:gravity="center"
+                android:background="@drawable/recommand_time_shape"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/wisdom_time_text"
+                android:layout_width="110dp"
+                android:layout_height="26dp"/>
+            <View
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -298,6 +437,10 @@
                 android:numColumns="2"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"/>
+
+
+
+
 
 
         </RelativeLayout>

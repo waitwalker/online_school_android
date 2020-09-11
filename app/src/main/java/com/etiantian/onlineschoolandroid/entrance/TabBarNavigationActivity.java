@@ -96,7 +96,7 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         fragmentList.add(personalFragment);
 
         EventBus.getDefault().register(this);
-        testAPI();
+        //testAPI();
     }
 
     /// 初始化adapter

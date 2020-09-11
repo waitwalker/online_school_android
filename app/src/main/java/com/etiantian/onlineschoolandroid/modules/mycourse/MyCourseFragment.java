@@ -1,7 +1,14 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
@@ -43,6 +51,9 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
 
     /// 普通活动课
     private ViewGroup normal_relative;
+
+    /// 推荐学习中AI时间
+    private TextView ai_time_text;
     
 
     public MyCourseFragment() {
@@ -76,6 +87,18 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         new_semester_relative.setOnClickListener(this);
         normal_relative = root.findViewById(R.id.normal_activity_relative);
         normal_relative.setOnClickListener(this);
+
+        ai_time_text = root.findViewById(R.id.ai_time_text);
+        SpannableString spannableString = new SpannableString("每天只需10分钟");
+        spannableString.setSpan(new AbsoluteSizeSpan(12, true),
+                0, 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#4A90E2")),
+                0, 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD),
+                4, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new AbsoluteSizeSpan(20, true),
+                4, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ai_time_text.setText(spannableString);
         
         fetchSubjectData();
         return root;
