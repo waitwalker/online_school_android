@@ -155,6 +155,15 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.normal_activity_relative:
                 showToast("点击了普通活动课");
                 break;
+            case R.id.recommend_ai_relative:
+                showToast("点击了推荐学习中AI");
+                break;
+            case R.id.recommend_wisdom_relative:
+                showToast("点击了推荐学习中智慧学习");
+                break;
+            case R.id.recommend_live_relative:
+                showToast("点击了推荐学习中大师直播");
+                break;
         }
     }
 
