@@ -137,8 +137,9 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         wisdom_time_text.setText(wisdomSpannableString);
         
         fetchSubjectData();
-        //fetchActivityCourseData();
         fetchRecommendData();
+        fetchActivityCourseData();
+
         return root;
     }
 
@@ -151,7 +152,6 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.union_activity_relative:
                 showToast("点击了联通活动课");
-                fetchActivityCourseData();
                 break;
             case R.id.primary_activity_relative:
                 showToast("点击了小升初活动课");
