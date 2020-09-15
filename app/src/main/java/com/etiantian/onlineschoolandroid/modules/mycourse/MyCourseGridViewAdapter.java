@@ -1,13 +1,16 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity;
 
 import java.util.List;
 
@@ -23,15 +27,19 @@ import java.util.List;
 /// @author waitwalker
 /// @time 2020/9/9 4:29 PM
 ///
-public class MyCourseGridViewAdapter extends BaseAdapter {
+public class MyCourseGridViewAdapter extends BaseAdapter implements CompoundButton.OnClickListener {
 
     private Context context;
     /// 数据源
     private List<MyCourseSubjectModel.DataBean> dataSource;
 
-    public MyCourseGridViewAdapter(Context context, List<MyCourseSubjectModel.DataBean> dataSource) {
+    private InnerItemOnClickListener mListener;
+    private boolean isZhiLing;
+
+    public MyCourseGridViewAdapter(Context context, List<MyCourseSubjectModel.DataBean> dataSource, boolean isZhiLing) {
         this.context = context;
         this.dataSource = dataSource;
+        this.isZhiLing = isZhiLing;
     }
 
     @Override
@@ -46,6 +54,12 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
+        Intent intent = new Intent(context, SubjectDetailActivity.class);
+        if (isZhiLing) {
+
+        } else {
+
+        }
         return i;
     }
 
@@ -192,7 +206,15 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
                 viewHolder.iconImageView.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.science_bitmap, null));
                 break;
         }
+
+        //viewHolder.relativeLayout.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        mListener.itemClick(view);
     }
 
     private class ViewHolder {
@@ -208,5 +230,9 @@ public class MyCourseGridViewAdapter extends BaseAdapter {
         TextView item_grade_num_5;
         TextView item_grade_num_6;
 
+    }
+
+    interface InnerItemOnClickListener {
+        void itemClick(View view);
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity">
+
+    <ScrollView
+        android:background="@color/page_background_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:background="@mipmap/img_course_subject_background"
+                android:id="@+id/detail_header"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="hi！欢迎开始今天的高效学习之旅！\nAI智能助手与四中资深老师陪你一起成长～\n每天进步一点点"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

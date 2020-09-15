@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".modules.splash.LaunchActivity"
+        <activity android:name=".modules.mycourse.subject_detail.SubjectDetailActivity"></activity>
+        <activity
+            android:name=".modules.splash.LaunchActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,29 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.login.UserPrivacyActivity">
-
-        </activity>
-        <activity android:name=".modules.login.RegisterActivity">
-
-        </activity>
-        <activity android:name=".modules.login.LogoutActivity">
-
-        </activity>
-        <activity android:name=".entrance.TabBarNavigationActivity">
-
-        </activity>
+        <activity android:name=".modules.login.UserPrivacyActivity"></activity>
+        <activity android:name=".modules.login.RegisterActivity"></activity>
+        <activity android:name=".modules.login.LogoutActivity"></activity>
+        <activity android:name=".entrance.TabBarNavigationActivity"></activity>
         <activity
             android:name=".modules.welcome.WelcomeActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".modules.login.LoginActivity" />
-        <activity
-            android:name=".modules.splash.SplashActivity">
-
-        </activity>
+        <activity android:name=".modules.splash.SplashActivity"></activity>
     </application>
 
 </manifest>

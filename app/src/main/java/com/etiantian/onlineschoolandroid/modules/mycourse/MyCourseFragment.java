@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -192,10 +193,16 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                     }
                 }
 
-                MyCourseGridViewAdapter zhiLingAdapter = new MyCourseGridViewAdapter(getContext(), zhiLingList);
+                MyCourseGridViewAdapter zhiLingAdapter = new MyCourseGridViewAdapter(getContext(), zhiLingList, true);
                 zhiLingGridView.setAdapter(zhiLingAdapter);
+                zhiLingGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Log.d("1","1");
+                    }
+                });
 
-                MyCourseGridViewAdapter zhiXueAdapter = new MyCourseGridViewAdapter(getContext(), zhiXueList);
+                MyCourseGridViewAdapter zhiXueAdapter = new MyCourseGridViewAdapter(getContext(), zhiXueList, false);
                 zhiXueGridView.setAdapter(zhiXueAdapter);
                 Log.d("1","获取数据成功");
             }
