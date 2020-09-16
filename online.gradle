@@ -41,5 +41,7 @@ ext{
             lottie          : 'com.airbnb.android:lottie:3.4.2',
             glide  : 'com.github.bumptech.glide:glide:4.11.0',
             glidecompiler :'com.github.bumptech.glide:compiler:4.11.0',
+            nicespinner: 'com.github.arcadefire:nice-spinner:1.4.4',
+            titlebar:'com.wuhenzhizao:titlebar:1.2.0',
     ]
 }

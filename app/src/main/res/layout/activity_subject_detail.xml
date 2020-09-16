@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity">
 
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/actionbar"
+        titlebar:leftType="customView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:leftCustomView="@layout/actionbar_left_layout"
+        titlebar:showBottomLine="false"
+        titlebar:bottomShadowHeight="2dp"/>
+
     <ScrollView
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/actionbar"
+        android:id="@+id/scrollview"
         android:background="@color/page_background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
