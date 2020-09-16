@@ -5,12 +5,16 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.ai_test.AITestListActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity;
 import com.google.gson.Gson;
 
 import org.angmarch.views.NiceSpinner;
@@ -21,7 +25,11 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
 
     private ImageView backImageView;
     private NiceSpinner niceSpinner;
-    MyCourseSubjectModel.DataBean model;
+    private MyCourseSubjectModel.DataBean model;
+    private ViewGroup wisdom_relative;
+    private ViewGroup ai_relative;
+    private ViewGroup live_relative;
+
 
 
     @Override
@@ -42,6 +50,13 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     }
 
     private void initView() {
+        wisdom_relative = findViewById(R.id.subject_top);
+        wisdom_relative.setOnClickListener(this);
+        ai_relative = findViewById(R.id.subject_middle);
+        ai_relative.setOnClickListener(this);
+        live_relative = findViewById(R.id.subject_bottom);
+        live_relative.setOnClickListener(this);
+
         backImageView = findViewById(R.id.actionbar_back_image);
         backImageView.setOnClickListener(this);
         niceSpinner = findViewById(R.id.nice_spinner);
@@ -71,6 +86,15 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
         switch (view.getId()) {
             case R.id.actionbar_back_image:
                 finish();
+                break;
+            case R.id.subject_top:
+                navigateTo(WisdomListActivity.class);
+                break;
+            case R.id.subject_middle:
+                navigateTo(AITestListActivity.class);
+                break;
+            case R.id.subject_bottom:
+                navigateTo(LiveListActivity.class);
                 break;
         }
     }
