@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +55,6 @@ public class MyCourseGridViewAdapter extends BaseAdapter implements CompoundButt
 
     @Override
     public long getItemId(int i) {
-        Intent intent = new Intent(context, SubjectDetailActivity.class);
-        if (isZhiLing) {
-
-        } else {
-
-        }
         return i;
     }
 

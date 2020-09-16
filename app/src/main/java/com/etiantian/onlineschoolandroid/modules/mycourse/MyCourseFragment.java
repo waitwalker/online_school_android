@@ -182,8 +182,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             public void onSuccess(Object responseObj) {
 
                 MyCourseSubjectModel courseSubjectModel = (MyCourseSubjectModel) responseObj;
-                List<MyCourseSubjectModel.DataBean> zhiLingList = new ArrayList<>();
-                List<MyCourseSubjectModel.DataBean> zhiXueList = new ArrayList<>();
+                final List<MyCourseSubjectModel.DataBean> zhiLingList = new ArrayList<>();
+                final List<MyCourseSubjectModel.DataBean> zhiXueList = new ArrayList<>();
                 for (int i = 0; i < courseSubjectModel.getData().size(); i++) {
                     MyCourseSubjectModel.DataBean dataBean = courseSubjectModel.getData().get(i);
                     if (dataBean.getSubjectId() == 2 || dataBean.getSubjectId() == 3 || dataBean.getSubjectId() == 4 || dataBean.getSubjectId() == 5) {
@@ -198,12 +198,22 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                 zhiLingGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Log.d("1","1");
+                        Log.d("1","智领");
+                        MyCourseSubjectModel.DataBean dataBean = zhiLingList.get(i);
+                        Log.d("1","智领item数据:" + dataBean.getSubjectName());
                     }
                 });
 
                 MyCourseGridViewAdapter zhiXueAdapter = new MyCourseGridViewAdapter(getContext(), zhiXueList, false);
                 zhiXueGridView.setAdapter(zhiXueAdapter);
+                zhiXueGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Log.d("1","智学");
+                        MyCourseSubjectModel.DataBean dataBean = zhiXueList.get(i);
+                        Log.d("1","智学item数据:" + dataBean.getSubjectName());
+                    }
+                });
                 Log.d("1","获取数据成功");
             }
 
@@ -221,7 +231,6 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             public void onSuccess(Object responseObj) {
                 Log.d("1","响应成功");
                 RecommendModel recommendModel = (RecommendModel) responseObj;
-
             }
 
             @Override
