@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageAlertCallBack;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageDialogAlert;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -201,6 +204,10 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                         Log.d("1","智领");
                         MyCourseSubjectModel.DataBean dataBean = zhiLingList.get(i);
                         Log.d("1","智领item数据:" + dataBean.getSubjectName());
+                        Intent intent = new Intent(getContext(), SubjectDetailActivity.class);
+                        intent.putExtra("model", new Gson().toJson(dataBean));
+                        intent.putExtra("isZhiLing", true);
+                        startActivity(intent);
                     }
                 });
 
@@ -212,6 +219,10 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                         Log.d("1","智学");
                         MyCourseSubjectModel.DataBean dataBean = zhiXueList.get(i);
                         Log.d("1","智学item数据:" + dataBean.getSubjectName());
+                        Intent intent = new Intent(getContext(), SubjectDetailActivity.class);
+                        intent.putExtra("model", new Gson().toJson(dataBean));
+                        intent.putExtra("isZhiLing", false);
+                        startActivity(intent);
                     }
                 });
                 Log.d("1","获取数据成功");

@@ -17,14 +17,101 @@
                 android:background="@mipmap/img_course_subject_background"
                 android:id="@+id/detail_header"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="80dp">
                 <TextView
+                    android:textColor="#ffA9ABC9"
+                    android:textSize="14sp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="hi！欢迎开始今天的高效学习之旅！\nAI智能助手与四中资深老师陪你一起成长～\n每天进步一点点"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginBottom="10dp"
+                android:elevation="6dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/detail_header"
+                android:id="@+id/subject_top"
+                android:background="@drawable/subject_detail_card_shape"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <RelativeLayout
+                    android:background="@mipmap/subject_card_zhihui"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#ff262525"
+                    android:textSize="13sp"
+                    android:text="四中老师微课等你学"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginBottom="10dp"
+                android:elevation="6dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/subject_top"
+                android:id="@+id/subject_middle"
+                android:background="@drawable/subject_detail_card_shape"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <RelativeLayout
+                    android:background="@mipmap/subject_card_ai"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#ff262525"
+                    android:textSize="13sp"
+                    android:text="AI智能推送 快速高效刷题"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginBottom="15dp"
+                android:elevation="6dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/subject_middle"
+                android:id="@+id/subject_bottom"
+                android:background="@drawable/subject_detail_card_shape"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <RelativeLayout
+                    android:background="@mipmap/subject_card_zhibo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#ff262525"
+                    android:textSize="13sp"
+                    android:text="在线体验大师直播课"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
