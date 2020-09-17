@@ -124,7 +124,6 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             @Override
             public void onFailure(Object responseObj) {
                 Log.d("1","获取教材版本失败");
-
             }
         });
     }
