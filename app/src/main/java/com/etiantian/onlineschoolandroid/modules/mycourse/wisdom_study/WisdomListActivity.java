@@ -94,6 +94,11 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
             TreeViewNode<WisdomModel.DataBean> rootNode = new TreeViewNode<>();
             rootNode.data = dataBean;
+            if (dataBean.getLevel() == 1) {
+                for (int j = 0; j < dataBean.getNodeList().size(); j++) {
+                    addChildNode(rootNode, dataBean.getNodeList(), false);
+                }
+            }
             list.add(rootNode);
         }
 
@@ -118,6 +123,23 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         dataSource = new TreeViewDataSource(list);
 
         initView();
+    }
+
+    public void addChildNode(TreeViewNode<WisdomModel.DataBean> rootNode,List<WisdomModel.DataBean.NodeListBeanX> dataBeans,boolean isLeaf) {
+
+        if(rootNode.child != null) {
+            rootNode.child.clear();
+        } else {
+            rootNode.child = new ArrayList<TreeViewNode>();
+        }
+
+        for(WisdomModel.DataBean.NodeListBeanX dataBean:dataBeans) {
+            TreeViewNode<WisdomModel.DataBean.NodeListBeanX> childNode = new TreeViewNode<>();
+            childNode.data = dataBean;
+            childNode.isLeaf = isLeaf;
+            childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
+            rootNode.child.add(childNode);
+        }
     }
 
     public void addNode(TreeViewNode<NodeBean> rootNode,List<String> childName,boolean isLeaf) {
@@ -170,14 +192,23 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
         @Override
         protected void onBindViewHolder(BaseListViewHolder holder, final int position) {
-            TreeViewNode<WisdomModel.DataBean> node = (TreeViewNode) getItem(position);
+            TreeViewNode node = (TreeViewNode) getItem(position);
             TreeViewHolder treeViewHolder = (TreeViewHolder) holder;
             if(!node.isLeaf) {
                 treeViewHolder.ivSelected.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivExpand.setVisibility(View.VISIBLE);
                 //NodeBean nodeBean =  node.data;
-                WisdomModel.DataBean dataBean = node.data;
-                treeViewHolder.textView.setText(dataBean.getNodeName());
+                Object dataBean = node.data;
+                String title = "";
+                if (dataBean.getClass() == WisdomModel.DataBean.class) {
+                    WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
+                    title = bean.getNodeName();
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBeanX.class) {
+                    WisdomModel.DataBean.NodeListBeanX nodeListBeanX = (WisdomModel.DataBean.NodeListBeanX)dataBean;
+                    title = nodeListBeanX.getNodeName();
+                }
+
+                treeViewHolder.textView.setText(title);
 
                 //是否展开
                 if (node.isExpand) {
@@ -189,8 +220,16 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 treeViewHolder.ivExpand.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivSelected.setVisibility(View.VISIBLE);
                 //NodeBean nodeBean =  node.data;
-                WisdomModel.DataBean dataBean = node.data;
-                treeViewHolder.textView.setText(dataBean.getNodeName());
+                Object dataBean = node.data;
+                String title = "";
+                if (dataBean.getClass() == WisdomModel.DataBean.class) {
+                    WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
+                    title = bean.getNodeName();
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBeanX.class) {
+                    WisdomModel.DataBean.NodeListBeanX nodeListBeanX = (WisdomModel.DataBean.NodeListBeanX)dataBean;
+                    title = nodeListBeanX.getNodeName();
+                }
+                treeViewHolder.textView.setText(title);
 
                 //是否选中开关
                 if (node.isSelected) {
