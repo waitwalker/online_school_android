@@ -16,7 +16,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MaterialVersionListModel;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
 
@@ -231,7 +231,7 @@ public class NetworkManager {
     ///
     public static void wisdomListFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Wisdom_List_URL + mapToQuery(params);
-        getRequest(url,null, getBearerHeaders(), callBack, WisdomListModel.class);
+        getRequest(url,null, getBearerHeaders(), callBack, WisdomModel.class);
     }
 
 

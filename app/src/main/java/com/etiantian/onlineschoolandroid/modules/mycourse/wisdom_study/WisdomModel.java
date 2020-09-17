@@ -2,7 +2,7 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study;
 
 import java.util.List;
 
-public class WisdomListModel {
+public class WisdomModel {
 
     /**
      * code : 1
