@@ -14,6 +14,7 @@ import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
 
@@ -56,6 +57,9 @@ public class NetworkManager {
 
         /// 我的课程推荐学习接口
         public static String MyCourse_Recommend_URL = Base_URL +"api-study-service/api/course/home/recommend";
+
+        /// 获取教材版本
+        public static String Material_version_URL = Base_URL + "api-service-general-wx/materials/grade/subject?";
     }
 
     ///
@@ -184,6 +188,18 @@ public class NetworkManager {
     public static void recommendFetch(NormalResponseCallBack callBack) {
         String url =  HttpConstants.MyCourse_Recommend_URL;
         getRequest(url,null, getBearerHeaders(), callBack, RecommendModel.class);
+    }
+
+    ///
+    /// @description 获取教材版本
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/17 9:28 AM
+    ///
+    public static void materialVersionFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Material_version_URL + mapToQuery(params);
+        getRequest(url,null, getBasicHeaders(), callBack, MaterialModel.class);
     }
 
 

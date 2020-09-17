@@ -88,7 +88,9 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 finish();
                 break;
             case R.id.subject_top:
-                navigateTo(WisdomListActivity.class);
+                Intent intent = new Intent(this, WisdomListActivity.class);
+                intent.putExtra("model", new Gson().toJson(model));
+                startActivity(intent);
                 break;
             case R.id.subject_middle:
                 navigateTo(AITestListActivity.class);
