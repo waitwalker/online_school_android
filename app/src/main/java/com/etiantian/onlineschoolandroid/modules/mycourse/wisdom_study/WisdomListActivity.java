@@ -35,6 +35,7 @@ import java.util.List;
 public class WisdomListActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private MyCourseSubjectModel.DataBean subjectDetailModel;
     private MaterialModel.DataBean materialVersionModel;
+    private WisdomModel wisdomModel;
 
     private static final String TAG = WisdomListActivity.class.getSimpleName();
     private static final int NODE_MARGIN_LEFT = 12;//px
@@ -60,9 +61,6 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             this.materialVersionModel = material;
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             fetchWisdomList();
-
-            initData();
-            initView();
         }
     }
 
@@ -74,6 +72,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             @Override
             public void onSuccess(Object responseObj) {
                 WisdomModel wisdomModel = (WisdomModel) responseObj;
+                initData(wisdomModel);
                 Log.d("1","获取智慧学习列表成功");
             }
 
@@ -88,27 +87,37 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
-    private void initData() {
-        List list = new ArrayList();
-        String[] country = getResources().getStringArray(R.array.country);
-        String[] province = getResources().getStringArray(R.array.province);
-        for(String c:country) {
-            NodeBean countryBean = new NodeBean();
-            countryBean.name = c;
-            TreeViewNode<NodeBean> countryNode = new TreeViewNode();
-            countryNode.data = countryBean;
-            TreeViewNode<NodeBean> subNode = new TreeViewNode<>();
+    private void initData(WisdomModel wisdomModel) {
+        List<TreeViewNode> list = new ArrayList<>();
+        for (int i = 0; i < wisdomModel.getData().size(); i++) {
+            WisdomModel.DataBean dataBean = wisdomModel.getData().get(i);
 
-            list.add(countryNode);
+            TreeViewNode<WisdomModel.DataBean> rootNode = new TreeViewNode<>();
+            rootNode.data = dataBean;
+            list.add(rootNode);
         }
 
-        TreeViewNode<NodeBean> firstNode = (TreeViewNode<NodeBean>) list.get(0);
-        addNode(firstNode, Arrays.asList(province),false);
-        for(int i = 0;i <firstNode.child.size();i++) {
-            addNode(firstNode.child.get(i),Arrays.asList(CITY[i]),true);
-        }
+
+//        String[] country = getResources().getStringArray(R.array.country);
+//        String[] province = getResources().getStringArray(R.array.province);
+//        for(String c:country) {
+//            NodeBean countryBean = new NodeBean();
+//            countryBean.name = c;
+//            TreeViewNode<NodeBean> countryNode = new TreeViewNode();
+//            countryNode.data = countryBean;
+//            TreeViewNode<NodeBean> subNode = new TreeViewNode<>();
+//            list.add(countryNode);
+//        }
+//
+//        TreeViewNode<NodeBean> firstNode = (TreeViewNode<NodeBean>) list.get(0);
+//        addNode(firstNode, Arrays.asList(province),false);
+//        for(int i = 0;i <firstNode.child.size();i++) {
+//            addNode(firstNode.child.get(i),Arrays.asList(CITY[i]),true);
+//        }
 
         dataSource = new TreeViewDataSource(list);
+
+        initView();
     }
 
     public void addNode(TreeViewNode<NodeBean> rootNode,List<String> childName,boolean isLeaf) {
@@ -138,21 +147,6 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TreeViewNode node =  dataSource.getElements().get(position);
         if (node.isLeaf) {
@@ -176,13 +170,14 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
         @Override
         protected void onBindViewHolder(BaseListViewHolder holder, final int position) {
-            TreeViewNode<NodeBean> node = (TreeViewNode) getItem(position);
+            TreeViewNode<WisdomModel.DataBean> node = (TreeViewNode) getItem(position);
             TreeViewHolder treeViewHolder = (TreeViewHolder) holder;
             if(!node.isLeaf) {
                 treeViewHolder.ivSelected.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivExpand.setVisibility(View.VISIBLE);
-                NodeBean nodeBean =  node.data;
-                treeViewHolder.textView.setText(nodeBean.name);
+                //NodeBean nodeBean =  node.data;
+                WisdomModel.DataBean dataBean = node.data;
+                treeViewHolder.textView.setText(dataBean.getNodeName());
 
                 //是否展开
                 if (node.isExpand) {
@@ -193,8 +188,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             } else {
                 treeViewHolder.ivExpand.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivSelected.setVisibility(View.VISIBLE);
-                NodeBean nodeBean =  node.data;
-                treeViewHolder.textView.setText(nodeBean.name);
+                //NodeBean nodeBean =  node.data;
+                WisdomModel.DataBean dataBean = node.data;
+                treeViewHolder.textView.setText(dataBean.getNodeName());
 
                 //是否选中开关
                 if (node.isSelected) {
@@ -205,7 +201,6 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
             }
             treeViewHolder.itemView.setPadding(node.maginLeft, 0, 0, 0);
-
         }
 
         @Override
