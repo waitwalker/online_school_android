@@ -5,7 +5,7 @@ import java.util.List;
 ///
 /// @description 教材版本列表
 /// @author waitwalker
-/// @time 2020/9/17 9:46 AM
+/// @time 2020/9/17 9:48 AM
 ///
 public class MaterialVersionListModel {
 

@@ -15,6 +15,7 @@ import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MaterialVersionListModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
 
@@ -60,6 +61,9 @@ public class NetworkManager {
 
         /// 获取教材版本
         public static String Material_version_URL = Base_URL + "api-service-general-wx/materials/grade/subject?";
+
+        /// 获取教材版本列表
+        public static String Material_version_List_URL = Base_URL + "api-service-general-wx/materials/version/material?";
     }
 
     ///
@@ -200,6 +204,18 @@ public class NetworkManager {
     public static void materialVersionFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Material_version_URL + mapToQuery(params);
         getRequest(url,null, getBasicHeaders(), callBack, MaterialModel.class);
+    }
+
+    ///
+    /// @description 获取教材版本列表
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/17 9:28 AM
+    ///
+    public static void materialVersionListFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Material_version_List_URL + mapToQuery(params);
+        getRequest(url,null, getBasicHeaders(), callBack, MaterialVersionListModel.class);
     }
 
 
