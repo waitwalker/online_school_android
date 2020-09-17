@@ -207,7 +207,7 @@ public class NetworkManager {
     ///
     public static void materialVersionFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Material_version_URL + mapToQuery(params);
-        getRequest(url,null, getBasicHeaders(), callBack, MaterialModel.class);
+        getRequest(url,null, getBearerHeaders(), callBack, MaterialModel.class);
     }
 
     ///
@@ -219,7 +219,7 @@ public class NetworkManager {
     ///
     public static void materialVersionListFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Material_version_List_URL + mapToQuery(params);
-        getRequest(url,null, getBasicHeaders(), callBack, MaterialVersionListModel.class);
+        getRequest(url,null, getBearerHeaders(), callBack, MaterialVersionListModel.class);
     }
 
     ///
@@ -231,7 +231,7 @@ public class NetworkManager {
     ///
     public static void wisdomListFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Wisdom_List_URL + mapToQuery(params);
-        getRequest(url,null, getBasicHeaders(), callBack, WisdomListModel.class);
+        getRequest(url,null, getBearerHeaders(), callBack, WisdomListModel.class);
     }
 
 

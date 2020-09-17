@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
+import com.etiantian.lib_network.request.RequestParams;
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.ai_test.AITestListActivity;
@@ -29,6 +32,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     private ViewGroup wisdom_relative;
     private ViewGroup ai_relative;
     private ViewGroup live_relative;
+    private String currentGradeId = "";
 
 
 
@@ -44,6 +48,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             boolean isZhiLing = (boolean) intent.getBooleanExtra("isZhiLing",false);
             MyCourseSubjectModel.DataBean dataBean = new Gson().fromJson(json,MyCourseSubjectModel.DataBean.class);
             this.model = dataBean;
+            currentGradeId = String.valueOf(model.getGrades().get(0).getGradeId());
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             initView();
         }
@@ -76,6 +81,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
 
                 MyCourseSubjectModel.DataBean.GradesBean gradesBean = (MyCourseSubjectModel.DataBean.GradesBean) niceSpinner.getSelectedItem();
+                currentGradeId = String.valueOf(gradesBean.getGradeId());
                 Log.d("1","点击了");
             }
         });
@@ -88,9 +94,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 finish();
                 break;
             case R.id.subject_top:
-                Intent intent = new Intent(this, WisdomListActivity.class);
-                intent.putExtra("model", new Gson().toJson(model));
-                startActivity(intent);
+                fetchMaterial();
                 break;
             case R.id.subject_middle:
                 navigateTo(AITestListActivity.class);
@@ -99,5 +103,29 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 navigateTo(LiveListActivity.class);
                 break;
         }
+    }
+
+    /// 获取教材版本
+    private void fetchMaterial() {
+        RequestParams params = new RequestParams();
+        params.put("subjectId", String.valueOf(model.getSubjectId()));
+        params.put("gradeId", currentGradeId);
+        params.put("type","2");
+        NetworkManager.materialVersionFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                MaterialModel materialModel = (MaterialModel) responseObj;
+                Intent intent = new Intent(SubjectDetailActivity.this, WisdomListActivity.class);
+                intent.putExtra("subjectDetailModel", new Gson().toJson(model));
+                intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取教材版本失败");
+
+            }
+        });
     }
 }
