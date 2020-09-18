@@ -84,29 +84,75 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
+    private void initData(WisdomModel wisdomModel) {
+        List dataList = new ArrayList();
+        for (int i = 0; i < wisdomModel.getData().size(); i++) {
+            WisdomModel.DataBean dataBean = wisdomModel.getData().get(i);
+            if (dataBean.getLevel() == 1) {
+                if (dataBean.getResourceIdList() != null && dataBean.getResourceIdList().size() > 0) {
+                    WisdomModel.DataBean.NodeListBean nodeListBean = new WisdomModel.DataBean.NodeListBean();
+                    nodeListBean.setNodeName("本章复习");
+                    nodeListBean.setResourceIdList(dataBean.getResourceIdList());
+                    dataBean.getNodeList().add(nodeListBean);
+                }
+            }
+            dataList.add(dataBean);
+        }
+
+        List levelA = new ArrayList();
+        for (int i =0; i< dataList.size();i++) {
+            WisdomModel.DataBean dataBean = (WisdomModel.DataBean)dataList.get(i);
+            List levelB = new ArrayList();
+            for (int j =0; j< dataBean.getNodeList().size();j++) {
+                WisdomModel.DataBean.NodeListBean nodeListBean = dataBean.getNodeList().get(j);
+                if (nodeListBean.getLevel() == 2) {
+                    if (nodeListBean.getResourceIdList() != null && nodeListBean.getResourceIdList().size() > 0) {
+                        WisdomModel.DataBean.NodeListBean tmpBean = new WisdomModel.DataBean.NodeListBean();
+                        tmpBean.setNodeName("本节复习");
+                        tmpBean.setResourceIdList(nodeListBean.getResourceIdList());
+                        nodeListBean.getNodeList().add(tmpBean);
+                    }
+                    levelB.add(nodeListBean);
+                }
+            }
+            dataBean.setNodeList(levelB);
+
+            levelA.add(dataBean);
+        }
+
+
+        List dataListM = new ArrayList();
+        for (int i = 0; i < levelA.size(); i++) {
+            WisdomModel.DataBean dataBean = ( WisdomModel.DataBean)levelA.get(i);
+            if (dataBean.getLevel() == 1) {
+                if (dataBean.getResourceIdList() != null && dataBean.getResourceIdList().size() > 0) {
+                    WisdomModel.DataBean.NodeListBean nodeListBean = new WisdomModel.DataBean.NodeListBean();
+                    nodeListBean.setNodeName("本章复习");
+                    nodeListBean.setResourceIdList(dataBean.getResourceIdList());
+                    dataBean.getNodeList().add(nodeListBean);
+                }
+            }
+            dataListM.add(dataBean);
+        }
+
+        Log.d("1","1");
+        initDataSource((ArrayList) dataListM);
+    }
+
     ///
     /// 章下面有resourceIdList,表示存在本章复习,级别和nodeList一致
     /// 节下面有resourceIdList,表示存在本节复习,级别和nodeList一致
     ///
-    private void initData(WisdomModel wisdomModel) {
+    private void initDataSource(ArrayList dataS) {
         List<TreeViewNode> list = new ArrayList<>();
-        for (int i = 0; i < wisdomModel.getData().size(); i++) {
-            WisdomModel.DataBean dataBean = wisdomModel.getData().get(i);
+        for (int i = 0; i < dataS.size(); i++) {
+            WisdomModel.DataBean dataBean = (WisdomModel.DataBean)dataS.get(i);
             /// 根节点 章
             TreeViewNode<WisdomModel.DataBean> rootNode = new TreeViewNode<>();
             rootNode.data = dataBean;
-            if (dataBean.getLevel() == 1) {
-                /// 添加正常节
-                for (int j = 0; j < dataBean.getNodeList().size(); j++) {
-                    addNormalChildNode(rootNode, dataBean.getNodeList(), false);
-                }
-
-                /// 添加本章复习
-//                for (int j = 0; j < dataBean.getResourceIdList().size(); j++) {
-//                    addNormalChildNode(rootNode, dataBean.getNodeList(), false);
-//                }
+            for (int j = 0; j < dataBean.getNodeList().size(); j++) {
+                addNormalChildNode(rootNode, dataBean.getNodeList(), false);
             }
-
 
             list.add(rootNode);
         }
@@ -117,45 +163,44 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     /// 添加正常节点
-    public void addNormalChildNode(TreeViewNode rootNode, List<WisdomModel.DataBean.NodeListBean> dataBeans, boolean isLeaf) {
+    public void addNormalChildNode(TreeViewNode rootNode, List dataBeans, boolean isLeaf) {
         if (dataBeans != null && dataBeans.size() > 0) {
             if(rootNode.child != null) {
                 rootNode.child.clear();
             } else {
                 rootNode.child = new ArrayList<TreeViewNode>();
             }
+
             for (int i = 0; i < dataBeans.size(); i++) {
                 TreeViewNode childNode = new TreeViewNode<>();
-                WisdomModel.DataBean.NodeListBean nodeBean = dataBeans.get(i);
-                childNode.data = nodeBean;
-                childNode.isLeaf = isLeaf;
-                childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
-                rootNode.child.add(childNode);
-                if (nodeBean.getLevel() == 3) {
+                Object nodeBean = dataBeans.get(i);
+                if (nodeBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
+                    WisdomModel.DataBean.NodeListBean tmpBean = (WisdomModel.DataBean.NodeListBean)nodeBean;
+                    Log.d("1","节点名称:"+ tmpBean.getNodeName());
+                    childNode.data = tmpBean;
+                    childNode.isLeaf = isLeaf;
+                    childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
+                    rootNode.child.add(childNode);
+                    if (tmpBean.getNodeList() !=null && tmpBean.getNodeList().size() > 0) {
+                        addNormalChildNode(childNode, tmpBean.getNodeList(), false);
+                    } else if (tmpBean.getResourceIdList() != null && tmpBean.getResourceIdList().size() > 0) {
+                        addNormalChildNode(childNode, tmpBean.getResourceIdList(), true);
+                    }
+                } else if (nodeBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
+                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)nodeBean;
 
+                    Log.d("1","1");
+                    childNode.data = resourceIdListBean;
+                    childNode.isLeaf = isLeaf;
+                    childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
+                    rootNode.child.add(childNode);
                 }
-                addNormalChildNode(childNode, nodeBean.getNodeList(), isLeaf);
             }
+        } else {
+
         }
 
     }
-
-    /// 添加本章复习子节点
-    public void addCurrentChapterChildNode(TreeViewNode<WisdomModel.DataBean> rootNode, List<WisdomModel.DataBean.NodeListBean> dataBeans, boolean isLeaf) {
-
-//        if(rootNode.child == null) {
-//            rootNode.child = new ArrayList<TreeViewNode>();
-//        }
-//
-//        for(WisdomModel.DataBean.NodeListBeanX dataBean:dataBeans) {
-//            TreeViewNode<WisdomModel.DataBean.NodeListBeanX> childNode = new TreeViewNode<>();
-//            childNode.data = dataBean;
-//            childNode.isLeaf = isLeaf;
-//            childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
-//            rootNode.child.add(childNode);
-//        }
-    }
-
     private void initView() {
         mListView=findViewById(R.id.organization_listview);
         mListView.setOnItemClickListener(this);
@@ -201,6 +246,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
                     WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
                     title = nodeListBeanX.getNodeName();
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
+                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
+                    title = resourceIdListBean.getResName();
                 }
 
                 treeViewHolder.textView.setText(title);
@@ -223,6 +271,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
                     WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
                     title = nodeListBeanX.getNodeName();
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
+                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
+                    title = resourceIdListBean.getResName();
                 }
                 treeViewHolder.textView.setText(title);
 
