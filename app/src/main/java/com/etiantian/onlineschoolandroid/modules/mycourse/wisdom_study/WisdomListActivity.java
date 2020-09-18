@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,7 +27,6 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test.Tree
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WisdomListActivity extends BaseActivity implements AdapterView.OnItemClickListener {
@@ -87,78 +84,76 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
+    ///
+    /// 章下面有resourceIdList,表示存在本章复习,级别和nodeList一致
+    /// 节下面有resourceIdList,表示存在本节复习,级别和nodeList一致
+    ///
     private void initData(WisdomModel wisdomModel) {
         List<TreeViewNode> list = new ArrayList<>();
         for (int i = 0; i < wisdomModel.getData().size(); i++) {
             WisdomModel.DataBean dataBean = wisdomModel.getData().get(i);
-
+            /// 根节点 章
             TreeViewNode<WisdomModel.DataBean> rootNode = new TreeViewNode<>();
             rootNode.data = dataBean;
             if (dataBean.getLevel() == 1) {
+                /// 添加正常节
                 for (int j = 0; j < dataBean.getNodeList().size(); j++) {
-                    addChildNode(rootNode, dataBean.getNodeList(), false);
+                    addNormalChildNode(rootNode, dataBean.getNodeList(), false);
                 }
+
+                /// 添加本章复习
+//                for (int j = 0; j < dataBean.getResourceIdList().size(); j++) {
+//                    addNormalChildNode(rootNode, dataBean.getNodeList(), false);
+//                }
             }
+
+
             list.add(rootNode);
         }
-
-
-//        String[] country = getResources().getStringArray(R.array.country);
-//        String[] province = getResources().getStringArray(R.array.province);
-//        for(String c:country) {
-//            NodeBean countryBean = new NodeBean();
-//            countryBean.name = c;
-//            TreeViewNode<NodeBean> countryNode = new TreeViewNode();
-//            countryNode.data = countryBean;
-//            TreeViewNode<NodeBean> subNode = new TreeViewNode<>();
-//            list.add(countryNode);
-//        }
-//
-//        TreeViewNode<NodeBean> firstNode = (TreeViewNode<NodeBean>) list.get(0);
-//        addNode(firstNode, Arrays.asList(province),false);
-//        for(int i = 0;i <firstNode.child.size();i++) {
-//            addNode(firstNode.child.get(i),Arrays.asList(CITY[i]),true);
-//        }
 
         dataSource = new TreeViewDataSource(list);
 
         initView();
     }
 
-    public void addChildNode(TreeViewNode<WisdomModel.DataBean> rootNode,List<WisdomModel.DataBean.NodeListBeanX> dataBeans,boolean isLeaf) {
+    /// 添加正常节点
+    public void addNormalChildNode(TreeViewNode rootNode, List<WisdomModel.DataBean.NodeListBean> dataBeans, boolean isLeaf) {
+        if (dataBeans != null && dataBeans.size() > 0) {
+            if(rootNode.child != null) {
+                rootNode.child.clear();
+            } else {
+                rootNode.child = new ArrayList<TreeViewNode>();
+            }
+            for (int i = 0; i < dataBeans.size(); i++) {
+                TreeViewNode childNode = new TreeViewNode<>();
+                WisdomModel.DataBean.NodeListBean nodeBean = dataBeans.get(i);
+                childNode.data = nodeBean;
+                childNode.isLeaf = isLeaf;
+                childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
+                rootNode.child.add(childNode);
+                if (nodeBean.getLevel() == 3) {
 
-        if(rootNode.child != null) {
-            rootNode.child.clear();
-        } else {
-            rootNode.child = new ArrayList<TreeViewNode>();
+                }
+                addNormalChildNode(childNode, nodeBean.getNodeList(), isLeaf);
+            }
         }
 
-        for(WisdomModel.DataBean.NodeListBeanX dataBean:dataBeans) {
-            TreeViewNode<WisdomModel.DataBean.NodeListBeanX> childNode = new TreeViewNode<>();
-            childNode.data = dataBean;
-            childNode.isLeaf = isLeaf;
-            childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
-            rootNode.child.add(childNode);
-        }
     }
 
-    public void addNode(TreeViewNode<NodeBean> rootNode,List<String> childName,boolean isLeaf) {
+    /// 添加本章复习子节点
+    public void addCurrentChapterChildNode(TreeViewNode<WisdomModel.DataBean> rootNode, List<WisdomModel.DataBean.NodeListBean> dataBeans, boolean isLeaf) {
 
-        if(rootNode.child != null) {
-            rootNode.child.clear();
-        } else {
-            rootNode.child = new ArrayList<TreeViewNode>();
-        }
-
-        for(String s:childName) {
-            NodeBean childBean = new NodeBean();
-            childBean.name = s;
-            TreeViewNode<NodeBean> childNode = new TreeViewNode();
-            childNode.data = childBean;
-            childNode.isLeaf = isLeaf;
-            childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
-            rootNode.child.add(childNode);
-        }
+//        if(rootNode.child == null) {
+//            rootNode.child = new ArrayList<TreeViewNode>();
+//        }
+//
+//        for(WisdomModel.DataBean.NodeListBeanX dataBean:dataBeans) {
+//            TreeViewNode<WisdomModel.DataBean.NodeListBeanX> childNode = new TreeViewNode<>();
+//            childNode.data = dataBean;
+//            childNode.isLeaf = isLeaf;
+//            childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
+//            rootNode.child.add(childNode);
+//        }
     }
 
     private void initView() {
@@ -203,8 +198,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 if (dataBean.getClass() == WisdomModel.DataBean.class) {
                     WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
                     title = bean.getNodeName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBeanX.class) {
-                    WisdomModel.DataBean.NodeListBeanX nodeListBeanX = (WisdomModel.DataBean.NodeListBeanX)dataBean;
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
+                    WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
                     title = nodeListBeanX.getNodeName();
                 }
 
@@ -225,8 +220,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 if (dataBean.getClass() == WisdomModel.DataBean.class) {
                     WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
                     title = bean.getNodeName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBeanX.class) {
-                    WisdomModel.DataBean.NodeListBeanX nodeListBeanX = (WisdomModel.DataBean.NodeListBeanX)dataBean;
+                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
+                    WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
                     title = nodeListBeanX.getNodeName();
                 }
                 treeViewHolder.textView.setText(title);
