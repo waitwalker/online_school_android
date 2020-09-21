@@ -22,6 +22,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/common_actionbar_textview"
             android:layout_marginStart="10dp"
             android:textSize="20sp"
             android:text="标题"

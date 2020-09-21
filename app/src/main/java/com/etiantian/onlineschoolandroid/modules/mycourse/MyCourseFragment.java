@@ -158,8 +158,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.union_activity_relative:
                 showToast("点击了联通活动课");
                 Intent intent = new Intent(getContext(), CommonWebViewActivity.class);
-                intent.putExtra("url","");
-
+                intent.putExtra("url", NetworkManager.HttpConstants.Union_Activity_URL);
+                intent.putExtra("title","中国联通·北京四中网校名师课堂");
                 startActivity(intent);
                 break;
             case R.id.primary_activity_relative:

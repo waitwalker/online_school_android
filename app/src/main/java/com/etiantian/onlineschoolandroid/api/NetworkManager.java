@@ -35,7 +35,7 @@ import java.util.Map;
 /// @time 2020/9/2 9:04 AM
 ///
 public class NetworkManager {
-    static class HttpConstants {
+    public static class HttpConstants {
 
         private static final String AppId = !App.DEBUG()? "071DC04BB4053F236AD7DF478A8E4A17" : "C2ABCA7EBE1A93D1F0A1C3D9E8D6B79E";
         private static final String AppSecret = !App.DEBUG()? "BA451F0E9F31B3A270C08F3BB38E33BE" : "2765F72C83B05066CB7B65F3650E3440";
@@ -68,6 +68,11 @@ public class NetworkManager {
 
         /// 获取智慧学习列表
         public static String Wisdom_List_URL = Base_URL + "api-service-course-wx/wx-chapter/node/points?";
+
+
+        /// 活动课链接
+        /// 联通活动课
+        public static String Union_Activity_URL = "https://huodong.etiantian.com/liantong/indexm.html?token=" + getToken();
     }
 
     ///
