@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/webview_actionbar"
+        titlebar:leftType="customView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        titlebar:showBottomLine="false"
+        app:leftCustomView="@layout/common_action_bar"
+        titlebar:bottomShadowHeight="2dp"/>
+    <WebView
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/webview_actionbar"
+        android:id="@+id/common_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
