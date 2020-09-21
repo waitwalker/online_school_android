@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -70,6 +71,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     }
 
     private WebViewClient webViewClient = new WebViewClient(){
+
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             hud.show();
@@ -102,9 +104,24 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     private WebChromeClient webChromeClient = new WebChromeClient(){
         @Override
         public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+
+            Log.d("1","js和原生交互");
             return super.onJsAlert(view, url, message, result);
         }
 
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            Log.d("1","js和原生交互consoleMessage:" + consoleMessage.message());
+            return super.onConsoleMessage(consoleMessage);
+        }
+
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            Log.d("1","js和原生交互");
+            return super.onJsConfirm(view, url, message, result);
+        }
+
+        /// 获取网页中标题
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
@@ -121,7 +138,33 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.actionbar_back_button:
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    finish();
+                }
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (webView != null) {
+            webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            webView.clearHistory();
+            ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.destroy();
+            webView = null;
         }
     }
 }
