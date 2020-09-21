@@ -1,6 +1,7 @@
 package com.etiantian.onlineschoolandroid.modules.common_tools;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -29,6 +31,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     private TextView titleTextView;
     private KProgressHUD hud;
 
+    @SuppressLint("JavascriptInterface")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         titleTextView = findViewById(R.id.common_actionbar_textview);
     }
 
+    @SuppressLint("JavascriptInterface")
     private void initData() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -67,11 +71,27 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
 
             webView.setWebChromeClient(webChromeClient);
             webView.setWebViewClient(webViewClient);
+
+            webView.addJavascriptInterface(new JavaScriptChannel(), "native");
+
+
         }
     }
 
-    private WebViewClient webViewClient = new WebViewClient(){
+    @JavascriptInterface
+    public void message(final String message) {
 
+        Log.d("1","h5传给原生的消息:" + message);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+    }
+
+    private WebViewClient webViewClient = new WebViewClient(){
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             hud.show();
@@ -102,6 +122,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     };
 
     private WebChromeClient webChromeClient = new WebChromeClient(){
+
         @Override
         public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
 
@@ -165,6 +186,15 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
             ((ViewGroup) webView.getParent()).removeView(webView);
             webView.destroy();
             webView = null;
+        }
+    }
+
+    private static class JavaScriptChannel {
+
+        @SuppressLint("JavascriptInterface")
+        @JavascriptInterface
+        public void handlerMessage(String msg) {
+            System.out.println("JS成功调用了Android的hello方法");
         }
     }
 }
