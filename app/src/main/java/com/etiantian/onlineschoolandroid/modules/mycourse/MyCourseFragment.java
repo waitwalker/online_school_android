@@ -28,6 +28,7 @@ import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageAlertCallBack;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageDialogAlert;
+import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.new_semester.NewSemesterActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.primary.PrimaryActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity;
@@ -169,6 +170,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.new_semester_activity_relative:
                 showToast("点击了四中名师活动课");
+                navigateTo(NewSemesterActivity.class);
                 break;
             case R.id.normal_activity_relative:
                 showToast("点击了普通活动课");

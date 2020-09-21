@@ -73,12 +73,16 @@ public class NetworkManager {
         /// 活动课链接
         /// 联通活动课
         public static String Union_Activity_URL = "https://huodong.etiantian.com/liantong/indexm.html?token=" + getToken();
+
         /// 小升初活动课--语文
         public static String Primary_Activity_Chinese_URL = "https://huodong.etiantian.com/activity01/mobile10.html?token=" + getToken();
         /// 小升初活动课--数学
         public static String Primary_Activity_Math_URL = "https://huodong.etiantian.com/activity01/mobile11.html?token=" + getToken();
         /// 小升初活动课--英语
         public static String Primary_Activity_English_URL = "https://huodong.etiantian.com/activity01/mobile12.html?token=" + getToken();
+
+        /// 四中名师
+        public static String New_Semester_Activity = "https://huodong.etiantian.com/activity01/mobile12.html?token=" + getToken();
     }
 
     ///

@@ -17,6 +17,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
 
     private WebView webView;
     private ViewGroup leftBackButton;
+    private Button backButton;
     private TextView titleTextView;
     private KProgressHUD hud;
 
@@ -46,6 +48,8 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         webView = findViewById(R.id.common_webview);
         leftBackButton = findViewById(R.id.actionbar_back_button);
         leftBackButton.setOnClickListener(this);
+        backButton = findViewById(R.id.back_button_id);
+        backButton.setOnClickListener(this);
         titleTextView = findViewById(R.id.common_actionbar_textview);
     }
 
@@ -159,6 +163,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.actionbar_back_button:
+            case R.id.back_button_id:
                 if (webView.canGoBack()) {
                     webView.goBack();
                 } else {

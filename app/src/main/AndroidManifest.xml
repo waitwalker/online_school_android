@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".modules.mycourse.activity_course.primary.PrimaryActivity"></activity>
+        <activity android:name=".modules.mycourse.activity_course.new_semester.NewSemesterActivity"></activity>
+        <activity android:name=".modules.mycourse.activity_course.primary.PrimaryActivity" />
         <activity android:name=".modules.common_tools.CommonWebViewActivity" />
         <activity android:name=".modules.mycourse.live.LiveListActivity" />
         <activity android:name=".modules.mycourse.ai_test.AITestListActivity" />
