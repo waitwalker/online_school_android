@@ -43,5 +43,6 @@ ext{
             glidecompiler :'com.github.bumptech.glide:compiler:4.11.0',
             nicespinner: 'com.github.arcadefire:nice-spinner:1.4.4',
             titlebar:'com.wuhenzhizao:titlebar:1.2.0',
+            roundedimageview:'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6',
     ]
 }

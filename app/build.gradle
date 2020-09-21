@@ -46,6 +46,8 @@ dependencies {
     implementation rootProject.dependenciesLibrary.glidecompiler
     implementation rootProject.dependenciesLibrary.nicespinner
     implementation rootProject.dependenciesLibrary.titlebar
+    implementation rootProject.dependenciesLibrary.roundedimageview
+
     // 网络库
     implementation project(':lib_network')
 
