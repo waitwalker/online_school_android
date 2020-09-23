@@ -14,6 +14,11 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 
+///
+/// @description 新学期四中名师活动课
+/// @author waitwalker
+/// @time 2020/9/23 9:36 AM
+///
 public class NewSemesterActivity extends BaseActivity implements CompoundButton.OnClickListener{
     private ViewGroup semester_junior_one_math;
     private ViewGroup semester_junior_two_chinese;
