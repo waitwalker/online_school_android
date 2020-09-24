@@ -17,7 +17,7 @@
         <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
             android:layout_below="@id/margin_view"
             android:id="@+id/playback_grid"
-            android:verticalSpacing="20dp"
+            android:verticalSpacing="10dp"
             android:numColumns="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
