@@ -1,13 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.PlayBackLiveListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
+        android:id="@+id/playback_grid"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:verticalSpacing="20dp"
+        android:numColumns="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+</RelativeLayout>

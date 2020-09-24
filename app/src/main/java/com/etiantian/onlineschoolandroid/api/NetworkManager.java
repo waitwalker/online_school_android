@@ -13,6 +13,7 @@ import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MaterialVersionListModel;
@@ -68,6 +69,9 @@ public class NetworkManager {
 
         /// 获取智慧学习列表
         public static String Wisdom_List_URL = Base_URL + "api-service-course-wx/wx-chapter/node/points?";
+
+        /// 直播列表
+        public static String Live_List_URL = Base_URL + "api-study-service/api/lives/plans";
 
 
         /// 活动课链接
@@ -247,6 +251,20 @@ public class NetworkManager {
     public static void wisdomListFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Wisdom_List_URL + mapToQuery(params);
         getRequest(url,null, getBearerHeaders(), callBack, WisdomModel.class);
+    }
+
+    ///
+    /// @description 获取大师直播列表
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/24 2:28 PM
+    ///
+    public static void liveListFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Live_List_URL;
+        RequestParams headers = getBearerHeaders();
+        headers.put("content-type","application/json");
+        postRequestWithJsonParameter(url, params, headers, callBack, LiveListModel.class);
     }
 
 

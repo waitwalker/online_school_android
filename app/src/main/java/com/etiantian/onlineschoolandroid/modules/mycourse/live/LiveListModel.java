@@ -2,7 +2,7 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.live;
 
 import java.util.List;
 
-public class LivePlayBackModel {
+public class LiveListModel {
 
     /**
      * code : 1
