@@ -64,6 +64,8 @@ public class PlayBackLiveListFragment extends Fragment {
 
                 LiveListModel liveListModel = (LiveListModel)responseObj;
                 Log.d("1","直播回放列表请求成功");
+                PlayBackLiveListAdapter playBackLiveListAdapter = new PlayBackLiveListAdapter(getContext(), liveListModel.getData().getList());
+                liveListGridView.setAdapter(playBackLiveListAdapter);
             }
 
             @Override
