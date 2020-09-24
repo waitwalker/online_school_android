@@ -215,7 +215,7 @@ public class LiveListModel {
             }
 
             public String getTeacherName() {
-                return teacherName;
+                return teacherName.substring(0,1) + "老师";
             }
 
             public void setTeacherName(String teacherName) {
