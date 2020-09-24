@@ -1,6 +1,6 @@
 ext{
     android = [
-            applicationId            : "com.example.imooc_voice",
+            applicationId            : "com.etiantian.onlineschoolandroid",
             compileSdkVersion        : 29,
             buildToolsVersion        : "29.0.3",
             minSdkVersion            : 26,
