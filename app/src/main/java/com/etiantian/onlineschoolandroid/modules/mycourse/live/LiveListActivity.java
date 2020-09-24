@@ -1,12 +1,15 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -54,6 +57,7 @@ public class LiveListActivity extends BaseActivity {
     }
 
     private void initView() {
+        hideActionBar();
         viewPager = findViewById(R.id.live_viewpager);
         pagerAdapter = new LivePageFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
@@ -82,13 +86,12 @@ public class LiveListActivity extends BaseActivity {
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
-                simplePagerTitleView.setBackgroundColor(Color.YELLOW);
                 simplePagerTitleView.setText(mDataList.get(index));
-                simplePagerTitleView.setNormalColor(Color.BLACK);
+                simplePagerTitleView.setNormalColor(Color.parseColor("#88000000"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#883399ff"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View v) {
                         viewPager.setCurrentItem(index);
                     }
                 });
@@ -97,28 +100,20 @@ public class LiveListActivity extends BaseActivity {
 
             @Override
             public IPagerIndicator getIndicator(Context context) {
-                LinePagerIndicator linePagerIndicator = new LinePagerIndicator(context);
-                linePagerIndicator.setMode(LinePagerIndicator.MODE_MATCH_EDGE);
-                linePagerIndicator.setStartInterpolator(new AccelerateInterpolator());
-                linePagerIndicator.setEndInterpolator(new DecelerateInterpolator(1.6f));
-                linePagerIndicator.setYOffset(UIUtil.dip2px(context, 39));
-                linePagerIndicator.setLineHeight(UIUtil.dip2px(context, 1));
-                linePagerIndicator.setColors(Color.parseColor("#f57c00"));
-                return linePagerIndicator;
-            }
-
-            @Override
-            public float getTitleWeight(Context context, int index) {
-                if (index == 0) {
-                    return 2.0f;
-                } else if (index == 1) {
-                    return 1.2f;
-                } else {
-                    return 1.0f;
-                }
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                indicator.setColors(Color.parseColor("#40c4ff"));
+                return indicator;
             }
         });
         magicIndicator.setNavigator(commonNavigator);
+        LinearLayout titleContainer = commonNavigator.getTitleContainer(); // must after setNavigator
+        titleContainer.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+        titleContainer.setDividerDrawable(new ColorDrawable() {
+            @Override
+            public int getIntrinsicWidth() {
+                return UIUtil.dip2px(LiveListActivity.this, 65);
+            }
+        });
         ViewPagerHelper.bind(magicIndicator, viewPager);
     }
 
