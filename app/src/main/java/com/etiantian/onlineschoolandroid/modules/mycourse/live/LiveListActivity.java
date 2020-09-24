@@ -4,8 +4,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -35,7 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class LiveListActivity extends BaseActivity {
+public class LiveListActivity extends BaseActivity implements CompoundButton.OnClickListener {
 
     private ETTViewPager viewPager;
     private List<Fragment> fragmentList;
@@ -46,6 +49,9 @@ public class LiveListActivity extends BaseActivity {
 
     private static final String[] CHANNELS = new String[]{"当期","预告","回放"};
     private List<String> mDataList = Arrays.asList(CHANNELS);
+
+    private ViewGroup backButton;
+    private Button back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,12 @@ public class LiveListActivity extends BaseActivity {
 
     private void initView() {
         hideActionBar();
+
+        backButton = findViewById(R.id.actionbar_back_button_);
+        backButton.setOnClickListener(this);
+        back_button = findViewById(R.id.back_button);
+        back_button.setOnClickListener(this);
+
         viewPager = findViewById(R.id.live_viewpager);
         pagerAdapter = new LivePageFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
@@ -87,6 +99,7 @@ public class LiveListActivity extends BaseActivity {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setTextSize(15);
                 simplePagerTitleView.setNormalColor(Color.parseColor("#88000000"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#883399ff"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +128,16 @@ public class LiveListActivity extends BaseActivity {
             }
         });
         ViewPagerHelper.bind(magicIndicator, viewPager);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.actionbar_back_button_:
+            case R.id.back_button:
+                finish();
+                break;
+        }
     }
 
     ///

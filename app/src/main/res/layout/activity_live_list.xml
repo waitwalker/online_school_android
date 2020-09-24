@@ -7,6 +7,40 @@
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListActivity">
 
     <RelativeLayout
+        android:id="@+id/actionbar"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/actionbar_back_button_"
+            android:layout_width="44dp"
+            android:layout_height="44dp">
+            <Button
+                android:id="@+id/back_button"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:background="@mipmap/common_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/common_actionbar_textview"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:text="大师直播"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@id/actionbar_back_button_"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:elevation="6dp"
+        android:layout_below="@id/actionbar"
         android:id="@+id/tabbar_relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,13 +54,14 @@
                 android:id="@+id/magicindicator"
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"/>
+                android:layout_height="36dp"/>
 
         </RelativeLayout>
     </RelativeLayout>
 
 
     <com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager
+        android:layout_marginTop="6dp"
         android:layout_below="@id/tabbar_relative"
         android:id="@+id/live_viewpager"
         android:layout_width="match_parent"
