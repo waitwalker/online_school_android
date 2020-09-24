@@ -44,5 +44,6 @@ ext{
             nicespinner: 'com.github.arcadefire:nice-spinner:1.4.4',
             titlebar:'com.wuhenzhizao:titlebar:1.2.0',
             roundedimageview:'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6',
+            magicindicator:'com.github.hackware1993:MagicIndicator:1.5.0',
     ]
 }

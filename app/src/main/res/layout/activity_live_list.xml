@@ -6,8 +6,14 @@
     android:layout_height="match_parent"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListActivity">
 
-    <TextView
-        android:text="大师直播列表"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magicindicator"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"/>
+
+    <com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager
+        android:layout_below="@id/magicindicator"
+        android:id="@+id/live_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

@@ -1,7 +1,5 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.new_semester;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
