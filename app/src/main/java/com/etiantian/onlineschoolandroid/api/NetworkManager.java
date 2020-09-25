@@ -12,6 +12,7 @@ import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
+import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
@@ -89,7 +90,10 @@ public class NetworkManager {
         public static String New_Semester_Activity = "https://huodong.etiantian.com/activity01/mobile12.html?token=" + getToken();
 
         /// cc回放地址
-        public static String CC_PlayBack_HTML = "https://school.etiantian.com/cc-web/back.html?";
+        public static String CC_PlayBack_HTML = Base_URL + "cc-web/back.html?";
+
+        /// 获取视频URL
+        public static String Video_URL = Base_URL + "api-study-service/api/lives/download";
     }
 
     ///
@@ -268,6 +272,18 @@ public class NetworkManager {
         RequestParams headers = getBearerHeaders();
         headers.put("content-type","application/json");
         postRequestWithJsonParameter(url, params, headers, callBack, LiveListModel.class);
+    }
+
+    ///
+    /// @description 获取视频播放URL
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 2020/9/25 9:57 AM
+    ///
+    public static void videoURLFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url = HttpConstants.Video_URL;
+        getRequest(url, params, getBearerHeaders(), callBack, VideoURLModel.class);
     }
 
 

@@ -87,7 +87,7 @@ public class PlayBackLiveListAdapter extends BaseAdapter {
                     context.startActivity(intent);
                 } else {
                     // 使用原生播放器
-                    
+
                 }
 
 
@@ -104,5 +104,9 @@ public class PlayBackLiveListAdapter extends BaseAdapter {
         TextView teacherTextView;
         ViewGroup download_relative;
         ViewGroup playback_relative;
+    }
+
+    private void fetchVideoURL(String courseId) {
+
     }
 }
