@@ -32,6 +32,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.wear:wear:1.0.0'
     testImplementation this.rootProject.dependenciesLibrary.junit
     androidTestImplementation this.rootProject.dependenciesLibrary.extJunit
     androidTestImplementation this.rootProject.dependenciesLibrary.espressoCore
@@ -52,5 +53,6 @@ dependencies {
 
     // 网络库
     implementation project(':lib_network')
+    compileOnly 'com.google.android.wearable:wearable:2.7.0'
 
 }

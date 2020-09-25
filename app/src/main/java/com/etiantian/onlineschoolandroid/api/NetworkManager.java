@@ -87,6 +87,9 @@ public class NetworkManager {
 
         /// 四中名师
         public static String New_Semester_Activity = "https://huodong.etiantian.com/activity01/mobile12.html?token=" + getToken();
+
+        /// cc回放地址
+        public static String CC_PlayBack_HTML = "https://school.etiantian.com/cc-web/back.html?";
     }
 
     ///
@@ -276,7 +279,7 @@ public class NetworkManager {
     /// @author waitwalker
     /// @time 2020/9/2 11:42 AM
     ///
-    private static String getToken() {
+    public static String getToken() {
         String token = RuntimeDataManager.instance().getToken();
         if (token == null || token.length() == 0) {
             HashMap<String, Object> map = new HashMap<>();

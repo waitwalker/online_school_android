@@ -80,6 +80,7 @@
             android:layout_height="20dp"/>
 
         <RelativeLayout
+            android:id="@+id/download_relative"
             android:layout_marginTop="10dp"
             android:layout_toStartOf="@id/vertical_line"
             android:layout_below="@id/line_"
@@ -106,6 +107,7 @@
             </RelativeLayout>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/playback_relative"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/vertical_line"
             android:layout_below="@id/line_"
