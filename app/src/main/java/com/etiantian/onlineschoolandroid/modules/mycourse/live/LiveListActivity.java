@@ -5,14 +5,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -20,6 +17,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.adavance_notice.AdvanceNoticeLiveListFragment;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.CurrentPeriodLiveListFragment;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.play_back.PlayBackLiveListFragment;
 import com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;

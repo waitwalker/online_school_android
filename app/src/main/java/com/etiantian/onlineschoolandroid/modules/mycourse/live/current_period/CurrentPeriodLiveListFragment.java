@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.live;
+package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.os.Bundle;
 
@@ -12,17 +12,18 @@ import com.etiantian.onlineschoolandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AdvanceNoticeLiveListFragment#newInstance} factory method to
+ * Use the {@link CurrentPeriodLiveListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdvanceNoticeLiveListFragment extends Fragment {
+public class CurrentPeriodLiveListFragment extends Fragment {
 
-    public AdvanceNoticeLiveListFragment() {
+
+    public CurrentPeriodLiveListFragment() {
         // Required empty public constructor
     }
 
-    public static AdvanceNoticeLiveListFragment newInstance() {
-        return new AdvanceNoticeLiveListFragment();
+    public static CurrentPeriodLiveListFragment newInstance() {
+        return new CurrentPeriodLiveListFragment();
     }
 
     @Override
@@ -34,6 +35,6 @@ public class AdvanceNoticeLiveListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advance_notice_live_list, container, false);
+        return inflater.inflate(R.layout.fragment_current_period_live_list, container, false);
     }
 }

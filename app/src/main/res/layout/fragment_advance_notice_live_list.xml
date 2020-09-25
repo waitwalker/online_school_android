@@ -1,13 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.AdvanceNoticeLiveListFragment">
+    tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.adavance_notice.AdvanceNoticeLiveListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <View
+            android:background="@android:color/transparent"
+            android:id="@+id/margin_view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+        <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
+            android:layout_below="@id/margin_view"
+            android:id="@+id/advance_notice_grid"
+            android:verticalSpacing="10dp"
+            android:numColumns="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>

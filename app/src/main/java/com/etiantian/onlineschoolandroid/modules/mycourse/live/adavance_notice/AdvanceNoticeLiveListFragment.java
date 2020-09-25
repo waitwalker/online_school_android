@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.live;
+package com.etiantian.onlineschoolandroid.modules.mycourse.live.adavance_notice;
 
 import android.os.Bundle;
 
@@ -13,23 +13,25 @@ import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PlayBackLiveListFragment#newInstance} factory method to
+ * Use the {@link AdvanceNoticeLiveListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayBackLiveListFragment extends Fragment {
+public class AdvanceNoticeLiveListFragment extends Fragment {
 
     private View root;
     private LiveListGridView liveListGridView;
 
-    public PlayBackLiveListFragment() {
+
+    public AdvanceNoticeLiveListFragment() {
         // Required empty public constructor
     }
 
-    public static PlayBackLiveListFragment newInstance() {
-        return new PlayBackLiveListFragment();
+    public static AdvanceNoticeLiveListFragment newInstance() {
+        return new AdvanceNoticeLiveListFragment();
     }
 
     @Override
@@ -40,20 +42,13 @@ public class PlayBackLiveListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_play_back_live_list, container, false);
-        liveListGridView = root.findViewById(R.id.playback_grid);
-        fetchPlayBackData();
+        root = inflater.inflate(R.layout.fragment_advance_notice_live_list, container, false);
+        liveListGridView = root.findViewById(R.id.advance_notice_grid);
+        fetchAdvanceNoticeData();
         return root;
     }
 
-    ///
-    /// @description 获取直播回放列表
-    /// @param
-    /// @return
-    /// @author waitwalker
-    /// @time 2020/9/24 2:24 PM
-    ///
-    private void fetchPlayBackData() {
+    private void fetchAdvanceNoticeData() {
         RequestParams params = new RequestParams();
         params.put("gradeId", "6");
         params.put("subjectId", "2");
@@ -61,17 +56,14 @@ public class PlayBackLiveListFragment extends Fragment {
         NetworkManager.liveListFetch(params, new NormalResponseCallBack() {
             @Override
             public void onSuccess(Object responseObj) {
-
-                LiveListModel liveListModel = (LiveListModel)responseObj;
-                Log.d("1","直播回放列表请求成功");
-                PlayBackLiveListAdapter playBackLiveListAdapter = new PlayBackLiveListAdapter(getContext(), liveListModel.getData().getList());
-                liveListGridView.setAdapter(playBackLiveListAdapter);
+                Log.d("1","获取大师直播预告列表数据成功");
             }
 
             @Override
             public void onFailure(Object responseObj) {
-                Log.d("1","直播回放列表请求失败");
+                Log.d("1","获取大师直播预告列表数据失败");
             }
         });
     }
+
 }

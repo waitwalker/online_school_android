@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.live;
+package com.etiantian.onlineschoolandroid.modules.mycourse.live.play_back;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.google.gson.Gson;
 import com.ruffian.library.widget.RImageView;
 

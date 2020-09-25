@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/page_background_color"
-    tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.PlayBackLiveListFragment">
+    tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.play_back.PlayBackLiveListFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
