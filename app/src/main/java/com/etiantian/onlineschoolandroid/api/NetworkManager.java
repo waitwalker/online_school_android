@@ -279,7 +279,7 @@ public class NetworkManager {
     /// @param 
     /// @return 
     /// @author waitwalker
-    /// @time 2020/9/25 9:57 AM
+    /// @time 2020/9/25 9:58 AM
     ///
     public static void videoURLFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url = HttpConstants.Video_URL;

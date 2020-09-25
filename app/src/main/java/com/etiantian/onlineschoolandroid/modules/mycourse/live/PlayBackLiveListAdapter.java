@@ -9,10 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.etiantian.lib_network.request.RequestParams;
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
+import com.google.gson.Gson;
 import com.ruffian.library.widget.RImageView;
 
 import java.util.List;
@@ -75,7 +79,7 @@ public class PlayBackLiveListAdapter extends BaseAdapter {
             public void onClick(View view) {
 
                 /// 使用cc网页回放 正常应该 < 1
-                if (bean.getHdResourceId() > 1) {
+                if (bean.getHdResourceId() < 1) {
                     String token = "token=" + NetworkManager.getToken();
                     String rcourseid = "rcourseid=" + bean.getLiveCourseId();
                     String ocourseId = "ocourseId=" + bean.getCourseId();
@@ -87,7 +91,9 @@ public class PlayBackLiveListAdapter extends BaseAdapter {
                     context.startActivity(intent);
                 } else {
                     // 使用原生播放器
-
+                    RequestParams params = new RequestParams();
+                    params.put("onlineCourseId", String.valueOf(bean.getCourseId()));
+                    fetchVideoURL(params);
                 }
 
 
@@ -106,7 +112,22 @@ public class PlayBackLiveListAdapter extends BaseAdapter {
         ViewGroup playback_relative;
     }
 
-    private void fetchVideoURL(String courseId) {
+    private void fetchVideoURL(RequestParams params) {
+        NetworkManager.videoURLFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                VideoURLModel videoURLModel = (VideoURLModel) responseObj;
+                Log.d("1","获取视频URL成功");
+                Intent intent = new Intent(context, VideoPlayActivity.class);
+                String json = new Gson().toJson(videoURLModel);
+                intent.putExtra("videoURLModel", json);
+                context.startActivity(intent);
+            }
 
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取视频URL失败");
+            }
+        });
     }
 }
