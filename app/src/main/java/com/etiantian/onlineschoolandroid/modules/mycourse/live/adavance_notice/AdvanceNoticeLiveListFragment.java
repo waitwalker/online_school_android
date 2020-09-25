@@ -14,6 +14,8 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.play_back.PlayBackLiveListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +59,9 @@ public class AdvanceNoticeLiveListFragment extends Fragment {
             @Override
             public void onSuccess(Object responseObj) {
                 Log.d("1","获取大师直播预告列表数据成功");
+                LiveListModel liveListModel = (LiveListModel) responseObj;
+                AdvanceNoticeLiveListAdapter advanceNoticeLiveListAdapter = new AdvanceNoticeLiveListAdapter(getContext(), liveListModel.getData().getList());
+                liveListGridView.setAdapter(advanceNoticeLiveListAdapter);
             }
 
             @Override
