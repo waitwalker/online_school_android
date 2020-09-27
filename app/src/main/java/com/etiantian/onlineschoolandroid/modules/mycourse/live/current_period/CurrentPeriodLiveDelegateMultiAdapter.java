@@ -109,6 +109,40 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                 break;
             case 1:
                 Log.d("1","没有网校回放type:" + viewHolder.getItemViewType());
+                TextView title_textview_1 = viewHolder.findView(R.id.title_textview);
+                title_textview_1.setText(bean.getCourseName());
+                TextView timeTextView_1 = viewHolder.findView(R.id.time_textview);
+                timeTextView_1.setText(bean.getStartTime());
+                RImageView imageView_1 = viewHolder.findView(R.id.avatar_imageview);
+                Glide.with(context).load(bean.getTeacherPic()).into(imageView_1);
+
+                ViewGroup playback_relative_1 = viewHolder.findView(R.id.playback_relative);
+                playback_relative_1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fetchVideoURL(bean, false);
+                    }
+                });
+
+                ViewGroup homework_relative_1 = viewHolder.findView(R.id.homework_relative);
+                homework_relative_1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (bean.getWorkStatus() == 1) {
+                            String token = "token=" + NetworkManager.getToken();
+                            String courseId = "livecourseid=" + bean.getCourseId();
+                            String fullUrl = NetworkManager.HttpConstants.Homework_HTML + token + "&"+ "&" + courseId;
+                            Intent intent = new Intent(context, CommonWebViewActivity.class);
+                            intent.putExtra("url", fullUrl);
+                            intent.putExtra("title",bean.getCourseName());
+                            context.startActivity(intent);
+                        } else if (bean.getWorkStatus() == 2){
+                            Toast.makeText(context, "作业未开始",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "没有作业",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
                 break;
             case 2:
                 Log.d("1","直播type:" + viewHolder.getItemViewType());
