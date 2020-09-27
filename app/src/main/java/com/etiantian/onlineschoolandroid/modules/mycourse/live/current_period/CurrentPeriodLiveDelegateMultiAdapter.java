@@ -2,9 +2,12 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,6 +149,61 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                 break;
             case 2:
                 Log.d("1","直播type:" + viewHolder.getItemViewType());
+                TextView title_textview_2 = viewHolder.findView(R.id.title_textview);
+                title_textview_2.setText(bean.getCourseName());
+                TextView timeTextView_2 = viewHolder.findView(R.id.time_textview);
+                timeTextView_2.setText(bean.getStartTime());
+                RImageView imageView_2 = viewHolder.findView(R.id.avatar_imageview);
+                Glide.with(context).load(bean.getTeacherPic()).into(imageView_2);
+                TextView liveFlag = viewHolder.findView(R.id.live_flag);
+                Button startButton = viewHolder.findView(R.id.unstart_button);
+                ViewGroup container = viewHolder.findView(R.id.current_container_relative);
+                if (bean.getStateId() == 0) {
+                    liveFlag.setVisibility(View.INVISIBLE);
+                    Drawable drawable = context.getDrawable(R.drawable.advance_notice_unstart_shape);
+                    startButton.setBackground(drawable);
+                    startButton.setText("未开始");
+                    startButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                } else {
+                    liveFlag.setVisibility(View.VISIBLE);
+                    Drawable drawable = context.getDrawable(R.drawable.living_start_button_shape);
+                    startButton.setBackground(drawable);
+                    startButton.setText("进入直播");
+                    startButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String token = "token=" + NetworkManager.getToken();
+                            String rcourseid = "rcourseid=" + bean.getLiveCourseId();
+                            String ocourseId = "ocourseId=" + bean.getCourseId();
+                            String roomid = "roomid=" + bean.getPartnerRoomId();
+                            String fullUrl = NetworkManager.HttpConstants.CC_Live_HTML + token + "&"+ rcourseid + "&" + ocourseId + "&" + roomid ;
+                            Intent intent = new Intent(context, CommonWebViewActivity.class);
+                            intent.putExtra("url", fullUrl);
+                            intent.putExtra("title","直播回放");
+                            context.startActivity(intent);
+                        }
+                    });
+                    container.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String token = "token=" + NetworkManager.getToken();
+                            String rcourseid = "rcourseid=" + bean.getLiveCourseId();
+                            String ocourseId = "ocourseId=" + bean.getCourseId();
+                            String roomid = "roomid=" + bean.getPartnerRoomId();
+                            String fullUrl = NetworkManager.HttpConstants.CC_Live_HTML + token + "&"+ rcourseid + "&" + ocourseId + "&" + roomid ;
+                            Intent intent = new Intent(context, CommonWebViewActivity.class);
+                            intent.putExtra("url", fullUrl);
+                            intent.putExtra("title","直播回放");
+                            context.startActivity(intent);
+                        }
+                    });
+                }
+
                 break;
             default:
                 break;

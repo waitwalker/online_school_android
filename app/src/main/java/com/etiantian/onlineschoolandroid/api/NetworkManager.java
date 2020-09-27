@@ -92,6 +92,9 @@ public class NetworkManager {
         /// cc回放地址
         public static String CC_PlayBack_HTML = Base_URL + "cc-web/back.html?";
 
+        /// cc直播地址
+        public static String CC_Live_HTML = Base_URL + "cc-web/mobile2.html?";
+
         /// 大师直播中作业h5地址
         public static String Homework_HTML = "https://item.etiantian.com/nwx-app/" + "homework.html?";
 
