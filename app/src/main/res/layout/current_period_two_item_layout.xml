@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:background="@drawable/live_item_shape"
         android:elevation="10dp"
@@ -93,7 +92,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/homework_icon"
-                    android:background="@mipmap/download_icon"
+                    android:background="@mipmap/homework_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
                 <TextView
@@ -101,7 +100,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@id/homework_icon"
                     android:textColor="#bfbfbf"
-                    android:text="下载"
+                    android:text="作业"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
@@ -135,5 +134,4 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>

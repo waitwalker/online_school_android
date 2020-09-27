@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:background="@drawable/live_item_shape"
         android:elevation="10dp"
@@ -70,19 +69,37 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
 
-        <View
-            android:id="@+id/vertical_line"
-            android:background="@android:color/darker_gray"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/line_"
-            android:layout_width="0.5dp"
-            android:layout_height="20dp"/>
-
         <RelativeLayout
             android:id="@+id/download_relative"
             android:layout_marginTop="10dp"
-            android:layout_toStartOf="@id/vertical_line"
+            android:layout_below="@id/line_"
+            android:layout_centerHorizontal="true"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/download_icon"
+                    android:background="@mipmap/download_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/download_icon"
+                    android:textColor="#bfbfbf"
+                    android:text="下载"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/homework_relative"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@id/download_relative"
             android:layout_below="@id/line_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -93,7 +110,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/homework_icon"
-                    android:background="@mipmap/download_icon"
+                    android:background="@mipmap/homework_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
                 <TextView
@@ -101,15 +118,24 @@
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@id/homework_icon"
                     android:textColor="#bfbfbf"
-                    android:text="下载"
+                    android:text="作业"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
+
+            <View
+                android:layout_alignParentEnd="true"
+                android:id="@+id/vertical_line"
+                android:background="@android:color/darker_gray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_width="0.5dp"
+                android:layout_height="20dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/playback_relative"
             android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/vertical_line"
+            android:layout_toEndOf="@id/download_relative"
             android:layout_below="@id/line_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -132,8 +158,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
+            <View
+                android:layout_alignParentStart="true"
+                android:id="@+id/vertical_line_"
+                android:background="@android:color/darker_gray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_width="0.5dp"
+                android:layout_height="20dp"/>
         </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>
