@@ -59,7 +59,7 @@ public class CurrentPeriodLiveListFragment extends Fragment {
         RequestParams params = new RequestParams();
         params.put("gradeId", "6");
         params.put("subjectId", "2");
-        params.put("typeId", "2");
+        params.put("typeId", "0");
         NetworkManager.liveListFetch(params, new NormalResponseCallBack() {
             @Override
             public void onSuccess(Object responseObj) {

@@ -100,6 +100,8 @@ public class CurrentPeriodLiveListAdapter extends BaseAdapter {
         return view;
     }
 
+    /// 缓存卡片布局
+    /// 没有回放类型卡片:这个回放用cc
     private static class ViewHolder {
         TextView titleTextView;
         TextView timeTextView;
@@ -107,6 +109,25 @@ public class CurrentPeriodLiveListAdapter extends BaseAdapter {
         TextView teacherTextView;
         ViewGroup download_relative;
         ViewGroup playback_relative;
+    }
+
+    /// 有回放类型卡片:有回放必然能够下载,有三个
+    private static class PlayBackTypeViewHolder {
+        TextView titleTextView;
+        TextView timeTextView;
+        RImageView avatarImageView;
+        TextView teacherTextView;
+        ViewGroup download_relative;
+        ViewGroup playback_relative;
+    }
+
+    /// 有直播类型卡片: 直播类型分为未开始&正在播放
+    private static class LiveTypeViewHolder {
+        TextView titleTextView;
+        TextView timeTextView;
+        RImageView avatarImageView;
+        TextView teacherTextView;
+        TextView liveFlag;
     }
 
     private void fetchVideoURL(RequestParams params) {
