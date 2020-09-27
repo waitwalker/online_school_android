@@ -14,7 +14,7 @@
             android:id="@+id/margin_view"
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
-        <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/margin_view"
             android:id="@+id/current_period_grid"
             android:verticalSpacing="10dp"

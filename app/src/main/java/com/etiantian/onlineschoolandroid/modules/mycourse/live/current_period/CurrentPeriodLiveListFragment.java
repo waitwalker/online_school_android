@@ -2,7 +2,11 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,8 +17,10 @@ import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
-import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +30,8 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 public class CurrentPeriodLiveListFragment extends Fragment {
 
     private View root;
-    private LiveListGridView liveListGridView;
+    private RecyclerView recyclerView;
+    CurrentPeriodLiveDelegateMultiAdapter currentPeriodLiveDelegateMultiAdapter = new CurrentPeriodLiveDelegateMultiAdapter(getContext());
 
     public CurrentPeriodLiveListFragment() {
         // Required empty public constructor
@@ -43,9 +50,17 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_current_period_live_list, container, false);
-        liveListGridView = root.findViewById(R.id.current_period_grid);
-        fetchPlayBackData();
+        recyclerView = root.findViewById(R.id.current_period_grid);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(currentPeriodLiveDelegateMultiAdapter);
+
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        fetchPlayBackData();
+        super.onViewCreated(view, savedInstanceState);
     }
 
     ///
@@ -66,8 +81,7 @@ public class CurrentPeriodLiveListFragment extends Fragment {
 
                 LiveListModel liveListModel = (LiveListModel)responseObj;
                 Log.d("1","直播回放列表请求成功");
-                CurrentPeriodLiveListAdapter currentPeriodLiveListAdapter = new CurrentPeriodLiveListAdapter(getContext(), liveListModel.getData().getList());
-                liveListGridView.setAdapter(currentPeriodLiveListAdapter);
+                currentPeriodLiveDelegateMultiAdapter.setList(liveListModel.getData().getList());
             }
 
             @Override
