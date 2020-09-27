@@ -1,17 +1,26 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseDelegateMultiAdapter;
 import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.etiantian.lib_network.request.RequestParams;
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
+import com.google.gson.Gson;
 import com.ruffian.library.widget.RImageView;
 
 import org.jetbrains.annotations.NotNull;
@@ -51,16 +60,10 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
     }
 
     @Override
-    protected void convert(@NotNull BaseViewHolder viewHolder, @NotNull LiveListModel.DataBean.ListBean bean) {
+    protected void convert(@NotNull BaseViewHolder viewHolder, @NotNull final LiveListModel.DataBean.ListBean bean) {
         switch (viewHolder.getItemViewType()) {
             case 0:
                 Log.d("1","有网校回放type:" + viewHolder.getItemViewType());
-//                viewHolder.titleTextView = view.findViewById(R.id.title_textview);
-//                viewHolder.timeTextView = view.findViewById(R.id.time_textview);
-//                viewHolder.avatarImageView = view.findViewById(R.id.avatar_imageview);
-//                viewHolder.teacherTextView = view.findViewById(R.id.teacher_textview);
-//                viewHolder.download_relative = view.findViewById(R.id.download_relative);
-//                viewHolder.playback_relative = view.findViewById(R.id.playback_relative);
                 TextView title_textview = viewHolder.findView(R.id.title_textview);
                 title_textview.setText(bean.getCourseName());
                 TextView timeTextView = viewHolder.findView(R.id.time_textview);
@@ -71,7 +74,7 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                 download_relative.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        fetchVideoURL(bean, true);
                     }
                 });
 
@@ -79,7 +82,7 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                 playback_relative.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        fetchVideoURL(bean, false);
                     }
                 });
 
@@ -87,7 +90,19 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                 homework_relative.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        if (bean.getWorkStatus() == 1) {
+                            String token = "token=" + NetworkManager.getToken();
+                            String courseId = "livecourseid=" + bean.getCourseId();
+                            String fullUrl = NetworkManager.HttpConstants.Homework_HTML + token + "&"+ "&" + courseId;
+                            Intent intent = new Intent(context, CommonWebViewActivity.class);
+                            intent.putExtra("url", fullUrl);
+                            intent.putExtra("title",bean.getCourseName());
+                            context.startActivity(intent);
+                        } else if (bean.getWorkStatus() == 2){
+                            Toast.makeText(context, "作业未开始",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "没有作业",Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
@@ -101,5 +116,45 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
             default:
                 break;
         }
+    }
+
+    private void fetchVideoURL(LiveListModel.DataBean.ListBean bean, final boolean download) {
+        /// 使用cc网页回放 正常应该 < 1
+        if (bean.getHdResourceId() < 1) {
+            String token = "token=" + NetworkManager.getToken();
+            String rcourseid = "rcourseid=" + bean.getLiveCourseId();
+            String ocourseId = "ocourseId=" + bean.getCourseId();
+            String roomid = "roomid=" + bean.getPartnerRoomId();
+            String fullUrl = NetworkManager.HttpConstants.CC_PlayBack_HTML + token + "&"+ rcourseid + "&" + ocourseId + "&" + roomid ;
+            Intent intent = new Intent(context, CommonWebViewActivity.class);
+            intent.putExtra("url", fullUrl);
+            intent.putExtra("title","直播回放");
+            context.startActivity(intent);
+        } else {
+            // 使用原生播放器
+            RequestParams params = new RequestParams();
+            params.put("onlineCourseId", String.valueOf(bean.getCourseId()));
+            NetworkManager.videoURLFetch(params, new NormalResponseCallBack() {
+                @Override
+                public void onSuccess(Object responseObj) {
+                    VideoURLModel videoURLModel = (VideoURLModel) responseObj;
+                    Log.d("1","获取视频URL成功");
+                    if (download) {
+                        Toast.makeText(context, "已下载",Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent intent = new Intent(context, VideoPlayActivity.class);
+                        String json = new Gson().toJson(videoURLModel);
+                        intent.putExtra("videoURLModel", json);
+                        context.startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Object responseObj) {
+                    Log.d("1","获取视频URL失败");
+                }
+            });
+        }
+
     }
 }
