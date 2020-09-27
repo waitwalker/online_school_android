@@ -2,7 +2,6 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseDelegateMultiAdapter;
 import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate;
@@ -25,9 +23,7 @@ import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.google.gson.Gson;
 import com.ruffian.library.widget.RImageView;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -100,6 +96,7 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                             Intent intent = new Intent(context, CommonWebViewActivity.class);
                             intent.putExtra("url", fullUrl);
                             intent.putExtra("title",bean.getCourseName());
+                            intent.putExtra("showAnswerCard",true);
                             context.startActivity(intent);
                         } else if (bean.getWorkStatus() == 2){
                             Toast.makeText(context, "作业未开始",Toast.LENGTH_LONG).show();
@@ -138,6 +135,7 @@ public class CurrentPeriodLiveDelegateMultiAdapter extends BaseDelegateMultiAdap
                             Intent intent = new Intent(context, CommonWebViewActivity.class);
                             intent.putExtra("url", fullUrl);
                             intent.putExtra("title",bean.getCourseName());
+                            intent.putExtra("showAnswerCard",true);
                             context.startActivity(intent);
                         } else if (bean.getWorkStatus() == 2){
                             Toast.makeText(context, "作业未开始",Toast.LENGTH_LONG).show();

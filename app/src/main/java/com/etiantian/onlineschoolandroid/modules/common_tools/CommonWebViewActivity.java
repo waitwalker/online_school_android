@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
@@ -32,6 +33,9 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     private Button backButton;
     private TextView titleTextView;
     private KProgressHUD hud;
+    private ViewGroup homework_container;
+    private ImageView answer_card;
+    private ImageView edit_icon;
 
     @SuppressLint("JavascriptInterface")
     @Override
@@ -51,6 +55,11 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         backButton = findViewById(R.id.back_button_id);
         backButton.setOnClickListener(this);
         titleTextView = findViewById(R.id.common_actionbar_textview);
+        homework_container = findViewById(R.id.homework_container);
+        answer_card = findViewById(R.id.answer_card);
+
+        edit_icon = findViewById(R.id.edit_icon);
+
     }
 
     @SuppressLint("JavascriptInterface")
@@ -59,6 +68,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         if (intent != null) {
             String url = intent.getStringExtra("url");
             String title = intent.getStringExtra("title");
+            boolean showAnswerCard = intent.getBooleanExtra("showAnswerCard", false);
             titleTextView.setText(title);
             webView.loadUrl(url);
             WebSettings webSettings = webView.getSettings();
@@ -77,8 +87,11 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
             webView.setWebViewClient(webViewClient);
 
             webView.addJavascriptInterface(new JavaScriptChannel(), "native");
-
-
+            if (showAnswerCard) {
+                homework_container.setVisibility(View.VISIBLE);
+            } else {
+                homework_container.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
@@ -107,6 +120,21 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         public void onPageFinished(WebView view, String url) {
             hud.dismiss();
             Log.d("1","webview停止加载url:" + url);
+            answer_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 无参数调用 显示答题卡
+                    webView.loadUrl("javascript:showAnswerCard()");
+                }
+            });
+
+            edit_icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 无参数调用 编辑
+                    webView.loadUrl("javascript:showDraftCard()");
+                }
+            });
             super.onPageFinished(view, url);
         }
 
