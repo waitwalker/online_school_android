@@ -50,7 +50,7 @@ dependencies {
     implementation rootProject.dependenciesLibrary.roundedimageview
     implementation rootProject.dependenciesLibrary.magicindicator
     implementation rootProject.dependenciesLibrary.recyclerviewhelper
-
+    implementation rootProject.dependenciesLibrary.loading
 
 
     // 网络库

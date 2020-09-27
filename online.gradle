@@ -46,5 +46,6 @@ ext{
             roundedimageview:'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6',
             magicindicator:'com.github.hackware1993:MagicIndicator:1.5.0',
             recyclerviewhelper:'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4',
+            loading:'com.wang.avi:library:2.1.3'
     ]
 }

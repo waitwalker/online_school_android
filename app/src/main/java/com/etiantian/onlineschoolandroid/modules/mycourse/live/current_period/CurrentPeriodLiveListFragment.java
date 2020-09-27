@@ -18,6 +18,7 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     private View root;
     private RecyclerView recyclerView;
     CurrentPeriodLiveDelegateMultiAdapter currentPeriodLiveDelegateMultiAdapter;
+    ViewGroup current_page;
+    AVLoadingIndicatorView loadingIndicatorView;
     public CurrentPeriodLiveListFragment() {
         // Required empty public constructor
     }
@@ -50,10 +53,13 @@ public class CurrentPeriodLiveListFragment extends Fragment {
                              Bundle savedInstanceState) {
         currentPeriodLiveDelegateMultiAdapter = new CurrentPeriodLiveDelegateMultiAdapter(getContext());
         root = inflater.inflate(R.layout.fragment_current_period_live_list, container, false);
+        current_page = root.findViewById(R.id.current_period_page);
+        current_page.setVisibility(View.INVISIBLE);
+        loadingIndicatorView = root.findViewById(R.id.loading);
+        loadingIndicatorView.setVisibility(View.VISIBLE);
         recyclerView = root.findViewById(R.id.current_period_grid);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(currentPeriodLiveDelegateMultiAdapter);
-
         return root;
     }
 
@@ -82,6 +88,8 @@ public class CurrentPeriodLiveListFragment extends Fragment {
                 LiveListModel liveListModel = (LiveListModel)responseObj;
                 Log.d("1","直播回放列表请求成功");
                 currentPeriodLiveDelegateMultiAdapter.setList(liveListModel.getData().getList());
+                loadingIndicatorView.setVisibility(View.INVISIBLE);
+                current_page.setVisibility(View.VISIBLE);
             }
 
             @Override
