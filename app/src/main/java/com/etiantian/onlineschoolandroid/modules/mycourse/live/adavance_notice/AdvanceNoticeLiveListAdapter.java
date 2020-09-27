@@ -1,8 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live.adavance_notice;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,16 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.etiantian.lib_network.request.RequestParams;
-import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
-import com.etiantian.onlineschoolandroid.api.NetworkManager;
-import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
-import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
-import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
-import com.etiantian.onlineschoolandroid.modules.mycourse.live.play_back.PlayBackLiveListAdapter;
-import com.google.gson.Gson;
 import com.ruffian.library.widget.RImageView;
 
 import java.util.List;

@@ -1,13 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/page_background_color"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.CurrentPeriodLiveListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <View
+            android:background="@android:color/transparent"
+            android:id="@+id/margin_view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+        <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
+            android:layout_below="@id/margin_view"
+            android:id="@+id/current_period_grid"
+            android:verticalSpacing="10dp"
+            android:numColumns="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>
