@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/current_container_relative"
+        android:background="@drawable/live_item_shape"
+        android:elevation="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <TextView
+            android:id="@+id/title_textview"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#FF262525"
+            android:text="标题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/time_textview"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="6dp"
+            android:layout_below="@id/title_textview"
+            android:textSize="11sp"
+            android:textColor="#FFAEAEAE"
+            android:text="2019-08-16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:id="@+id/avatar_relative"
+            android:layout_below="@id/time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.ruffian.library.widget.RImageView
+                android:layout_centerVertical="true"
+                app:corner_radius="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/avatar_imageview"
+                android:layout_width="44dp"
+                android:layout_height="44dp"/>
+            <TextView
+                android:id="@+id/teacher_textview"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/avatar_imageview"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:text="章老师"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/unstart_button"
+                android:background="@drawable/advance_notice_unstart_shape"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="未开始"
+                android:layout_width="90dp"
+                android:layout_height="26dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/live_flag_shape"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:text="Live"
+            android:layout_marginTop="28dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/live_flag"
+            android:layout_width="40dp"
+            android:layout_height="18dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>
