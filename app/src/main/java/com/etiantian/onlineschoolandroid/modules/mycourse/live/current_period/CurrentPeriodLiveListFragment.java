@@ -31,8 +31,7 @@ public class CurrentPeriodLiveListFragment extends Fragment {
 
     private View root;
     private RecyclerView recyclerView;
-    CurrentPeriodLiveDelegateMultiAdapter currentPeriodLiveDelegateMultiAdapter = new CurrentPeriodLiveDelegateMultiAdapter(getContext());
-
+    CurrentPeriodLiveDelegateMultiAdapter currentPeriodLiveDelegateMultiAdapter;
     public CurrentPeriodLiveListFragment() {
         // Required empty public constructor
     }
@@ -49,6 +48,7 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        currentPeriodLiveDelegateMultiAdapter = new CurrentPeriodLiveDelegateMultiAdapter(getContext());
         root = inflater.inflate(R.layout.fragment_current_period_live_list, container, false);
         recyclerView = root.findViewById(R.id.current_period_grid);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
