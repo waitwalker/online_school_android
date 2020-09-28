@@ -18,7 +18,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
@@ -41,6 +45,11 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
 
     /// 根布局
     private View root;
+
+    private ViewGroup loadingContainer;
+
+    private ScrollView scrollView;
+
     /// 课程表容器
     private ViewGroup course_menu_container;
     private Button course_menu_button;
@@ -95,6 +104,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_my_course, container, false);
+        loadingContainer = root.findViewById(R.id.loading_container);
+        scrollView = root.findViewById(R.id.scroll_view_container);
         course_menu_container = root.findViewById(R.id.course_menu_container);
         course_menu_container.setOnClickListener(this);
         course_menu_button = root.findViewById(R.id.course_button);
@@ -142,12 +153,31 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
         wisdomSpannableString.setSpan(new AbsoluteSizeSpan(20, true),
                 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         wisdom_time_text.setText(wisdomSpannableString);
-        
+
+        return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         fetchSubjectData();
         fetchRecommendData();
         fetchActivityCourseData();
 
-        return root;
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        fetchSubjectData();
+        fetchRecommendData();
+        fetchActivityCourseData();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+
+        super.onPause();
     }
 
     @Override
@@ -234,6 +264,8 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
                         startActivity(intent);
                     }
                 });
+                loadingContainer.setVisibility(View.INVISIBLE);
+                scrollView.setVisibility(View.VISIBLE);
                 Log.d("1","获取数据成功");
             }
 

@@ -2,11 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/page_background_color"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment">
-
     <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/loading_container"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="BallPulseIndicator"
+            app:indicatorColor="@color/colorAccent"/>
+    </RelativeLayout>
+
     <ScrollView
+        android:id="@+id/scroll_view_container"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -30,8 +48,6 @@
                     android:text="我的课程"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
 
                 <RelativeLayout
                     android:layout_centerVertical="true"
@@ -101,7 +117,6 @@
                 android:numColumns="2"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"/>
-
 <!--            联通活动课-->
             <RelativeLayout
                 android:id="@+id/union_activity_relative"
