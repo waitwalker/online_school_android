@@ -20,6 +20,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class MyCourseGridViewAdapter extends BaseAdapter implements CompoundButt
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        MyCourseSubjectModel.DataBean itemData = dataSource.get(i);
+        final MyCourseSubjectModel.DataBean itemData = dataSource.get(i);
         if (itemData.getGrades().size() == 0) {
             viewHolder.item_grade_num_1.setVisibility(View.INVISIBLE);
             viewHolder.item_grade_num_2.setVisibility(View.INVISIBLE);
@@ -152,6 +153,66 @@ public class MyCourseGridViewAdapter extends BaseAdapter implements CompoundButt
             viewHolder.item_grade_num_6.setVisibility(View.VISIBLE);
             viewHolder.item_grade_num_6.setText(itemData.getGrades().get(5).getGradeName());
         }
+
+        viewHolder.item_grade_num_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
+
+        viewHolder.item_grade_num_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
+
+        viewHolder.item_grade_num_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
+
+        viewHolder.item_grade_num_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
+
+        viewHolder.item_grade_num_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
+
+        viewHolder.item_grade_num_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SubjectDetailActivity.class);
+                intent.putExtra("model", new Gson().toJson(itemData));
+                intent.putExtra("isZhiLing", false);
+                context.startActivity(intent);
+            }
+        });
 
         viewHolder.textView.setText(itemData.getSubjectName());
         if (itemData.getGrades().size() > 0) {
