@@ -15,6 +15,7 @@ import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.MaterialPackageModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MaterialVersionListModel;
@@ -100,6 +101,10 @@ public class NetworkManager {
 
         /// 获取视频URL
         public static String Video_URL = Base_URL + "api-study-service/api/lives/download";
+
+        /// 资料包
+        public static String Material_Package_URL = Base_URL + "api-study-service/api/course/coursewares/list";
+
     }
 
     ///
@@ -290,6 +295,17 @@ public class NetworkManager {
     public static void videoURLFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url = HttpConstants.Video_URL;
         getRequest(url, params, getBearerHeaders(), callBack, VideoURLModel.class);
+    }
+
+    ///
+    /// @description 获取资料包
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/28 2:56 PM
+    ///
+    public static void materialPackageFetch(RequestParams params, NormalResponseCallBack callBack) {
+        getRequest(HttpConstants.Material_Package_URL,params, getBearerHeaders(), callBack, MaterialPackageModel.class);
     }
 
 

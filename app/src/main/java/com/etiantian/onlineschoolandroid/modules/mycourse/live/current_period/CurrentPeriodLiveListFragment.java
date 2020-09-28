@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -122,7 +124,18 @@ public class CurrentPeriodLiveListFragment extends Fragment {
                 materialButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i < liveListModel.getData().getList().size(); i++) {
+                            String string = "";
+                            if (i != 0)
+                                string = ",";
+                            stringBuilder.append(string).append(liveListModel.getData().getList().get(i).getLiveCourseId());
+                        }
+                        String courseIds = stringBuilder.toString();
 
+                        Intent intent = new Intent(getContext(), MaterialPackageActivity.class);
+                        intent.putExtra("courseIds", courseIds);
+                        Objects.requireNonNull(getContext()).startActivity(intent);
                     }
                 });
             }
