@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.modules.common_tools.SaveImgTools;
 
 public class ImageDialogAlert extends Dialog {
     private ImageDialogAlert(Context context, int themeResId) {
@@ -73,6 +74,7 @@ public class ImageDialogAlert extends Dialog {
                 @Override
                 public void onClick(View view) {
                     mDialog.dismiss();
+                    SaveImgTools.SaveImageToSysAlbum(mContext, content_image);
                     mCallBack.imageClickAction();
                 }
             });

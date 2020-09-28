@@ -57,7 +57,6 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
 
         }
@@ -110,7 +109,6 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         viewPager.addOnPageChangeListener(this);
     }
-
 
     private void testAPI() {
         NetworkManager.activityCourseAlertFetch(new NormalResponseCallBack() {

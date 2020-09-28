@@ -12,11 +12,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.etiantian.lib_network.request.RequestParams;
 import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
+import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageAlertCallBack;
+import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageDialogAlert;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -37,6 +41,12 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     AVLoadingIndicatorView loadingIndicatorView;
     String gradeId;
     String subjectId;
+
+    /// 班级二维码
+    Button classQRCodeButton;
+    /// 资料包
+    Button materialButton;
+
     public CurrentPeriodLiveListFragment(String subjectId, String gradeId) {
         this.subjectId = subjectId;
         this.gradeId = gradeId;
@@ -63,6 +73,8 @@ public class CurrentPeriodLiveListFragment extends Fragment {
         recyclerView = root.findViewById(R.id.current_period_grid);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(currentPeriodLiveDelegateMultiAdapter);
+        classQRCodeButton = root.findViewById(R.id.class_qrcode_button);
+        materialButton = root.findViewById(R.id.material_button);
         return root;
     }
 
@@ -88,11 +100,31 @@ public class CurrentPeriodLiveListFragment extends Fragment {
             @Override
             public void onSuccess(Object responseObj) {
 
-                LiveListModel liveListModel = (LiveListModel)responseObj;
+                final LiveListModel liveListModel = (LiveListModel)responseObj;
                 Log.d("1","直播回放列表请求成功");
                 currentPeriodLiveDelegateMultiAdapter.setList(liveListModel.getData().getList());
                 loadingIndicatorView.setVisibility(View.INVISIBLE);
                 current_page.setVisibility(View.VISIBLE);
+                classQRCodeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final ImageDialogAlert dialogAlert = new ImageDialogAlert.Builder(getContext(), new ImageAlertCallBack() {
+                            @Override
+                            public void imageClickAction() {
+                                Log.d("1","点击了图片弹出框");
+                                Toast.makeText(getContext(), "二维码已保存到相册!", Toast.LENGTH_LONG).show();
+                            }
+                        }).setImage(liveListModel.getData().getClassCode()).create();
+                        dialogAlert.show();
+                    }
+                });
+
+                materialButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
 
             @Override
