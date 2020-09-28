@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -57,9 +58,18 @@ public class LiveListActivity extends BaseActivity implements CompoundButton.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_list);
-        initView();
-        initData();
-        initIndicator();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            String gradeId = intent.getStringExtra("gradeId");
+            String subjectId = intent.getStringExtra("subjectId");
+            if (gradeId != null && subjectId != null) {
+                initView();
+                initData(subjectId, gradeId);
+                initIndicator();
+            }
+        }
+
     }
 
     private void initView() {
@@ -75,10 +85,10 @@ public class LiveListActivity extends BaseActivity implements CompoundButton.OnC
         viewPager.setAdapter(pagerAdapter);
     }
 
-    private void initData() {
-        currentPeriodLiveListFragment = CurrentPeriodLiveListFragment.newInstance();
-        advanceNoticeLiveListFragment = AdvanceNoticeLiveListFragment.newInstance();
-        playBackLiveListFragment = PlayBackLiveListFragment.newInstance();
+    private void initData(String subjectId, String gradeId) {
+        currentPeriodLiveListFragment = CurrentPeriodLiveListFragment.newInstance(subjectId, gradeId);
+        advanceNoticeLiveListFragment = AdvanceNoticeLiveListFragment.newInstance(subjectId, gradeId);
+        playBackLiveListFragment = PlayBackLiveListFragment.newInstance(subjectId, gradeId);
 
         fragmentList = new LinkedList<Fragment>();
         fragmentList.add(currentPeriodLiveListFragment);

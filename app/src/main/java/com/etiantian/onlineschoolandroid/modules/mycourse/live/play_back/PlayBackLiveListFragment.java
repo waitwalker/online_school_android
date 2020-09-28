@@ -25,13 +25,15 @@ public class PlayBackLiveListFragment extends Fragment {
 
     private View root;
     private LiveListGridView liveListGridView;
-
-    public PlayBackLiveListFragment() {
-        // Required empty public constructor
+    String gradeId;
+    String subjectId;
+    public PlayBackLiveListFragment(String subjectId, String gradeId) {
+        this.subjectId = subjectId;
+        this.gradeId = gradeId;
     }
 
-    public static PlayBackLiveListFragment newInstance() {
-        return new PlayBackLiveListFragment();
+    public static PlayBackLiveListFragment newInstance(String subjectId, String gradeId) {
+        return new PlayBackLiveListFragment(subjectId, gradeId);
     }
 
     @Override
@@ -57,8 +59,8 @@ public class PlayBackLiveListFragment extends Fragment {
     ///
     private void fetchPlayBackData() {
         RequestParams params = new RequestParams();
-        params.put("gradeId", "6");
-        params.put("subjectId", "2");
+        params.put("gradeId", gradeId);
+        params.put("subjectId", subjectId);
         params.put("typeId", "2");
         NetworkManager.liveListFetch(params, new NormalResponseCallBack() {
             @Override

@@ -32,7 +32,10 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     private ViewGroup wisdom_relative;
     private ViewGroup ai_relative;
     private ViewGroup live_relative;
+    // 年级id
     private String currentGradeId = "";
+    // 学科id
+    private String currentSubjectId = "";
 
 
 
@@ -49,6 +52,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             MyCourseSubjectModel.DataBean dataBean = new Gson().fromJson(json,MyCourseSubjectModel.DataBean.class);
             this.model = dataBean;
             currentGradeId = String.valueOf(model.getGrades().get(0).getGradeId());
+            currentSubjectId = String.valueOf(this.model.getSubjectId());
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             initView();
         }
@@ -100,7 +104,10 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 navigateTo(AITestListActivity.class);
                 break;
             case R.id.subject_bottom:
-                navigateTo(LiveListActivity.class);
+                Intent intent = new Intent(this, LiveListActivity.class);
+                intent.putExtra("gradeId", currentGradeId);
+                intent.putExtra("subjectId", currentSubjectId);
+                startActivity(intent);
                 break;
         }
     }

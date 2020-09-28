@@ -26,14 +26,16 @@ public class AdvanceNoticeLiveListFragment extends Fragment {
 
     private View root;
     private LiveListGridView liveListGridView;
+    String gradeId;
+    String subjectId;
 
-
-    public AdvanceNoticeLiveListFragment() {
-        // Required empty public constructor
+    public AdvanceNoticeLiveListFragment(String subjectId, String gradeId) {
+        this.subjectId = subjectId;
+        this.gradeId = gradeId;
     }
 
-    public static AdvanceNoticeLiveListFragment newInstance() {
-        return new AdvanceNoticeLiveListFragment();
+    public static AdvanceNoticeLiveListFragment newInstance(String subjectId, String gradeId) {
+        return new AdvanceNoticeLiveListFragment(subjectId, gradeId);
     }
 
     @Override
@@ -52,8 +54,8 @@ public class AdvanceNoticeLiveListFragment extends Fragment {
 
     private void fetchAdvanceNoticeData() {
         RequestParams params = new RequestParams();
-        params.put("gradeId", "6");
-        params.put("subjectId", "2");
+        params.put("gradeId", gradeId);
+        params.put("subjectId", subjectId);
         params.put("typeId", "2");
         NetworkManager.liveListFetch(params, new NormalResponseCallBack() {
             @Override

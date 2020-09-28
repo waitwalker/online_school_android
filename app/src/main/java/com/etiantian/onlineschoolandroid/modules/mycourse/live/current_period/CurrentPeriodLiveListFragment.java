@@ -35,12 +35,15 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     CurrentPeriodLiveDelegateMultiAdapter currentPeriodLiveDelegateMultiAdapter;
     ViewGroup current_page;
     AVLoadingIndicatorView loadingIndicatorView;
-    public CurrentPeriodLiveListFragment() {
-        // Required empty public constructor
+    String gradeId;
+    String subjectId;
+    public CurrentPeriodLiveListFragment(String subjectId, String gradeId) {
+        this.subjectId = subjectId;
+        this.gradeId = gradeId;
     }
 
-    public static CurrentPeriodLiveListFragment newInstance() {
-        return new CurrentPeriodLiveListFragment();
+    public static CurrentPeriodLiveListFragment newInstance(String subjectId, String gradeId) {
+        return new CurrentPeriodLiveListFragment(subjectId, gradeId);
     }
 
     @Override
@@ -78,8 +81,8 @@ public class CurrentPeriodLiveListFragment extends Fragment {
     ///
     private void fetchPlayBackData() {
         RequestParams params = new RequestParams();
-        params.put("gradeId", "6");
-        params.put("subjectId", "2");
+        params.put("gradeId", gradeId);
+        params.put("subjectId", subjectId);
         params.put("typeId", "0");
         NetworkManager.liveListFetch(params, new NormalResponseCallBack() {
             @Override
