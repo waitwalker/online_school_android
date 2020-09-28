@@ -5,10 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/page_background_color"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     tools:context=".modules.mycourse.live.current_period.MaterialPackageActivity">
-
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/actionbar"
+        titlebar:leftType="customView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:leftCustomView="@layout/action_title_bar_layout"
+        titlebar:showBottomLine="false"
+        titlebar:bottomShadowHeight="2dp"/>
 
     <com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListGridView
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/actionbar"
         android:visibility="invisible"
         android:id="@+id/materil_package_grid"
         android:layout_width="match_parent"

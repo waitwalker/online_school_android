@@ -58,7 +58,7 @@ public class LiveListActivity extends BaseActivity implements CompoundButton.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_list);
-
+        initActionBar();
         Intent intent = getIntent();
         if (intent != null) {
             String gradeId = intent.getStringExtra("gradeId");
@@ -72,14 +72,16 @@ public class LiveListActivity extends BaseActivity implements CompoundButton.OnC
 
     }
 
-    private void initView() {
+    private void initActionBar() {
         hideActionBar();
 
         backButton = findViewById(R.id.actionbar_back_button_);
         backButton.setOnClickListener(this);
         back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(this);
+    }
 
+    private void initView() {
         viewPager = findViewById(R.id.live_viewpager);
         pagerAdapter = new LivePageFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
