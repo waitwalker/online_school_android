@@ -22,6 +22,7 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.BaseListViewAdapter;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.NodeBean;
@@ -37,6 +38,7 @@ import java.util.List;
 public class WisdomListActivity extends BaseActivity implements AdapterView.OnItemClickListener, CompoundButton.OnClickListener {
     private MyCourseSubjectModel.DataBean subjectDetailModel;
     private MaterialModel.DataBean materialVersionModel;
+    private String gradeId;
     private WisdomModel wisdomModel;
 
     private static final String TAG = WisdomListActivity.class.getSimpleName();
@@ -69,6 +71,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             MaterialModel.DataBean material = new Gson().fromJson(materialVersionJson,MaterialModel.DataBean.class);
             this.subjectDetailModel = dataBean;
             this.materialVersionModel = material;
+            this.gradeId = intent.getStringExtra("gradeId");
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             fetchWisdomList();
             knowledgeButton.setVisibility(View.VISIBLE);
@@ -112,6 +115,12 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             case R.id.right_button:
                 Log.d("1","点击了知识导学按钮");
                 break;
+            case R.id.change_material_version_container:
+                Intent intent = new Intent(this, ChangeMaterialVersionActivity.class);
+                intent.putExtra("subjectId", String.valueOf(subjectDetailModel.getSubjectId()));
+                intent.putExtra("gradeId", gradeId);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -120,6 +129,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         changeMaterialVersionContainer = findViewById(R.id.change_material_version_container);
         materialVersionTextView = findViewById(R.id.material_title_text);
         materialVersionTextView.setText(materialVersionModel.getDefAbbreviation() + " · " + materialVersionModel.getDefMaterialName());
+        changeMaterialVersionContainer.setOnClickListener(this);
     }
 
     /// 获取智慧学习列表

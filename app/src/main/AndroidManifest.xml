@@ -17,10 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".modules.mycourse.live.current_period.MaterialPackageActivity"></activity>
+        <activity android:name=".modules.mycourse.change_material.ChangeMaterialVersionActivity"></activity>
+        <activity android:name=".modules.mycourse.live.current_period.MaterialPackageActivity" />
         <activity
             android:name=".modules.common_tools.VideoPlayActivity"
-            android:label="@string/title_activity_video_play"></activity>
+            android:label="@string/title_activity_video_play" />
         <activity android:name=".modules.mycourse.activity_course.new_semester.NewSemesterActivity" />
         <activity android:name=".modules.mycourse.activity_course.primary.PrimaryActivity" />
         <activity android:name=".modules.common_tools.CommonWebViewActivity" />

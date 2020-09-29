@@ -18,7 +18,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.MaterialPackageModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MaterialVersionListModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.MaterialVersionListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 

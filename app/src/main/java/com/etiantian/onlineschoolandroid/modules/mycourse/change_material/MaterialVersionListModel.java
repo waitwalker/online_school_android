@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study;
+package com.etiantian.onlineschoolandroid.modules.mycourse.change_material;
 
 import java.util.List;
 

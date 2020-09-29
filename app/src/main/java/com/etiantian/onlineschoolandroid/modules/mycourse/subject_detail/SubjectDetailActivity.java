@@ -125,6 +125,8 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 Intent intent = new Intent(SubjectDetailActivity.this, WisdomListActivity.class);
                 intent.putExtra("subjectDetailModel", new Gson().toJson(model));
                 intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
+                intent.putExtra("gradeId", currentGradeId);
+                intent.putExtra("subjectId", currentSubjectId);
                 startActivity(intent);
             }
 
