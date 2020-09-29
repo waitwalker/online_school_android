@@ -29,6 +29,7 @@
         android:layout_height="50dp">
 
         <TextView
+            android:id="@+id/material_title_text"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:textSize="13sp"

@@ -53,6 +53,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     private TextView back_button;
     private CommonTitleBar commonTitleBar;
     private Button knowledgeButton;
+    private ViewGroup changeMaterialVersionContainer;
+    private TextView materialVersionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             fetchWisdomList();
             knowledgeButton.setVisibility(View.VISIBLE);
+            initChangeMaterialVersion();
         }
     }
 
@@ -110,6 +113,13 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 Log.d("1","点击了知识导学按钮");
                 break;
         }
+    }
+
+    /// 初始化切换教材
+    private void initChangeMaterialVersion() {
+        changeMaterialVersionContainer = findViewById(R.id.change_material_version_container);
+        materialVersionTextView = findViewById(R.id.material_title_text);
+        materialVersionTextView.setText(materialVersionModel.getDefAbbreviation() + " · " + materialVersionModel.getDefMaterialName());
     }
 
     /// 获取智慧学习列表
