@@ -1,4 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test;
+package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree;
 
 import android.view.View;
 import android.view.ViewGroup;

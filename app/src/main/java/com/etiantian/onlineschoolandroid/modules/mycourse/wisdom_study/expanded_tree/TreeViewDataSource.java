@@ -1,13 +1,10 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test;
+package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author hexj
- * @createDate 2020/8/12 9:54
- **/
+
 public class TreeViewDataSource {
 
     private TreeViewDataSource() {

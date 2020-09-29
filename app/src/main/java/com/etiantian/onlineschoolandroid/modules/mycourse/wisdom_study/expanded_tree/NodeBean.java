@@ -1,6 +1,4 @@
-package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test;
-
-import java.util.List;
+package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree;
 
 /**
  * @author hexj

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,16 +21,16 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test.BaseListViewAdapter;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test.NodeBean;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test.TreeViewDataSource;
-import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.test.TreeViewNode;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.BaseListViewAdapter;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.NodeBean;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewDataSource;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewNode;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WisdomListActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class WisdomListActivity extends BaseActivity implements AdapterView.OnItemClickListener, CompoundButton.OnClickListener {
     private MyCourseSubjectModel.DataBean subjectDetailModel;
     private MaterialModel.DataBean materialVersionModel;
     private WisdomModel wisdomModel;
@@ -42,12 +43,15 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     private ListView mListView;
     private ListViewAdapter adapter;
     private TreeViewDataSource dataSource;
-    final String[][] CITY = new String[][]{{"南京","苏州","无锡"},{"济南","青岛","日照"},{"杭州","宁波","温州"}};
+
+    private ViewGroup backButton;
+    private TextView back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wisdom_list);
+        initActionBar();
         Intent intent = getIntent();
         if (intent != null) {
             String subjectDetailJson = intent.getStringExtra("subjectDetailModel");
@@ -58,6 +62,26 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             this.materialVersionModel = material;
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             fetchWisdomList();
+        }
+    }
+
+    private void initActionBar() {
+        hideActionBar();
+
+        backButton = findViewById(R.id.back_container);
+        backButton.setOnClickListener(this);
+        back_button = findViewById(R.id.action_bar_title);
+        back_button.setText("智慧学习");
+        back_button.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back_container:
+            case R.id.action_bar_title:
+                finish();
+                break;
         }
     }
 

@@ -4,9 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
     tools:context="com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity">
 
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/actionbar"
+        titlebar:leftType="customView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:leftCustomView="@layout/action_title_bar_layout"
+        titlebar:showBottomLine="false"
+        titlebar:bottomShadowHeight="2dp"/>
+
     <ListView
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/actionbar"
         android:id="@+id/organization_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
