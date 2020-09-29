@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -51,6 +52,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     private ViewGroup navigationBar;
     private TextView back_button;
     private CommonTitleBar commonTitleBar;
+    private Button knowledgeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             this.materialVersionModel = material;
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             fetchWisdomList();
+            knowledgeButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -85,13 +88,15 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         commonTitleBar.setBackgroundColor(Color.parseColor("#5FACEF"));
         StatusBarUtil.setColor(WisdomListActivity.this, Color.parseColor("#5FACEF"));
 
-
         backButton = findViewById(R.id.back_container);
         backButton.setOnClickListener(this);
         back_button = findViewById(R.id.action_bar_title);
         back_button.setText("智慧学习");
         back_button.setTextColor(Color.WHITE);
         back_button.setOnClickListener(this);
+
+        knowledgeButton = findViewById(R.id.right_button);
+        knowledgeButton.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +105,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             case R.id.back_container:
             case R.id.action_bar_title:
                 finish();
+                break;
+            case R.id.right_button:
+                Log.d("1","点击了知识导学按钮");
                 break;
         }
     }
