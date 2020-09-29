@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">@android:color/holo_green_light</color>
     <color name="colorAccent">#C0C0C0</color>
 
+    <color name="actionBarBackgroundColor">#5FACEF</color>
+
     <color name="register_normal">#5480FA</color>
 
     <color name="register_pressed">#3F66CC</color>

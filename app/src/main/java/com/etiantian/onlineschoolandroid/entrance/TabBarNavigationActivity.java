@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,9 +22,11 @@ import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.PersonalFragment;
 import com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.jaeger.library.StatusBarUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -76,6 +79,7 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
 
     /// 初始化view
     private void initView() {
+        StatusBarUtil.setColor(TabBarNavigationActivity.this, Color.parseColor("#5FACEF"));
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();

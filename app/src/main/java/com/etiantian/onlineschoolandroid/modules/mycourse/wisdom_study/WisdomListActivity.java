@@ -2,6 +2,7 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -26,6 +27,8 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewDataSource;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewNode;
 import com.google.gson.Gson;
+import com.jaeger.library.StatusBarUtil;
+import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     private TreeViewDataSource dataSource;
 
     private ViewGroup backButton;
+    private ViewGroup navigationBar;
     private TextView back_button;
+    private CommonTitleBar commonTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +70,27 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         }
     }
 
+    ///
+    /// @description actionBar
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/29 9:09 AM
+    ///
     private void initActionBar() {
         hideActionBar();
+        navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setBackgroundColor(Color.parseColor("#5FACEF"));
+        commonTitleBar = findViewById(R.id.actionbar);
+        commonTitleBar.setBackgroundColor(Color.parseColor("#5FACEF"));
+        StatusBarUtil.setColor(WisdomListActivity.this, Color.parseColor("#5FACEF"));
+
 
         backButton = findViewById(R.id.back_container);
         backButton.setOnClickListener(this);
         back_button = findViewById(R.id.action_bar_title);
         back_button.setText("智慧学习");
+        back_button.setTextColor(Color.WHITE);
         back_button.setOnClickListener(this);
     }
 

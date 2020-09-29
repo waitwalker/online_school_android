@@ -51,6 +51,8 @@ dependencies {
     implementation rootProject.dependenciesLibrary.magicindicator
     implementation rootProject.dependenciesLibrary.recyclerviewhelper
     implementation rootProject.dependenciesLibrary.loading
+    implementation rootProject.dependenciesLibrary.statusbarutil
+
 
 
     // 网络库
