@@ -30,7 +30,7 @@ dependencies {
     implementation this.rootProject.dependenciesLibrary.appcompat
     implementation this.rootProject.dependenciesLibrary.constraintlayout
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
     testImplementation this.rootProject.dependenciesLibrary.junit
@@ -52,11 +52,11 @@ dependencies {
     implementation rootProject.dependenciesLibrary.recyclerviewhelper
     implementation rootProject.dependenciesLibrary.loading
     implementation rootProject.dependenciesLibrary.statusbarutil
+    implementation rootProject.dependenciesLibrary.videoplayer
 
 
 
     // 网络库
     implementation project(':lib_network')
-    compileOnly 'com.google.android.wearable:wearable:2.8.0'
 
 }
