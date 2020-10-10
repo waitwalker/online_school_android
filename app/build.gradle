@@ -53,7 +53,8 @@ dependencies {
     implementation rootProject.dependenciesLibrary.loading
     implementation rootProject.dependenciesLibrary.statusbarutil
     implementation rootProject.dependenciesLibrary.videoplayer
-
+    annotationProcessor rootProject.dependenciesLibrary.apt_butterKnife
+    implementation rootProject.dependenciesLibrary.butterKnife
 
 
     // 网络库
