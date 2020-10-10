@@ -17,6 +17,8 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.google.gson.Gson;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.shuyu.gsyvideoplayer.player.IjkPlayerManager;
+import com.shuyu.gsyvideoplayer.player.PlayerFactory;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import tv.danmaku.ijk.media.exo2.Exo2PlayerManager;
 
 public class VideoPlayActivity extends BaseActivity {
 
@@ -42,7 +45,6 @@ public class VideoPlayActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
-
         hideActionBar();
 
         Intent intent = getIntent();
@@ -51,15 +53,18 @@ public class VideoPlayActivity extends BaseActivity {
             if (json != null) {
                 VideoURLModel videoURLModel = new Gson().fromJson(json, VideoURLModel.class);
                 Log.d("1","视频回放页model转换成功");
+
+                ButterKnife.bind(this);
+                isTransition = getIntent().getBooleanExtra(TRANSITION, false);
+                init(videoURLModel);
+
             }
         }
 
-        ButterKnife.bind(this);
-        isTransition = getIntent().getBooleanExtra(TRANSITION, false);
-        init();
+
     }
 
-    private void init() {
+    private void init(VideoURLModel videoURLModel) {
         String url = "https://res.exexm.com/cw_145225549855002";
 
         //String url = "http://7xse1z.com1.z0.glb.clouddn.com/1491813192";
@@ -67,11 +72,22 @@ public class VideoPlayActivity extends BaseActivity {
         //videoPlayer.setUp(url, true, new File(FileUtils.getPath()), "");
 
         //借用了jjdxm_ijkplayer的URL
-        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        String name = "普通";
+//        SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
+//
+//        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
+//        String name2 = "清晰";
+//        SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
+
+
+
+
+        String source1 = videoURLModel.getData().getPlayVideoUrl();
         String name = "普通";
         SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
 
-        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
+        String source2 = videoURLModel.getData().getVideoUrl();
         String name2 = "清晰";
         SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
 
@@ -79,7 +95,7 @@ public class VideoPlayActivity extends BaseActivity {
         list.add(switchVideoModel);
         list.add(switchVideoModel2);
 
-        videoPlayer.setUp(list, true, "测试视频");
+        videoPlayer.setUp(list, true, videoURLModel.getData().getOnlineCourseName());
 
         //增加封面
         ImageView imageView = new ImageView(this);
