@@ -27,6 +27,7 @@ import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.ResourceInfoModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.BaseListViewAdapter;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.NodeBean;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewDataSource;
@@ -399,7 +400,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                                 intent.putExtra("showAnswerCard", true);
                                 startActivity(intent);
                             } else if (resourceIdListBean.getResType() == 4) {
-
+                                RequestParams params = new RequestParams();
+                                params.put("resourceId", String.valueOf(resourceIdListBean.getResId()));
+                                fetchResourceInfo(params);
                             }
                         }
                     });
@@ -440,6 +443,33 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 Intent intent = new Intent(WisdomListActivity.this, VideoPlayActivity.class);
                 String json = new Gson().toJson(microCourseModel);
                 intent.putExtra("microCourseModel", json);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取资源信息数据失败");
+            }
+        });
+    }
+
+    ///
+    /// @description 获取资源信息数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/10/12 2:14 PM
+    ///
+    private void fetchResourceInfo(RequestParams params) {
+        NetworkManager.resourceInfoFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                ResourceInfoModel resourceInfoModel = (ResourceInfoModel) responseObj;
+                Log.d("1","获取资源信息数据成功");
+                Intent intent = new Intent(WisdomListActivity.this, CommonWebViewActivity.class);
+                String url = resourceInfoModel.getData().getLiteraturePreviewUrl();
+                intent.putExtra("url", url);
+                intent.putExtra("title", resourceInfoModel.getData().getResourceName());
                 startActivity(intent);
             }
 
