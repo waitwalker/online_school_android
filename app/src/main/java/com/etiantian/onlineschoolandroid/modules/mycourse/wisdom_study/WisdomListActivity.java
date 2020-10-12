@@ -23,6 +23,7 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
@@ -383,7 +384,9 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                             if (resourceIdListBean.getResType() == 1) {
 
                             } else if (resourceIdListBean.getResType() == 2) {
-
+                                RequestParams params = new RequestParams();
+                                params.put("resourceId", String.valueOf(resourceIdListBean.getResId()));
+                                fetchMicroCourse(params);
                             } else if (resourceIdListBean.getResType() == 3) {
                                 Intent intent = new Intent(WisdomListActivity.this, CommonWebViewActivity.class);
                                 String url = NetworkManager.HttpConstants.Test_AB_URL +
@@ -419,6 +422,32 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         public Object getItem(int position) {
             return dataSource.getElements().get(position);
         }
+    }
+
+    ///
+    /// @description 获取微课数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/10/12 2:14 PM
+    ///
+    private void fetchMicroCourse(RequestParams params) {
+        NetworkManager.microCourseFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                MicroCourseModel microCourseModel = (MicroCourseModel) responseObj;
+                Log.d("1","获取微课视频数据成功");
+                Intent intent = new Intent(WisdomListActivity.this, VideoPlayActivity.class);
+                String json = new Gson().toJson(microCourseModel);
+                intent.putExtra("microCourseModel", json);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取微课视频数据失败");
+            }
+        });
     }
 
     class TreeViewHolder extends BaseListViewAdapter.BaseListViewHolder {

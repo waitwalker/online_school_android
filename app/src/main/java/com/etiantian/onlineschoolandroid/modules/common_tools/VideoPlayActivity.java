@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MicroCourseModel;
 import com.google.gson.Gson;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.player.IjkPlayerManager;
@@ -50,6 +51,7 @@ public class VideoPlayActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String json = intent.getStringExtra("videoURLModel");
+            String microCourseJson = intent.getStringExtra("microCourseModel");
             if (json != null) {
                 VideoURLModel videoURLModel = new Gson().fromJson(json, VideoURLModel.class);
                 Log.d("1","视频回放页model转换成功");
@@ -57,7 +59,15 @@ public class VideoPlayActivity extends BaseActivity {
                 ButterKnife.bind(this);
                 isTransition = getIntent().getBooleanExtra(TRANSITION, false);
                 init(videoURLModel);
+            }
 
+            if (microCourseJson != null) {
+                MicroCourseModel microCourseModel = new Gson().fromJson(microCourseJson, MicroCourseModel.class);
+                Log.d("1","视频回放页model转换成功");
+
+                ButterKnife.bind(this);
+                isTransition = getIntent().getBooleanExtra(TRANSITION, false);
+                init(microCourseModel);
             }
         }
 
@@ -96,6 +106,87 @@ public class VideoPlayActivity extends BaseActivity {
         list.add(switchVideoModel2);
 
         videoPlayer.setUp(list, true, videoURLModel.getData().getOnlineCourseName());
+
+        //增加封面
+        ImageView imageView = new ImageView(this);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setImageResource(R.mipmap.logo);
+        videoPlayer.setThumbImageView(imageView);
+
+        //增加title
+        videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
+        //videoPlayer.setShowPauseCover(false);
+
+        //videoPlayer.setSpeed(2f);
+
+        //设置返回键
+        videoPlayer.getBackButton().setVisibility(View.VISIBLE);
+
+        //设置旋转
+        orientationUtils = new OrientationUtils(this, videoPlayer);
+
+        //设置全屏按键功能,这是使用的是选择屏幕，而不是全屏
+        videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orientationUtils.resolveByClick();
+            }
+        });
+
+        //videoPlayer.setBottomProgressBarDrawable(getResources().getDrawable(R.drawable.video_new_progress));
+        //videoPlayer.setDialogVolumeProgressBar(getResources().getDrawable(R.drawable.video_new_volume_progress_bg));
+        //videoPlayer.setDialogProgressBar(getResources().getDrawable(R.drawable.video_new_progress));
+        //videoPlayer.setBottomShowProgressBarDrawable(getResources().getDrawable(R.drawable.video_new_seekbar_progress),
+        //getResources().getDrawable(R.drawable.video_new_seekbar_thumb));
+        //videoPlayer.setDialogProgressColor(getResources().getColor(R.color.colorAccent), -11);
+
+        //是否可以滑动调整
+        videoPlayer.setIsTouchWiget(true);
+
+        //设置返回按键功能
+        videoPlayer.getBackButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        //过渡动画
+        initTransition();
+    }
+
+    private void init(MicroCourseModel microCourseModel) {
+        String url = "https://res.exexm.com/cw_145225549855002";
+
+        //String url = "http://7xse1z.com1.z0.glb.clouddn.com/1491813192";
+        //需要路径的
+        //videoPlayer.setUp(url, true, new File(FileUtils.getPath()), "");
+
+        //借用了jjdxm_ijkplayer的URL
+//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        String name = "普通";
+//        SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
+//
+//        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
+//        String name2 = "清晰";
+//        SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
+
+
+
+
+        String source1 = microCourseModel.getData().getVideoUrl();
+        String name = "普通";
+        SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
+
+        String source2 = microCourseModel.getData().getVideoUrl();
+        String name2 = "清晰";
+        SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
+
+        List<SwitchVideoModel> list = new ArrayList<>();
+        list.add(switchVideoModel);
+        list.add(switchVideoModel2);
+
+        videoPlayer.setUp(list, true, microCourseModel.getData().getResourceName());
 
         //增加封面
         ImageView imageView = new ImageView(this);

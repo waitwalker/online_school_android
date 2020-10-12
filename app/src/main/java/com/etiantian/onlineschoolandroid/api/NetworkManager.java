@@ -20,6 +20,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendMod
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.MaterialVersionListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MicroCourseModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
@@ -111,6 +112,9 @@ public class NetworkManager {
 
         /// 学科详情页
         public static String Subject_Detail_URL = Base_URL + "api-study-service/api/course/v2.1/courses/grade/subject?";
+
+        /// 微课视频数据
+        public static String Micro_Course_URL = Base_URL + "api-resource-service/api/resources/wk/";
 
     }
 
@@ -325,6 +329,18 @@ public class NetworkManager {
     public static void subjectDetailFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Subject_Detail_URL + mapToQuery(params);
         getRequest(url,null, getBearerHeaders(), callBack, SubjectDetailModel.class);
+    }
+
+    ///
+    /// @description 微课视频数据获取
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/17 9:28 AM
+    ///
+    public static void microCourseFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Micro_Course_URL + params.urlParams.get("resourceId");
+        getRequest(url,null, getBearerHeaders(), callBack, MicroCourseModel.class);
     }
 
 
