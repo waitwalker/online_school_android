@@ -308,6 +308,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             if(!node.isLeaf) {
                 treeViewHolder.ivSelected.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivExpand.setVisibility(View.VISIBLE);
+                treeViewHolder.resourceTypeText.setVisibility(View.INVISIBLE);
                 //NodeBean nodeBean =  node.data;
                 Object dataBean = node.data;
                 String title = "";
@@ -333,9 +334,11 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             } else {
                 treeViewHolder.ivExpand.setVisibility(View.INVISIBLE);
                 treeViewHolder.ivSelected.setVisibility(View.VISIBLE);
+                treeViewHolder.resourceTypeText.setVisibility(View.VISIBLE);
                 //NodeBean nodeBean =  node.data;
                 Object dataBean = node.data;
                 String title = "";
+                String resourceType = "";
                 if (dataBean.getClass() == WisdomModel.DataBean.class) {
                     WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
                     title = bean.getNodeName();
@@ -345,15 +348,27 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
                     WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
                     title = resourceIdListBean.getResName();
+
+                    if (resourceIdListBean.getResType() == 1) {
+                        resourceType = "高清";
+                    } else if (resourceIdListBean.getResType() == 2) {
+                        resourceType = "微课";
+                    } else if (resourceIdListBean.getResType() == 3) {
+                        resourceType = "测验";
+                    } else if (resourceIdListBean.getResType() == 4) {
+                        resourceType = "导学";
+                    }
+
+                    //是否选中开关
+                    if (resourceIdListBean.getStudyStatus() == 1) {
+                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_selected)));
+                    } else {
+                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
+                    }
                 }
                 treeViewHolder.textView.setText(title);
+                treeViewHolder.resourceTypeText.setText(resourceType);
 
-                //是否选中开关
-                if (node.isSelected) {
-                    treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_selected)));
-                } else {
-                    treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
-                }
 
             }
             treeViewHolder.itemView.setPadding(node.maginLeft, 0, 0, 0);
@@ -376,12 +391,14 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         public TextView textView;
         public ImageView ivSelected;
         public ImageView ivExpand;
+        public TextView resourceTypeText;
 
         public TreeViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv);
             ivSelected = (ImageView) itemView.findViewById(R.id.iv_selected);
             ivExpand = (ImageView) itemView.findViewById(R.id.iv_expand);
+            resourceTypeText = (TextView) itemView.findViewById(R.id.resource_type);
         }
     }
 }
