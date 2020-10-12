@@ -32,6 +32,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.expanded_tree.TreeViewNode;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 import java.net.URI;
@@ -70,6 +71,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         initActionBar();
         Intent intent = getIntent();
         if (intent != null) {
+            hud.show();
             String subjectDetailJson = intent.getStringExtra("subjectDetailModel");
             String materialVersionJson = intent.getStringExtra("materialVersionModel");
             MyCourseSubjectModel.DataBean dataBean = new Gson().fromJson(subjectDetailJson,MyCourseSubjectModel.DataBean.class);
@@ -154,6 +156,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             @Override
             public void onFailure(Object responseObj) {
                 Log.d("1","获取智慧学习列表失败");
+                hud.dismiss();
             }
         });
     }
@@ -238,6 +241,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
         dataSource = new TreeViewDataSource(list);
 
         initView();
+        hud.dismiss();
     }
 
     /// 添加正常节点
@@ -373,7 +377,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                         treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
                     }
 
-                    treeViewHolder.container.setOnClickListener(new View.OnClickListener() {
+                    treeViewHolder.resourceTypeText.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (resourceIdListBean.getResType() == 1) {

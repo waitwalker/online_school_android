@@ -62,6 +62,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             params.put("gradeId", String.valueOf(currentGradeId));
             params.put("cardType", String.valueOf(isZhiLing ? 3 : 2));
             params.put("subjectId", String.valueOf(currentSubjectId));
+            hud.show();
             fetchSubjectDetail(params);
         }
     }
@@ -72,11 +73,13 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
             public void onSuccess(Object responseObj) {
                 subjectDetailModel = (SubjectDetailModel) responseObj;
                 Log.d("1","请求学科详情数据成功");
+                hud.dismiss();
             }
 
             @Override
             public void onFailure(Object responseObj) {
                 Log.d("1","请求学科详情数据失败");
+                hud.dismiss();
             }
         });
     }

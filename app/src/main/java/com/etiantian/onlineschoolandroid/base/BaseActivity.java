@@ -4,6 +4,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +16,13 @@ import android.widget.Toast;
 public class BaseActivity extends AppCompatActivity {
 
     private Context mContext;
+    public KProgressHUD hud;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         mContext = this;
+        hud = KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
     }
 
     ///
