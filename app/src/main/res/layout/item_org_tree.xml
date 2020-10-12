@@ -4,6 +4,7 @@
     android:layout_height="48dp"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
+    android:id="@+id/wisdom_item_relative"
     android:orientation="horizontal">
 
     <ImageView

@@ -346,7 +346,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                     WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
                     title = nodeListBeanX.getNodeName();
                 } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
-                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
+                    final WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
                     title = resourceIdListBean.getResName();
 
                     if (resourceIdListBean.getResType() == 1) {
@@ -365,6 +365,21 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                     } else {
                         treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
                     }
+
+                    treeViewHolder.container.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (resourceIdListBean.getResType() == 1) {
+
+                            } else if (resourceIdListBean.getResType() == 2) {
+
+                            } else if (resourceIdListBean.getResType() == 3) {
+
+                            } else if (resourceIdListBean.getResType() == 4) {
+
+                            }
+                        }
+                    });
                 }
                 treeViewHolder.textView.setText(title);
                 treeViewHolder.resourceTypeText.setText(resourceType);
@@ -388,6 +403,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
     class TreeViewHolder extends BaseListViewAdapter.BaseListViewHolder {
 
+        public ViewGroup container;
         public TextView textView;
         public ImageView ivSelected;
         public ImageView ivExpand;
@@ -395,6 +411,7 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
 
         public TreeViewHolder(View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.wisdom_item_relative);
             textView = (TextView) itemView.findViewById(R.id.tv);
             ivSelected = (ImageView) itemView.findViewById(R.id.iv_selected);
             ivExpand = (ImageView) itemView.findViewById(R.id.iv_expand);
