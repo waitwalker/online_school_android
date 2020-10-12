@@ -40,6 +40,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     private boolean isZhiLing = false;
 
     SubjectDetailModel subjectDetailModel;
+    boolean isTapped = false;
 
 
     @Override
@@ -153,15 +154,18 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
         NetworkManager.materialVersionFetch(params, new NormalResponseCallBack() {
             @Override
             public void onSuccess(Object responseObj) {
-                MaterialModel materialModel = (MaterialModel) responseObj;
-                Intent intent = new Intent(SubjectDetailActivity.this, WisdomListActivity.class);
-                intent.putExtra("subjectDetailModel", new Gson().toJson(model));
-                intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
-                intent.putExtra("gradeId", currentGradeId);
-                intent.putExtra("subjectId", currentSubjectId);
-                intent.putExtra("courseId", subjectDetailModel.getData().getCourseId());
-                intent.putExtra("isZhiLing", isZhiLing);
-                startActivity(intent);
+                if (!isTapped) {
+                    isTapped = true;
+                    MaterialModel materialModel = (MaterialModel) responseObj;
+                    Intent intent = new Intent(SubjectDetailActivity.this, WisdomListActivity.class);
+                    intent.putExtra("subjectDetailModel", new Gson().toJson(model));
+                    intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
+                    intent.putExtra("gradeId", currentGradeId);
+                    intent.putExtra("subjectId", currentSubjectId);
+                    intent.putExtra("courseId", subjectDetailModel.getData().getCourseId());
+                    intent.putExtra("isZhiLing", isZhiLing);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -169,5 +173,11 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 Log.d("1","获取教材版本失败");
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        isTapped = false;
+        super.onResume();
     }
 }
