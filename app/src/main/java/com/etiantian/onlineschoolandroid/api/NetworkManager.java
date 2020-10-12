@@ -19,6 +19,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.Ma
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.MaterialVersionListModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
@@ -80,6 +81,9 @@ public class NetworkManager {
         /// 联通活动课
         public static String Union_Activity_URL = "https://huodong.etiantian.com/liantong/indexm.html?token=" + getToken();
 
+        /// 测验AB试卷
+        public static String Test_AB_URL = "https://item.etiantian.com/nwx-app/ab.html?token=" + getToken();
+
         /// 小升初活动课--语文
         public static String Primary_Activity_Chinese_URL = "https://huodong.etiantian.com/activity01/mobile10.html?token=" + getToken();
         /// 小升初活动课--数学
@@ -104,6 +108,9 @@ public class NetworkManager {
 
         /// 资料包
         public static String Material_Package_URL = Base_URL + "api-study-service/api/course/coursewares/list";
+
+        /// 学科详情页
+        public static String Subject_Detail_URL = Base_URL + "api-study-service/api/course/v2.1/courses/grade/subject?";
 
     }
 
@@ -306,6 +313,18 @@ public class NetworkManager {
     ///
     public static void materialPackageFetch(RequestParams params, NormalResponseCallBack callBack) {
         getRequest(HttpConstants.Material_Package_URL,params, getBearerHeaders(), callBack, MaterialPackageModel.class);
+    }
+
+    ///
+    /// @description 学科详情获取
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/17 9:28 AM
+    ///
+    public static void subjectDetailFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Subject_Detail_URL + mapToQuery(params);
+        getRequest(url,null, getBearerHeaders(), callBack, SubjectDetailModel.class);
     }
 
 

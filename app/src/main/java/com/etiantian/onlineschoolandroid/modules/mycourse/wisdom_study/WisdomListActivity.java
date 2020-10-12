@@ -3,6 +3,7 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -21,6 +22,7 @@ import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.MaterialModel;
@@ -32,6 +34,7 @@ import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +60,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
     private Button knowledgeButton;
     private ViewGroup changeMaterialVersionContainer;
     private TextView materialVersionTextView;
+    private Long courseId;
+    private boolean isZhiLing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             String materialVersionJson = intent.getStringExtra("materialVersionModel");
             MyCourseSubjectModel.DataBean dataBean = new Gson().fromJson(subjectDetailJson,MyCourseSubjectModel.DataBean.class);
             MaterialModel.DataBean material = new Gson().fromJson(materialVersionJson,MaterialModel.DataBean.class);
+            courseId = intent.getLongExtra("courseId", 0);
+            isZhiLing = intent.getBooleanExtra("isZhiLing", false);
             this.subjectDetailModel = dataBean;
             this.materialVersionModel = material;
             this.gradeId = intent.getStringExtra("gradeId");
@@ -374,7 +381,16 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                             } else if (resourceIdListBean.getResType() == 2) {
 
                             } else if (resourceIdListBean.getResType() == 3) {
-
+                                Intent intent = new Intent(WisdomListActivity.this, CommonWebViewActivity.class);
+                                String url = NetworkManager.HttpConstants.Test_AB_URL +
+                                        "&abpid=" + resourceIdListBean.getResId() +
+                                        "&abpname=" + Uri.encode(resourceIdListBean.getResName()) +
+                                        "&abpqids=" + resourceIdListBean.getSrcABPaperQuesIds() +
+                                        "&courseid=" + courseId;
+                                intent.putExtra("url", url);
+                                intent.putExtra("title", resourceIdListBean.getResName());
+                                intent.putExtra("showAnswerCard", true);
+                                startActivity(intent);
                             } else if (resourceIdListBean.getResType() == 4) {
 
                             }

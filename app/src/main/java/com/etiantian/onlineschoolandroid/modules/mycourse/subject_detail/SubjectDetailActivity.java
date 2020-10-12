@@ -36,7 +36,10 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     private String currentGradeId = "";
     // 学科id
     private String currentSubjectId = "";
+    // 是否智领
+    private boolean isZhiLing = false;
 
+    SubjectDetailModel subjectDetailModel;
 
 
     @Override
@@ -48,14 +51,34 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
         Intent intent = getIntent();
         if (intent != null) {
             String json = intent.getStringExtra("model");
-            boolean isZhiLing = (boolean) intent.getBooleanExtra("isZhiLing",false);
+            isZhiLing = (boolean) intent.getBooleanExtra("isZhiLing",false);
             MyCourseSubjectModel.DataBean dataBean = new Gson().fromJson(json,MyCourseSubjectModel.DataBean.class);
             this.model = dataBean;
             currentGradeId = String.valueOf(model.getGrades().get(0).getGradeId());
             currentSubjectId = String.valueOf(this.model.getSubjectId());
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
             initView();
+            RequestParams params = new RequestParams();
+            params.put("gradeId", String.valueOf(currentGradeId));
+            params.put("cardType", String.valueOf(isZhiLing ? 3 : 2));
+            params.put("subjectId", String.valueOf(currentSubjectId));
+            fetchSubjectDetail(params);
         }
+    }
+
+    private void fetchSubjectDetail(RequestParams params) {
+        NetworkManager.subjectDetailFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                subjectDetailModel = (SubjectDetailModel) responseObj;
+                Log.d("1","请求学科详情数据成功");
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","请求学科详情数据失败");
+            }
+        });
     }
 
     private void initView() {
@@ -89,6 +112,12 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 Log.d("1","点击了");
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
     }
 
     @Override
@@ -127,6 +156,8 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
                 intent.putExtra("gradeId", currentGradeId);
                 intent.putExtra("subjectId", currentSubjectId);
+                intent.putExtra("courseId", subjectDetailModel.getData().getCourseId());
+                intent.putExtra("isZhiLing", isZhiLing);
                 startActivity(intent);
             }
 
