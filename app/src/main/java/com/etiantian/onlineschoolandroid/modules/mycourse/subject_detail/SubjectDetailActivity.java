@@ -131,10 +131,10 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 finish();
                 break;
             case R.id.subject_top:
-                fetchMaterial();
+                fetchMaterial(0);
                 break;
             case R.id.subject_middle:
-                navigateTo(AITestListActivity.class);
+                fetchMaterial(1);
                 break;
             case R.id.subject_bottom:
                 Intent intent = new Intent(this, LiveListActivity.class);
@@ -146,7 +146,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
     }
 
     /// 获取教材版本
-    private void fetchMaterial() {
+    private void fetchMaterial(final int type) {
         RequestParams params = new RequestParams();
         params.put("subjectId", String.valueOf(model.getSubjectId()));
         params.put("gradeId", currentGradeId);
@@ -157,7 +157,7 @@ public class SubjectDetailActivity extends BaseActivity implements CompoundButto
                 if (!isTapped) {
                     isTapped = true;
                     MaterialModel materialModel = (MaterialModel) responseObj;
-                    Intent intent = new Intent(SubjectDetailActivity.this, WisdomListActivity.class);
+                    Intent intent = new Intent(SubjectDetailActivity.this, type == 0 ? WisdomListActivity.class : AITestListActivity.class);
                     intent.putExtra("subjectDetailModel", new Gson().toJson(model));
                     intent.putExtra("materialVersionModel", new Gson().toJson(materialModel.getData()));
                     intent.putExtra("gradeId", currentGradeId);
