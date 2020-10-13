@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".tools.PDFReaderActivity"></activity>
+        <activity android:name=".modules.common_tools.PDFReaderActivity"></activity>
         <activity android:name=".modules.mycourse.change_material.ChangeMaterialVersionActivity" />
         <activity android:name=".modules.mycourse.live.current_period.MaterialPackageActivity" />
         <activity

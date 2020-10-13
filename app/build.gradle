@@ -58,7 +58,7 @@ dependencies {
     annotationProcessor rootProject.dependenciesLibrary.apt_butterKnife
     implementation rootProject.dependenciesLibrary.butterKnife
 
-
+    implementation rootProject.dependenciesLibrary.pdfreader
     // 网络库
     implementation project(':lib_network')
 

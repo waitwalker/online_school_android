@@ -23,6 +23,7 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.PDFReaderActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoPlayActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
