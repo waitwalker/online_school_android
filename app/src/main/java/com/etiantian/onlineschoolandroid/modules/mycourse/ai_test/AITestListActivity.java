@@ -340,10 +340,34 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
                         });
                     }
                 } else if (dataBean.getClass() == AITestModel.DataBean.ChapterListBean.class) {
-                    AITestModel.DataBean.ChapterListBean nodeListBeanX = (AITestModel.DataBean.ChapterListBean)dataBean;
+                    final AITestModel.DataBean.ChapterListBean nodeListBeanX = (AITestModel.DataBean.ChapterListBean)dataBean;
                     title = nodeListBeanX.getChapterName();
 
                     Log.d("1","是否树叶:" + node.isLeaf);
+                    resourceType = String.valueOf(nodeListBeanX.getScore());
+
+                    //是否选中开关
+//                    if (resourceIdListBean.getStudyStatus() == 1) {
+//                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_selected)));
+//                    } else {
+//                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
+//                    }
+
+                    treeViewHolder.resourceTypeText.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(AITestListActivity.this, CommonWebViewActivity.class);
+                            String url = NetworkManager.HttpConstants.AI_Test_Html_URL +
+                                    "&versionid=" + materialVersionModel.getDefMaterialId() +
+                                    "&subjectid=" + materialVersionModel.getSubjectId() +
+                                    "&currentdirid=" + nodeListBeanX.getChapterId() +
+                                    "&courseid=" + courseId;
+                            intent.putExtra("url", url);
+                            intent.putExtra("title", nodeListBeanX.getChapterName());
+                            intent.putExtra("showAnswerCard", false);
+                            startActivity(intent);
+                        }
+                    });
                 }
                 treeViewHolder.textView.setText(title);
                 treeViewHolder.resourceTypeText.setText(resourceType);
