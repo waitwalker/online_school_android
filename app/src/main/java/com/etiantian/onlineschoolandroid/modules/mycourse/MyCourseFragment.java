@@ -161,7 +161,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         fetchSubjectData();
         fetchRecommendData();
-        fetchActivityCourseData();
+        //fetchActivityCourseData();
 
         super.onViewCreated(view, savedInstanceState);
     }
@@ -170,7 +170,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
     public void onResume() {
         fetchSubjectData();
         fetchRecommendData();
-        fetchActivityCourseData();
+        //fetchActivityCourseData();
         super.onResume();
     }
 

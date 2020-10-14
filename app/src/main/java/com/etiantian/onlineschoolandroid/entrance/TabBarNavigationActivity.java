@@ -99,7 +99,6 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
         fragmentList.add(personalFragment);
 
         EventBus.getDefault().register(this);
-        //testAPI();
     }
 
     /// 初始化adapter
@@ -112,23 +111,6 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
     private void initEvent() {
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         viewPager.addOnPageChangeListener(this);
-    }
-
-    private void testAPI() {
-        NetworkManager.activityCourseAlertFetch(new NormalResponseCallBack() {
-            @Override
-            public void onSuccess(Object responseObj) {
-                Log.d("1","响应成功");
-                ActivityCourseAlertModel activityCourseAlertModel = (ActivityCourseAlertModel) responseObj;
-                Log.d("1","活动课接口:" + activityCourseAlertModel.getMsg());
-                showToast(activityCourseAlertModel.getData().getDescription());
-            }
-
-            @Override
-            public void onFailure(Object responseObj) {
-                Log.d("1","响应失败");
-            }
-        });
     }
 
     ///

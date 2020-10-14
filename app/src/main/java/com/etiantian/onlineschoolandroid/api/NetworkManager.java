@@ -90,6 +90,9 @@ public class NetworkManager {
         /// 测验AB试卷
         public static String Test_AB_URL = "https://item.etiantian.com/nwx-app/ab.html?token=" + getToken();
 
+        /// AI测试
+        public static String AI_Test_Html_URL = "https://item.etiantian.com/nwx-app/ai.html?token=" + getToken();
+
         /// 小升初活动课--语文
         public static String Primary_Activity_Chinese_URL = "https://huodong.etiantian.com/activity01/mobile10.html?token=" + getToken();
         /// 小升初活动课--数学

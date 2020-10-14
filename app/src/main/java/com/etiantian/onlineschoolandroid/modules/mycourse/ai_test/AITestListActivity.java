@@ -310,57 +310,40 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
                 if (dataBean.getClass() == AITestModel.DataBean.class) {
                     AITestModel.DataBean bean = (AITestModel.DataBean) dataBean;
                     title = bean.getChapterName();
+                    if (node.isLeaf) {
+                        final AITestModel.DataBean resourceIdListBean = (AITestModel.DataBean)dataBean;
+                        title = resourceIdListBean.getChapterName();
+
+                        resourceType = String.valueOf(resourceIdListBean.getScore());
+
+                        //是否选中开关
+//                    if (resourceIdListBean.getStudyStatus() == 1) {
+//                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_selected)));
+//                    } else {
+//                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
+//                    }
+
+                        treeViewHolder.resourceTypeText.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(AITestListActivity.this, CommonWebViewActivity.class);
+                                String url = NetworkManager.HttpConstants.AI_Test_Html_URL +
+                                        "&versionid=" + materialVersionModel.getDefMaterialId() +
+                                        "&subjectid=" + materialVersionModel.getSubjectId() +
+                                        "&currentdirid=" + resourceIdListBean.getChapterId() +
+                                        "&courseid=" + courseId;
+                                intent.putExtra("url", url);
+                                intent.putExtra("title", resourceIdListBean.getChapterName());
+                                intent.putExtra("showAnswerCard", false);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 } else if (dataBean.getClass() == AITestModel.DataBean.ChapterListBean.class) {
                     AITestModel.DataBean.ChapterListBean nodeListBeanX = (AITestModel.DataBean.ChapterListBean)dataBean;
                     title = nodeListBeanX.getChapterName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
-                    final WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
-                    title = resourceIdListBean.getResName();
 
-                    if (resourceIdListBean.getResType() == 1) {
-                        resourceType = "高清";
-                    } else if (resourceIdListBean.getResType() == 2) {
-                        resourceType = "微课";
-                    } else if (resourceIdListBean.getResType() == 3) {
-                        resourceType = "测验";
-                    } else if (resourceIdListBean.getResType() == 4) {
-                        resourceType = "导学";
-                    }
-
-                    //是否选中开关
-                    if (resourceIdListBean.getStudyStatus() == 1) {
-                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_selected)));
-                    } else {
-                        treeViewHolder.ivSelected.setImageDrawable(getResources().getDrawable((R.drawable.ic_org_tree_item_unselect)));
-                    }
-
-                    treeViewHolder.resourceTypeText.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (resourceIdListBean.getResType() == 1) {
-
-                            } else if (resourceIdListBean.getResType() == 2) {
-                                RequestParams params = new RequestParams();
-                                params.put("resourceId", String.valueOf(resourceIdListBean.getResId()));
-                                fetchMicroCourse(params);
-                            } else if (resourceIdListBean.getResType() == 3) {
-                                Intent intent = new Intent(AITestListActivity.this, CommonWebViewActivity.class);
-                                String url = NetworkManager.HttpConstants.Test_AB_URL +
-                                        "&abpid=" + resourceIdListBean.getResId() +
-                                        "&abpname=" + Uri.encode(resourceIdListBean.getResName()) +
-                                        "&abpqids=" + resourceIdListBean.getSrcABPaperQuesIds() +
-                                        "&courseid=" + courseId;
-                                intent.putExtra("url", url);
-                                intent.putExtra("title", resourceIdListBean.getResName());
-                                intent.putExtra("showAnswerCard", true);
-                                startActivity(intent);
-                            } else if (resourceIdListBean.getResType() == 4) {
-                                RequestParams params = new RequestParams();
-                                params.put("resourceId", String.valueOf(resourceIdListBean.getResId()));
-                                fetchResourceInfo(params);
-                            }
-                        }
-                    });
+                    Log.d("1","是否树叶:" + node.isLeaf);
                 }
                 treeViewHolder.textView.setText(title);
                 treeViewHolder.resourceTypeText.setText(resourceType);
