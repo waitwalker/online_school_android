@@ -38,8 +38,11 @@ import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AITestListActivity extends BaseActivity implements AdapterView.OnItemClickListener, CompoundButton.OnClickListener {
 
@@ -86,7 +89,7 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
             this.materialVersionModel = material;
             this.gradeId = intent.getStringExtra("gradeId");
             Log.d("1","传递过来的数据:"+ dataBean.getSubjectName());
-            fetchWisdomList();
+            fetchAITestList();
             knowledgeButton.setVisibility(View.INVISIBLE);
             initChangeMaterialVersion();
         }
@@ -146,20 +149,20 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     /// 获取智慧学习列表
-    private void fetchWisdomList() {
+    private void fetchAITestList() {
         RequestParams params = new RequestParams();
         params.put("materialId", String.valueOf(materialVersionModel.getDefMaterialId()));
-        NetworkManager.wisdomListFetch(params, new NormalResponseCallBack() {
+        NetworkManager.aiTestListFetch(params, new NormalResponseCallBack() {
             @Override
             public void onSuccess(Object responseObj) {
-                WisdomModel wisdomModel = (WisdomModel) responseObj;
-                initData(wisdomModel);
-                Log.d("1","获取智慧学习列表成功");
+                AITestModel aiTestModel = (AITestModel) responseObj;
+                initData(aiTestModel);
+                Log.d("1","获取AI测试列表成功");
             }
 
             @Override
             public void onFailure(Object responseObj) {
-                Log.d("1","获取智慧学习列表失败");
+                Log.d("1","获取AI测试列表失败");
                 hud.dismiss();
             }
         });
@@ -169,59 +172,14 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
     }
 
-    private void initData(WisdomModel wisdomModel) {
+    private void initData(AITestModel aiTestModel) {
         List dataList = new ArrayList();
-        for (int i = 0; i < wisdomModel.getData().size(); i++) {
-            WisdomModel.DataBean dataBean = wisdomModel.getData().get(i);
-            if (dataBean.getLevel() == 1) {
-                if (dataBean.getResourceIdList() != null && dataBean.getResourceIdList().size() > 0) {
-                    WisdomModel.DataBean.NodeListBean nodeListBean = new WisdomModel.DataBean.NodeListBean();
-                    nodeListBean.setNodeName("本章复习");
-                    nodeListBean.setResourceIdList(dataBean.getResourceIdList());
-                    dataBean.getNodeList().add(nodeListBean);
-                }
-            }
+        for (int i = 0; i < aiTestModel.getData().size(); i++) {
+            AITestModel.DataBean dataBean = aiTestModel.getData().get(i);
             dataList.add(dataBean);
         }
-
-        List levelA = new ArrayList();
-        for (int i =0; i< dataList.size();i++) {
-            WisdomModel.DataBean dataBean = (WisdomModel.DataBean)dataList.get(i);
-            List levelB = new ArrayList();
-            for (int j =0; j< dataBean.getNodeList().size();j++) {
-                WisdomModel.DataBean.NodeListBean nodeListBean = dataBean.getNodeList().get(j);
-                if (nodeListBean.getLevel() == 2) {
-                    if (nodeListBean.getResourceIdList() != null && nodeListBean.getResourceIdList().size() > 0) {
-                        WisdomModel.DataBean.NodeListBean tmpBean = new WisdomModel.DataBean.NodeListBean();
-                        tmpBean.setNodeName("本节复习");
-                        tmpBean.setResourceIdList(nodeListBean.getResourceIdList());
-                        nodeListBean.getNodeList().add(tmpBean);
-                    }
-                    levelB.add(nodeListBean);
-                }
-            }
-            dataBean.setNodeList(levelB);
-
-            levelA.add(dataBean);
-        }
-
-
-        List dataListM = new ArrayList();
-        for (int i = 0; i < levelA.size(); i++) {
-            WisdomModel.DataBean dataBean = ( WisdomModel.DataBean)levelA.get(i);
-            if (dataBean.getLevel() == 1) {
-                if (dataBean.getResourceIdList() != null && dataBean.getResourceIdList().size() > 0) {
-                    WisdomModel.DataBean.NodeListBean nodeListBean = new WisdomModel.DataBean.NodeListBean();
-                    nodeListBean.setNodeName("本章复习");
-                    nodeListBean.setResourceIdList(dataBean.getResourceIdList());
-                    dataBean.getNodeList().add(nodeListBean);
-                }
-            }
-            dataListM.add(dataBean);
-        }
-
         Log.d("1","1");
-        initDataSource((ArrayList) dataListM);
+        initDataSource((ArrayList) dataList);
     }
 
     ///
@@ -231,19 +189,17 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
     private void initDataSource(ArrayList dataS) {
         List<TreeViewNode> list = new ArrayList<>();
         for (int i = 0; i < dataS.size(); i++) {
-            WisdomModel.DataBean dataBean = (WisdomModel.DataBean)dataS.get(i);
+            AITestModel.DataBean dataBean = (AITestModel.DataBean)dataS.get(i);
             /// 根节点 章
-            TreeViewNode<WisdomModel.DataBean> rootNode = new TreeViewNode<>();
+            TreeViewNode<AITestModel.DataBean> rootNode = new TreeViewNode<>();
             rootNode.data = dataBean;
-            for (int j = 0; j < dataBean.getNodeList().size(); j++) {
-                addNormalChildNode(rootNode, dataBean.getNodeList(), false);
+            for (int j = 0; j < dataBean.getChapterList().size(); j++) {
+                addNormalChildNode(rootNode, dataBean.getChapterList(), (dataBean.getChapterList() == null || dataBean.getChapterList().size() == 0));
             }
-
             list.add(rootNode);
         }
 
         dataSource = new TreeViewDataSource(list);
-
         initView();
         hud.dismiss();
     }
@@ -260,24 +216,24 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
             for (int i = 0; i < dataBeans.size(); i++) {
                 TreeViewNode childNode = new TreeViewNode<>();
                 Object nodeBean = dataBeans.get(i);
-                if (nodeBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
-                    WisdomModel.DataBean.NodeListBean tmpBean = (WisdomModel.DataBean.NodeListBean)nodeBean;
-                    Log.d("1","节点名称:"+ tmpBean.getNodeName());
+                if (nodeBean.getClass() == AITestModel.DataBean.ChapterListBean.class) {
+                    AITestModel.DataBean.ChapterListBean tmpBean = (AITestModel.DataBean.ChapterListBean)nodeBean;
+                    Log.d("1","节点名称:"+ tmpBean.getChapterName());
                     childNode.data = tmpBean;
-                    childNode.isLeaf = isLeaf;
+                    childNode.isLeaf = tmpBean.getChapterList().size() == 0;
                     childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
                     rootNode.child.add(childNode);
-                    if (tmpBean.getNodeList() !=null && tmpBean.getNodeList().size() > 0) {
-                        addNormalChildNode(childNode, tmpBean.getNodeList(), false);
-                    } else if (tmpBean.getResourceIdList() != null && tmpBean.getResourceIdList().size() > 0) {
-                        addNormalChildNode(childNode, tmpBean.getResourceIdList(), true);
+                    if (tmpBean.getChapterList() !=null && tmpBean.getChapterList().size() > 0) {
+                        Log.d("1","class类型:"+ tmpBean.getClass());
+                        addNormalChildNode(childNode, tmpBean.getChapterList(), tmpBean.getChapterList().size() == 0);
                     }
-                } else if (nodeBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
-                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)nodeBean;
-
-                    Log.d("1","1");
-                    childNode.data = resourceIdListBean;
-                    childNode.isLeaf = isLeaf;
+                } else {
+                    Log.d("1","class类型:"+ nodeBean.getClass());
+                    Log.d("1", "nodeBean:" + nodeBean);
+                    AITestModel.DataBean tmpBean = (AITestModel.DataBean)nodeBean;
+                    Log.d("1","节点名称:"+ tmpBean.getChapterName());
+                    childNode.data = tmpBean;
+                    childNode.isLeaf = true;
                     childNode.maginLeft = dp2px(this,NODE_MARGIN_LEFT) + rootNode.maginLeft;
                     rootNode.child.add(childNode);
                 }
@@ -327,15 +283,12 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
                 //NodeBean nodeBean =  node.data;
                 Object dataBean = node.data;
                 String title = "";
-                if (dataBean.getClass() == WisdomModel.DataBean.class) {
-                    WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
-                    title = bean.getNodeName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
-                    WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
-                    title = nodeListBeanX.getNodeName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
-                    WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
-                    title = resourceIdListBean.getResName();
+                if (dataBean.getClass() == AITestModel.DataBean.class) {
+                    AITestModel.DataBean bean = (AITestModel.DataBean) dataBean;
+                    title = bean.getChapterName();
+                } else if (dataBean.getClass() == AITestModel.DataBean.ChapterListBean.class) {
+                    AITestModel.DataBean.ChapterListBean nodeListBeanX = (AITestModel.DataBean.ChapterListBean)dataBean;
+                    title = nodeListBeanX.getChapterName();
                 }
 
                 treeViewHolder.textView.setText(title);
@@ -354,12 +307,12 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
                 Object dataBean = node.data;
                 String title = "";
                 String resourceType = "";
-                if (dataBean.getClass() == WisdomModel.DataBean.class) {
-                    WisdomModel.DataBean bean = (WisdomModel.DataBean) dataBean;
-                    title = bean.getNodeName();
-                } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.class) {
-                    WisdomModel.DataBean.NodeListBean nodeListBeanX = (WisdomModel.DataBean.NodeListBean)dataBean;
-                    title = nodeListBeanX.getNodeName();
+                if (dataBean.getClass() == AITestModel.DataBean.class) {
+                    AITestModel.DataBean bean = (AITestModel.DataBean) dataBean;
+                    title = bean.getChapterName();
+                } else if (dataBean.getClass() == AITestModel.DataBean.ChapterListBean.class) {
+                    AITestModel.DataBean.ChapterListBean nodeListBeanX = (AITestModel.DataBean.ChapterListBean)dataBean;
+                    title = nodeListBeanX.getChapterName();
                 } else if (dataBean.getClass() == WisdomModel.DataBean.NodeListBean.ResourceIdListBean.class) {
                     final WisdomModel.DataBean.NodeListBean.ResourceIdListBean resourceIdListBean = (WisdomModel.DataBean.NodeListBean.ResourceIdListBean)dataBean;
                     title = resourceIdListBean.getResName();
@@ -411,8 +364,6 @@ public class AITestListActivity extends BaseActivity implements AdapterView.OnIt
                 }
                 treeViewHolder.textView.setText(title);
                 treeViewHolder.resourceTypeText.setText(resourceType);
-
-
             }
             treeViewHolder.itemView.setPadding(node.maginLeft, 0, 0, 0);
         }

@@ -14,6 +14,7 @@ import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.ai_test.AITestModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.MaterialPackageModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
@@ -74,6 +75,9 @@ public class NetworkManager {
 
         /// 获取智慧学习列表
         public static String Wisdom_List_URL = Base_URL + "api-service-course-wx/wx-chapter/node/points?";
+
+        /// 获取AI测试列表
+        public static String AI_Test_List_URL = Base_URL + "api-service-general-wx/student-class/chapters?";
 
         /// 直播列表
         public static String Live_List_URL = Base_URL + "api-study-service/api/lives/plans";
@@ -284,6 +288,18 @@ public class NetworkManager {
     public static void wisdomListFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Wisdom_List_URL + mapToQuery(params);
         getRequest(url,null, getBearerHeaders(), callBack, WisdomModel.class);
+    }
+
+    ///
+    /// @description 获取AI测试列表
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/17 9:28 AM
+    ///
+    public static void aiTestListFetch(RequestParams params, NormalResponseCallBack callBack) {
+        String url =  HttpConstants.AI_Test_List_URL + mapToQuery(params);
+        getRequest(url,null, getBearerHeaders(), callBack, AITestModel.class);
     }
 
     ///
