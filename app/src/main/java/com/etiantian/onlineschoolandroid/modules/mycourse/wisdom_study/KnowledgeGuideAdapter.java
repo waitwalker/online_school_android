@@ -2,15 +2,22 @@ package com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.etiantian.lib_network.request.RequestParams;
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.common_tools.PDFReaderActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.ai_test.AITestListActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.MaterialPackageAdapter;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period.MaterialPackageModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.ResourceInfoModel;
 
 import java.util.List;
 
@@ -58,14 +65,38 @@ public class KnowledgeGuideAdapter extends BaseAdapter {
         viewHolder.container_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, PDFReaderActivity.class);
-//                String url = bean.getFileUrl();
-//                intent.putExtra("url", url);
-//                intent.putExtra("title", bean.getName());
-//                context.startActivity(intent);
+                RequestParams params = new RequestParams();
+                params.put("resourceId", String.valueOf(bean.getResId()));
+                fetchResourceInfo(params);
             }
         });
         return view;
+    }
+
+    ///
+    /// @description 获取资源信息数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/10/12 2:14 PM
+    ///
+    private void fetchResourceInfo(RequestParams params) {
+        NetworkManager.resourceInfoFetch(params, new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                ResourceInfoModel resourceInfoModel = (ResourceInfoModel) responseObj;
+                Intent intent = new Intent(context, PDFReaderActivity.class);
+                String url = resourceInfoModel.getData().getLiteratureDownUrl();
+                intent.putExtra("url", url);
+                intent.putExtra("title", resourceInfoModel.getData().getResourceName());
+                context.startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取微课视频数据失败");
+            }
+        });
     }
 
     /// 缓存卡片布局
