@@ -57,8 +57,17 @@ dependencies {
     implementation rootProject.dependenciesLibrary.videoplayer
     annotationProcessor rootProject.dependenciesLibrary.apt_butterKnife
     implementation rootProject.dependenciesLibrary.butterKnife
-
     implementation rootProject.dependenciesLibrary.pdfreader
+    implementation rootProject.dependenciesLibrary.filedownloader
+
+    // If you need use ThreadDebugger.
+    debugImplementation'cn.dreamtobe.threaddebugger:threaddebugger:1.6.3'
+    releaseImplementation'cn.dreamtobe.threaddebugger:threaddebugger-no-op:1.6.3'
+    // If you need use ThreadPool.
+    implementation'cn.dreamtobe.threaddebugger:threadpool:1.6.3'
+
+
+
     // 网络库
     implementation project(':lib_network')
 

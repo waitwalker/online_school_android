@@ -467,8 +467,8 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
             public void onSuccess(Object responseObj) {
                 ResourceInfoModel resourceInfoModel = (ResourceInfoModel) responseObj;
                 Log.d("1","获取资源信息数据成功");
-                Intent intent = new Intent(WisdomListActivity.this, CommonWebViewActivity.class);
-                String url = resourceInfoModel.getData().getLiteraturePreviewUrl();
+                Intent intent = new Intent(WisdomListActivity.this, PDFReaderActivity.class);
+                String url = resourceInfoModel.getData().getLiteratureDownUrl();
                 intent.putExtra("url", url);
                 intent.putExtra("title", resourceInfoModel.getData().getResourceName());
                 startActivity(intent);
