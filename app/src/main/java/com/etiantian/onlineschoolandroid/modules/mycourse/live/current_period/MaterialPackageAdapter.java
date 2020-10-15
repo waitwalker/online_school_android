@@ -1,12 +1,15 @@
 package com.etiantian.onlineschoolandroid.modules.mycourse.live.current_period;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.modules.common_tools.PDFReaderActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity;
 
 import org.w3c.dom.Text;
 
@@ -55,7 +58,11 @@ public class MaterialPackageAdapter extends BaseAdapter {
         viewHolder.container_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, PDFReaderActivity.class);
+                String url = bean.getFileUrl();
+                intent.putExtra("url", url);
+                intent.putExtra("title", bean.getName());
+                context.startActivity(intent);
             }
         });
         return view;
