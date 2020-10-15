@@ -126,6 +126,10 @@ public class WisdomListActivity extends BaseActivity implements AdapterView.OnIt
                 break;
             case R.id.right_button:
                 Log.d("1","点击了知识导学按钮");
+                Intent intent1 = new Intent(this, KnowledgeGuideActivity.class);
+                intent1.putExtra("subjectId", String.valueOf(subjectDetailModel.getSubjectId()));
+                intent1.putExtra("gradeId", String.valueOf(gradeId));
+                startActivity(intent1);
                 break;
             case R.id.change_material_version_container:
                 Intent intent = new Intent(this, ChangeMaterialVersionActivity.class);

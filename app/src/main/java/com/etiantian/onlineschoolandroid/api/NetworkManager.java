@@ -22,6 +22,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.Materia
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.MaterialVersionListModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.ResourceInfoModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailModel;
+import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.KnowledgeGuideModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MicroCourseModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
@@ -126,6 +127,9 @@ public class NetworkManager {
 
         /// 资源信息数据
         public static String Resource_Info_URL = Base_URL + "api-resource-service/api/resources/";
+
+        /// 知识导学类别
+        public static String Knowledge_Guide_URL = Base_URL + "api-service-course-wx/wx-chapter/resource?";
 
     }
 
@@ -339,7 +343,18 @@ public class NetworkManager {
     /// @time 2020/9/28 2:56 PM
     ///
     public static void materialPackageFetch(RequestParams params, NormalResponseCallBack callBack) {
-        getRequest(HttpConstants.Material_Package_URL,params, getBearerHeaders(), callBack, MaterialPackageModel.class);
+        getRequest(HttpConstants.Material_Package_URL, params, getBearerHeaders(), callBack, MaterialPackageModel.class);
+    }
+
+    ///
+    /// @description 获取知识导学
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/28 2:56 PM
+    ///
+    public static void knowledgeGuideFetch(RequestParams params, NormalResponseCallBack callBack) {
+        getRequest(HttpConstants.Knowledge_Guide_URL + mapToQuery(params), null, getBearerHeaders(), callBack, KnowledgeGuideModel.class);
     }
 
     ///
