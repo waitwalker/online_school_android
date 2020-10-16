@@ -43,7 +43,72 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="80dp">
+                android:layout_height="90dp">
+
+                <RelativeLayout
+                    android:layout_centerInParent="true"
+                    android:id="@+id/report_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/report_icon"
+                        android:background="@mipmap/personal_center_report"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/report_icon"
+                        android:textSize="18sp"
+                        android:text="学习报告"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginStart="20dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/download_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/download_icon"
+                        android:background="@mipmap/personal_center_download"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/download_icon"
+                        android:textSize="18sp"
+                        android:text="我的下载"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/notebook_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/notebook_icon"
+                        android:background="@mipmap/personal_center_report"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"/>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/notebook_icon"
+                        android:textSize="18sp"
+                        android:text="错题本"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+
             </RelativeLayout>
 
             <RelativeLayout
