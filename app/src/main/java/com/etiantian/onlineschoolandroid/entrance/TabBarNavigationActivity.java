@@ -22,10 +22,12 @@ import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonToolManager;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.modules.login.UserInfoModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.PersonalFragment;
 import com.etiantian.onlineschoolandroid.modules.widget.ETTViewPager;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jaeger.library.StatusBarUtil;
 
@@ -52,12 +54,39 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        hideActionBar();
         setContentView(R.layout.activity_tab_bar_navigation);
-        CommonToolManager.fetchUserInfo();
-        initView();
-        initData();
-        initAdapter();
-        initEvent();
+        fetchUserInfo();
+    }
+
+    ///
+    /// @description 获取用户信息
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/10/19 9:25 AM
+    ///
+    private void fetchUserInfo() {
+        hud.show();
+        NetworkManager.userInfoFetch(new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                Log.d("1","获取用户信息成功");
+                UserInfoModel userInfoModel = (UserInfoModel)responseObj;
+                RuntimeDataManager.instance().setUserInfoModel(userInfoModel);
+                initView();
+                hud.dismiss();
+                initData();
+                initAdapter();
+                initEvent();
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取用户信息失败");
+                hud.dismiss();
+            }
+        });
     }
 
     @Override

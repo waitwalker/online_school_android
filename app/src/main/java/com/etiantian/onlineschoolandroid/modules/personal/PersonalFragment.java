@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 public class PersonalFragment extends BaseFragment implements CompoundButton.OnClickListener {
@@ -61,7 +62,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
 //        logoutButton.setOnClickListener(this);
 
         avatarImageView = root.findViewById(R.id.personal_avatar);
-        Glide.with(this).load("").into(avatarImageView);
+        Glide.with(this).load(RuntimeDataManager.instance().getUserInfoModel().getData().getUserPhoto()).into(avatarImageView);
 
         download_container = root.findViewById(R.id.download_container);
         download_container.setOnClickListener(this);
