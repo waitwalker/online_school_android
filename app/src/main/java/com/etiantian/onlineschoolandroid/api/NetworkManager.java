@@ -13,6 +13,7 @@ import com.etiantian.onlineschoolandroid.model.CodeModel;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.model.RegisterModel;
 import com.etiantian.onlineschoolandroid.modules.common_tools.VideoURLModel;
+import com.etiantian.onlineschoolandroid.modules.login.UserInfoModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseSubjectModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.ai_test.AITestModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.live.LiveListModel;
@@ -130,6 +131,9 @@ public class NetworkManager {
 
         /// 知识导学类别
         public static String Knowledge_Guide_URL = Base_URL + "api-service-course-wx/wx-chapter/resource?";
+
+        /// 用户信息
+        public static String User_Info_URL = Base_URL + "api-cloudaccount-service/api/user/info";
 
     }
 
@@ -391,6 +395,18 @@ public class NetworkManager {
     public static void resourceInfoFetch(RequestParams params, NormalResponseCallBack callBack) {
         String url =  HttpConstants.Resource_Info_URL + params.urlParams.get("resourceId");
         getRequest(url,null, getBearerHeaders(), callBack, ResourceInfoModel.class);
+    }
+
+    ///
+    /// @description 获取用户信息
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/9/7 10:02 AM
+    ///
+    public static void userInfoFetch(NormalResponseCallBack callBack) {
+        String url =  HttpConstants.User_Info_URL;
+        getRequest(url,null, getBearerHeaders(), callBack, UserInfoModel.class);
     }
 
 

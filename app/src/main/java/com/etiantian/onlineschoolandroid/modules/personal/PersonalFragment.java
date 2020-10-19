@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
@@ -34,6 +36,8 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
     private ViewGroup public_container;
     private ViewGroup record_container;
 
+    private ImageView avatarImageView;
+
 
     public PersonalFragment() {
         // Required empty public constructor
@@ -55,6 +59,13 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
         root = inflater.inflate(R.layout.fragment_personal, container, false);
 //        logoutButton = root.findViewById(R.id.logout_button_id);
 //        logoutButton.setOnClickListener(this);
+
+        avatarImageView = root.findViewById(R.id.personal_avatar);
+        Glide.with(this).load("").into(avatarImageView);
+
+        download_container = root.findViewById(R.id.download_container);
+        download_container.setOnClickListener(this);
+
         download_container = root.findViewById(R.id.download_container);
         download_container.setOnClickListener(this);
 
