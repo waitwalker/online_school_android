@@ -65,6 +65,7 @@ dependencies {
     releaseImplementation'cn.dreamtobe.threaddebugger:threaddebugger-no-op:1.6.3'
     // If you need use ThreadPool.
     implementation'cn.dreamtobe.threaddebugger:threadpool:1.6.3'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
 

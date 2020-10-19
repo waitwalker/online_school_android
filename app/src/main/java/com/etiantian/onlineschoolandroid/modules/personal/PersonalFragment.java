@@ -14,11 +14,16 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.modules.personal.setting.SettingActivity;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PersonalFragment extends BaseFragment implements CompoundButton.OnClickListener {
 
@@ -37,7 +42,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
     private ViewGroup public_container;
     private ViewGroup record_container;
 
-    private ImageView avatarImageView;
+    private CircleImageView avatarImageView;
 
 
     public PersonalFragment() {
@@ -58,8 +63,6 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_personal, container, false);
-//        logoutButton = root.findViewById(R.id.logout_button_id);
-//        logoutButton.setOnClickListener(this);
 
         avatarImageView = root.findViewById(R.id.personal_avatar);
         Glide.with(this).load(RuntimeDataManager.instance().getUserInfoModel().getData().getUserPhoto()).into(avatarImageView);
@@ -70,6 +73,9 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
         download_container = root.findViewById(R.id.download_container);
         download_container.setOnClickListener(this);
 
+
+        setting_container = root.findViewById(R.id.setting_container);
+        setting_container.setOnClickListener(this);
         return root;
     }
 
@@ -79,11 +85,9 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.download_container:
                 Log.d("1", "点击了我的下载");
                 break;
-//            case R.id.logout_button_id:
-//                SharedPreferencesManager.instance().remove("token");
-//                SharedPreferencesManager.instance().remove("expiration");
-//                navigateTo(LoginActivity.class);
-//                break;
+            case R.id.setting_container:
+                navigateTo(SettingActivity.class);
+                break;
         }
     }
 }

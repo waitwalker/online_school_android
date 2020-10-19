@@ -17,9 +17,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp">
 
-                <ImageView
-                    android:layout_marginTop="100dp"
-                    android:background="@drawable/personal_avatar_shape"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/personal_avatar"
                     android:layout_width="100dp"

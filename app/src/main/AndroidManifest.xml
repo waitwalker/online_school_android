@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".modules.mycourse.wisdom_study.KnowledgeGuideActivity"></activity>
+        <activity android:name=".modules.personal.setting.SettingActivity"></activity>
+        <activity android:name=".modules.mycourse.wisdom_study.KnowledgeGuideActivity" />
         <activity android:name=".modules.common_tools.PDFReaderActivity" />
         <activity android:name=".modules.mycourse.change_material.ChangeMaterialVersionActivity" />
         <activity android:name=".modules.mycourse.live.current_period.MaterialPackageActivity" />
