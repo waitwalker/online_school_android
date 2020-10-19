@@ -28,7 +28,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PersonalFragment extends BaseFragment implements CompoundButton.OnClickListener {
 
     private View root;
-    private Button logoutButton;
     private ViewGroup download_container;
     private ViewGroup report_container;
     private ViewGroup errorBook_container;
@@ -43,7 +42,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
     private ViewGroup record_container;
 
     private CircleImageView avatarImageView;
-
+    private ImageView messageImageView;
 
     public PersonalFragment() {
         // Required empty public constructor
@@ -64,18 +63,58 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_personal, container, false);
 
+        // 头像
         avatarImageView = root.findViewById(R.id.personal_avatar);
         Glide.with(this).load(RuntimeDataManager.instance().getUserInfoModel().getData().getUserPhoto()).into(avatarImageView);
 
+        // 我的下载
         download_container = root.findViewById(R.id.download_container);
         download_container.setOnClickListener(this);
 
-        download_container = root.findViewById(R.id.download_container);
-        download_container.setOnClickListener(this);
+        // 学习报告
+        report_container = root.findViewById(R.id.report_container);
+        report_container.setOnClickListener(this);
 
+        // 错题本
+        errorBook_container = root.findViewById(R.id.notebook_container);
+        errorBook_container.setOnClickListener(this);
 
+        // 激活课程
+        active_container = root.findViewById(R.id.container_2);
+        active_container.setOnClickListener(this);
+
+        // 我的卡记录
+        my_card_container = root.findViewById(R.id.card_record_container);
+        my_card_container.setOnClickListener(this);
+
+        // 护眼提醒
+        eye_protect_container = root.findViewById(R.id.save_eye_container);
+        eye_protect_container.setOnClickListener(this);
+
+        // 意见反馈
+        opinion_container = root.findViewById(R.id.recommend_container);
+        opinion_container.setOnClickListener(this);
+
+        // 帮助
+        help_container = root.findViewById(R.id.help_container);
+        help_container.setOnClickListener(this);
+
+        // 设置
         setting_container = root.findViewById(R.id.setting_container);
         setting_container.setOnClickListener(this);
+
+        // 湖北
+        public_container = root.findViewById(R.id.public_container);
+        public_container.setOnClickListener(this);
+
+        // 备案内容
+        record_container = root.findViewById(R.id.record_container);
+        record_container.setOnClickListener(this);
+
+        // 消息
+        messageImageView = root.findViewById(R.id.personal_message);
+        messageImageView.setOnClickListener(this);
+
         return root;
     }
 
@@ -85,8 +124,38 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.download_container:
                 Log.d("1", "点击了我的下载");
                 break;
+            case R.id.report_container:
+                Log.d("1", "点击了学习报告");
+                break;
+            case R.id.notebook_container:
+                Log.d("1", "点击了错题本");
+                break;
+            case R.id.container_2:
+                Log.d("1", "点击了激活课程");
+                break;
+            case R.id.card_record_container:
+                Log.d("1", "点击了我的卡记录");
+                break;
+            case R.id.save_eye_container:
+                Log.d("1", "点击了护眼提醒");
+                break;
+            case R.id.recommend_container:
+                Log.d("1", "点击了意见反馈");
+                break;
+            case R.id.help_container:
+                Log.d("1", "点击了帮助");
+                break;
             case R.id.setting_container:
                 navigateTo(SettingActivity.class);
+                break;
+            case R.id.public_container:
+                Log.d("1", "点击了湖北公益课");
+                break;
+            case R.id.record_container:
+                Log.d("1", "点击了备案内容承诺");
+                break;
+            case R.id.personal_message:
+                Log.d("1", "点击了消息");
                 break;
         }
     }
