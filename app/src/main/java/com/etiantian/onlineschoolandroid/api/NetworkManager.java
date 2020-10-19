@@ -114,6 +114,9 @@ public class NetworkManager {
         /// 大师直播中作业h5地址
         public static String Homework_HTML = "https://item.etiantian.com/nwx-app/" + "homework.html?";
 
+        /// 个人帮助h5地址
+        public static String Help_HTML = "https://item.etiantian.com/nwx-app/" + "help.html";
+
         /// 获取视频URL
         public static String Video_URL = Base_URL + "api-study-service/api/lives/download";
 
@@ -134,6 +137,8 @@ public class NetworkManager {
 
         /// 用户信息
         public static String User_Info_URL = Base_URL + "api-cloudaccount-service/api/user/info";
+
+
 
     }
 

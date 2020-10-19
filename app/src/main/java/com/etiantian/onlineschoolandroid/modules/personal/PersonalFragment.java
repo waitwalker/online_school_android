@@ -146,6 +146,10 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.help_container:
                 Log.d("1", "点击了帮助");
+                Intent intent2 = new Intent(getContext(), CommonWebViewActivity.class);
+                intent2.putExtra("url", NetworkManager.HttpConstants.Help_HTML);
+                intent2.putExtra("title","帮助");
+                startActivity(intent2);
                 break;
             case R.id.setting_container:
                 navigateTo(SettingActivity.class);
