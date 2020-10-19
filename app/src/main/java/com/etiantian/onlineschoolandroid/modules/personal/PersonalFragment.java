@@ -17,7 +17,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.setting.SettingActivity;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
@@ -153,6 +155,10 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.record_container:
                 Log.d("1", "点击了备案内容承诺");
+                Intent intent1 = new Intent(getContext(), CommonWebViewActivity.class);
+                intent1.putExtra("url", "https://www.etiantian.com/recordm.html");
+                intent1.putExtra("title","备案内容承诺");
+                startActivity(intent1);
                 break;
             case R.id.personal_message:
                 Log.d("1", "点击了消息");
