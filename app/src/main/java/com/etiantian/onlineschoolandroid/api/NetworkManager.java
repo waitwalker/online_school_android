@@ -117,6 +117,9 @@ public class NetworkManager {
         /// 个人帮助h5地址
         public static String Help_HTML = "https://item.etiantian.com/nwx-app/" + "help.html";
 
+        /// 学习报告h5地址
+        public static String Study_Report_HTML = "https://item.etiantian.com/nwx-app/" + "learningreportall.html";
+
         /// 获取视频URL
         public static String Video_URL = Base_URL + "api-study-service/api/lives/download";
 
