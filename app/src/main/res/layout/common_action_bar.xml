@@ -56,6 +56,27 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:id="@+id/right_container"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp">
+
+            <TextView
+                android:textSize="13sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/common_navigation_bar_right_shape"
+                android:layout_centerVertical="true"
+                android:id="@+id/right_text"
+                android:layout_width="70dp"
+                android:layout_height="25dp"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

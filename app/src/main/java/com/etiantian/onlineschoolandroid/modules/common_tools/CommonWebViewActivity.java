@@ -23,7 +23,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
+import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class CommonWebViewActivity extends BaseActivity implements CompoundButton.OnClickListener {
@@ -34,6 +36,8 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
     private TextView titleTextView;
     private KProgressHUD hud;
     private ViewGroup homework_container;
+    private ViewGroup right_text_container;
+    private TextView rightTextView;
     private ImageView answer_card;
     private ImageView edit_icon;
 
@@ -56,6 +60,9 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
         backButton.setOnClickListener(this);
         titleTextView = findViewById(R.id.common_actionbar_textview);
         homework_container = findViewById(R.id.homework_container);
+        right_text_container = findViewById(R.id.right_container);
+        right_text_container.setOnClickListener(this);
+        rightTextView = findViewById(R.id.right_text);
         answer_card = findViewById(R.id.answer_card);
 
         edit_icon = findViewById(R.id.edit_icon);
@@ -69,6 +76,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
             String url = intent.getStringExtra("url");
             String title = intent.getStringExtra("title");
             boolean showAnswerCard = intent.getBooleanExtra("showAnswerCard", false);
+            boolean showRightText = intent.getBooleanExtra("showRightText", false);
             titleTextView.setText(title);
             webView.loadUrl(url);
             WebSettings webSettings = webView.getSettings();
@@ -91,6 +99,13 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
                 homework_container.setVisibility(View.VISIBLE);
             } else {
                 homework_container.setVisibility(View.INVISIBLE);
+            }
+
+            if (showRightText) {
+                right_text_container.setVisibility(View.VISIBLE);
+                rightTextView.setText("报告详情");
+            } else {
+                right_text_container.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -197,6 +212,12 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
                 } else {
                     finish();
                 }
+                break;
+            case R.id.right_container:
+                Intent intent3 = new Intent(this, CommonWebViewActivity.class);
+                intent3.putExtra("url", NetworkManager.HttpConstants.Study_Report_Detail_HTML + "?token=" + NetworkManager.getToken() + "&cardtype=2");
+                intent3.putExtra("title","报告详情");
+                startActivity(intent3);
                 break;
         }
     }

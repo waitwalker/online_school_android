@@ -120,6 +120,9 @@ public class NetworkManager {
         /// 学习报告h5地址
         public static String Study_Report_HTML = "https://item.etiantian.com/nwx-app/" + "learningreportall.html";
 
+        /// 学习报告详情h5地址
+        public static String Study_Report_Detail_HTML = "https://item.etiantian.com/nwx-app/" + "learningreporta.html";
+
         /// 获取视频URL
         public static String Video_URL = Base_URL + "api-study-service/api/lives/download";
 

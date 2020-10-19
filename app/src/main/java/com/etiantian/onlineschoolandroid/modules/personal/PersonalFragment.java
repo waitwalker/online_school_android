@@ -130,6 +130,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
                 Log.d("1", "点击了学习报告");
                 Intent intent3 = new Intent(getContext(), CommonWebViewActivity.class);
                 intent3.putExtra("url", NetworkManager.HttpConstants.Study_Report_HTML + "?token=" + NetworkManager.getToken() + "&h=" + RuntimeDataManager.instance().getUserInfoModel().getData().getUserPhoto());
+                intent3.putExtra("showRightText",true);
                 intent3.putExtra("title","学习报告");
                 startActivity(intent3);
                 break;
