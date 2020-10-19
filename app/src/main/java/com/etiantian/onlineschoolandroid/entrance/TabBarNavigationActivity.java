@@ -20,6 +20,7 @@ import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.model.ActivityCourseAlertModel;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonToolManager;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.MyCourseFragment;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomListActivity;
@@ -52,6 +53,7 @@ public class TabBarNavigationActivity extends BaseActivity implements CompoundBu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_bar_navigation);
+        CommonToolManager.fetchUserInfo();
         initView();
         initData();
         initAdapter();

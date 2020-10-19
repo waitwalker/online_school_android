@@ -25,6 +25,7 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.entrance.TabBarNavigationActivity;
 import com.etiantian.onlineschoolandroid.model.LoginModel;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
+import com.etiantian.onlineschoolandroid.modules.common_tools.CommonToolManager;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -277,4 +278,5 @@ public class LoginActivity extends BaseActivity implements CompoundButton.OnClic
         }
         return;
     }
+
 }

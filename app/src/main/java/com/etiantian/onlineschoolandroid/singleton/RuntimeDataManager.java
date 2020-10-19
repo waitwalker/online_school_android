@@ -1,5 +1,6 @@
 package com.etiantian.onlineschoolandroid.singleton;
 
+import com.etiantian.onlineschoolandroid.modules.login.UserInfoModel;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
 
 ///
@@ -32,6 +33,16 @@ public class RuntimeDataManager {
 
     /// token
     private String token;
+
+    private UserInfoModel userInfoModel;
+
+    public UserInfoModel getUserInfoModel() {
+        return userInfoModel;
+    }
+
+    public void setUserInfoModel(UserInfoModel userInfoModel) {
+        this.userInfoModel = userInfoModel;
+    }
 
     ///
     /// @description 清空token

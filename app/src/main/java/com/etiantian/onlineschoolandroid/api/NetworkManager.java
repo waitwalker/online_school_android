@@ -402,7 +402,7 @@ public class NetworkManager {
     /// @param
     /// @return
     /// @author waitwalker
-    /// @time 2020/9/7 10:02 AM
+    /// @time 2020/10/19 10:02 AM
     ///
     public static void userInfoFetch(NormalResponseCallBack callBack) {
         String url =  HttpConstants.User_Info_URL;
