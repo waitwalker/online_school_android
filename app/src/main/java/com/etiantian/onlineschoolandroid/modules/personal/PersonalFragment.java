@@ -21,6 +21,7 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.modules.personal.my_card_record.MyCardRecordActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.setting.SettingActivity;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 import com.etiantian.onlineschoolandroid.tools.SharedPreferencesManager;
@@ -142,6 +143,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.card_record_container:
                 Log.d("1", "点击了我的卡记录");
+                navigateTo(MyCardRecordActivity.class);
                 break;
             case R.id.save_eye_container:
                 Log.d("1", "点击了护眼提醒");
