@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
 import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
@@ -28,16 +30,15 @@ public class MyCardRecordActivity extends BaseActivity implements CompoundButton
     private TextView back_button;
     private CommonTitleBar commonTitleBar;
     private Button knowledgeButton;
-    private ViewGroup changeMaterialVersionContainer;
-    private TextView materialVersionTextView;
-    private Long courseId;
-    private boolean isZhiLing;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_card_record);
         initActionBar();
+        initView();
+        fetchMyCardRecordData();
     }
 
     ///
@@ -67,8 +68,32 @@ public class MyCardRecordActivity extends BaseActivity implements CompoundButton
         knowledgeButton.setVisibility(View.INVISIBLE);
     }
 
+    private void initView() {
+        listView = findViewById(R.id.my_card_list_view);
+    }
+
+    ///
+    /// @description 获取数据
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/11/5 10:42 AM
+    ///
     private void fetchMyCardRecordData() {
-        NetworkManager.
+        NetworkManager.myCardRecordFetch(new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                Log.d("1","获取数据成功");
+                MyCardRecordModel myCardRecordModel = (MyCardRecordModel) responseObj;
+                MyCardRecordAdapter adapter = new MyCardRecordAdapter(myCardRecordModel.getData(), MyCardRecordActivity.this);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1", "获取我的卡记录数据失败");
+            }
+        });
     }
 
     @Override
