@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:background="@color/page_background_color"
     tools:context=".modules.personal.my_card_record.MyCardRecordActivity">
 
     <com.wuhenzhizao.titlebar.widget.CommonTitleBar
