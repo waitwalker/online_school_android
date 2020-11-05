@@ -26,6 +26,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.Subject
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.KnowledgeGuideModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MicroCourseModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
+import com.etiantian.onlineschoolandroid.modules.personal.my_card_record.MyCardRecordModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
 
@@ -143,6 +144,9 @@ public class NetworkManager {
 
         /// 用户信息
         public static String User_Info_URL = Base_URL + "api-cloudaccount-service/api/user/info";
+
+        /// 我的卡记录
+        public static String My_Card_Record_URL = Base_URL + "api-study-service/api/resviewlogs/use/log";
 
 
 
@@ -418,6 +422,18 @@ public class NetworkManager {
     public static void userInfoFetch(NormalResponseCallBack callBack) {
         String url =  HttpConstants.User_Info_URL;
         getRequest(url,null, getBearerHeaders(), callBack, UserInfoModel.class);
+    }
+
+    ///
+    /// @description 我的卡记录
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 2020/11/5 10:40 AM
+    ///
+    public static void myCardRecordFetch(NormalResponseCallBack callBack) {
+        String url = HttpConstants.My_Card_Record_URL;
+        getRequest(url,null, getBearerHeaders(), callBack, MyCardRecordModel.class);
     }
 
 
