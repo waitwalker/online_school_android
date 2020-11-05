@@ -16,4 +16,20 @@
         titlebar:showBottomLine="false"
         titlebar:bottomShadowHeight="2dp"/>
 
+    <View
+        android:id="@+id/margin"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+    <ListView
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/margin"
+        android:id="@+id/my_card_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@android:color/transparent"
+        android:listSelector="#00000000"
+        />
+
 </RelativeLayout>
