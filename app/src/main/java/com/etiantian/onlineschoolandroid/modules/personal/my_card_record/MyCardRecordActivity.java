@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.change_material.ChangeMaterialVersionActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.KnowledgeGuideActivity;
@@ -64,6 +65,10 @@ public class MyCardRecordActivity extends BaseActivity implements CompoundButton
         knowledgeButton = findViewById(R.id.right_button);
         knowledgeButton.setOnClickListener(this);
         knowledgeButton.setVisibility(View.INVISIBLE);
+    }
+
+    private void fetchMyCardRecordData() {
+        NetworkManager.
     }
 
     @Override
