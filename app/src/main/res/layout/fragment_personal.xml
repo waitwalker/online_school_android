@@ -95,7 +95,7 @@
                     <ImageView
                         android:layout_centerHorizontal="true"
                         android:id="@+id/notebook_icon"
-                        android:background="@mipmap/personal_center_report"
+                        android:background="@mipmap/personal_center_errors"
                         android:layout_width="36dp"
                         android:layout_height="36dp"/>
                     <TextView
