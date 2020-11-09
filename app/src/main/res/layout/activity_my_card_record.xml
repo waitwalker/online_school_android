@@ -18,6 +18,7 @@
         titlebar:bottomShadowHeight="2dp"/>
 
     <View
+        android:layout_below="@id/actionbar"
         android:id="@+id/margin"
         android:layout_width="match_parent"
         android:layout_height="5dp"/>
