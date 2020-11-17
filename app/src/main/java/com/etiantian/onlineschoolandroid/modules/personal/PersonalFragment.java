@@ -21,6 +21,7 @@ import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseFragment;
 import com.etiantian.onlineschoolandroid.modules.common_tools.CommonWebViewActivity;
 import com.etiantian.onlineschoolandroid.modules.login.LoginActivity;
+import com.etiantian.onlineschoolandroid.modules.personal.error_book.ErrorBookEntranceActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.my_card_record.MyCardRecordActivity;
 import com.etiantian.onlineschoolandroid.modules.personal.setting.SettingActivity;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
@@ -137,6 +138,7 @@ public class PersonalFragment extends BaseFragment implements CompoundButton.OnC
                 break;
             case R.id.notebook_container:
                 Log.d("1", "点击了错题本");
+                navigateTo(ErrorBookEntranceActivity.class);
                 break;
             case R.id.container_2:
                 Log.d("1", "点击了激活课程");
