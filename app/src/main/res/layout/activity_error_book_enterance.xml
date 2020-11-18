@@ -16,4 +16,16 @@
         titlebar:showBottomLine="false"
         titlebar:bottomShadowHeight="2dp"/>
 
+    <com.etiantian.onlineschoolandroid.modules.personal.error_book.ErrorBookEntranceGridView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/actionbar"
+        android:id="@+id/error_book_entrance_grid"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="20dp"
+        android:numColumns="2"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"/>
+
 </RelativeLayout>

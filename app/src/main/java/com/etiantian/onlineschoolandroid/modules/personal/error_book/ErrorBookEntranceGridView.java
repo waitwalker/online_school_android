@@ -1,5 +1,4 @@
 package com.etiantian.onlineschoolandroid.modules.personal.error_book;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
