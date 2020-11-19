@@ -2,10 +2,12 @@ package com.etiantian.onlineschoolandroid.modules.personal.error_book;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.etiantian.onlineschoolandroid.R;
 
@@ -49,12 +51,26 @@ public class ErrorBookGridViewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        String type = (String) map.get("type");
+        final String type = (String) map.get("type");
         // type: 1系统, 2上传, 3数校, 4单元质检
         viewHolder.imageView.setImageResource(
                         type.equals("1") ? R.mipmap.errorbook_xitongcuoti :
                         type.equals("2") ? R.mipmap.errorbook_shangchuancuoti :
                         type.equals("3") ? R.mipmap.errorbook_xiaoyuancuoti : R.mipmap.errorbook_unit_test) ;
+        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (type.equals("1")) {
+                    Toast.makeText(context, "系统错题", Toast.LENGTH_SHORT).show();
+                } else if (type.equals("2")) {
+                    Toast.makeText(context, "上传错题", Toast.LENGTH_SHORT).show();
+                } else if (type.equals("3")) {
+                    Toast.makeText(context, "数校错题", Toast.LENGTH_SHORT).show();
+                } else if (type.equals("4")) {
+                    Toast.makeText(context, "质检消错错题", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return view;
     }
 
