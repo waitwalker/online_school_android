@@ -17,6 +17,10 @@ import com.etiantian.onlineschoolandroid.modules.personal.my_card_record.MyCardR
 import com.jaeger.library.StatusBarUtil;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ErrorBookEntranceActivity extends BaseActivity implements View.OnClickListener {
 
     private ViewGroup backButton;
@@ -25,11 +29,15 @@ public class ErrorBookEntranceActivity extends BaseActivity implements View.OnCl
     private CommonTitleBar commonTitleBar;
     private Button knowledgeButton;
 
+    private ErrorBookEntranceGridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error_book_enterance);
         initActionBar();
+        initView();
+        initData();
     }
 
     ///
@@ -57,6 +65,35 @@ public class ErrorBookEntranceActivity extends BaseActivity implements View.OnCl
         knowledgeButton = findViewById(R.id.right_button);
         knowledgeButton.setOnClickListener(this);
         knowledgeButton.setVisibility(View.INVISIBLE);
+    }
+
+    private void initView() {
+        gridView = findViewById(R.id.error_book_entrance_grid);
+    }
+
+    private void initData() {
+        ArrayList<Map> data = new ArrayList<Map>();
+        Map map1 = new HashMap();
+        // type: 1系统, 2上传, 3数校, 4单元质检
+        map1.put("type","1");
+        data.add(map1);
+
+        Map map2 = new HashMap();
+        // type: 1系统, 2上传, 3数校, 4单元质检
+        map2.put("type","2");
+        data.add(map2);
+
+        Map map3 = new HashMap();
+        // type: 1系统, 2上传, 3数校, 4单元质检
+        map3.put("type","3");
+        data.add(map3);
+
+        Map map4 = new HashMap();
+        // type: 1系统, 2上传, 3数校, 4单元质检
+        map4.put("type","4");
+        data.add(map4);
+        ErrorBookGridViewAdapter adapter = new ErrorBookGridViewAdapter(this, data);
+        gridView.setAdapter(adapter);
     }
 
     @Override
