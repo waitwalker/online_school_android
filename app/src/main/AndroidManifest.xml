@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyBaseTheme"
         tools:replace="android:allowBackup, android:theme">
-        <activity android:name=".modules.personal.error_book.ErrorBookEntranceActivity"></activity>
+        <activity android:name=".modules.personal.error_book.ErrorBookSubjectListActivity"></activity>
+        <activity android:name=".modules.personal.error_book.ErrorBookEntranceActivity" />
         <activity android:name=".modules.personal.my_card_record.MyCardRecordActivity" />
         <activity android:name=".modules.personal.setting.SettingActivity" />
         <activity android:name=".modules.mycourse.wisdom_study.KnowledgeGuideActivity" />
