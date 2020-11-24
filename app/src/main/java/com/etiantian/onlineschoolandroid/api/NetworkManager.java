@@ -148,6 +148,8 @@ public class NetworkManager {
         /// 我的卡记录
         public static String My_Card_Record_URL = Base_URL + "api-study-service/api/card/user/course/card";
 
+        public static String Error_Book_Subject_List_Web = Base_URL + "api-study-service/api/wrong-notebook/subjects";
+
 
 
     }

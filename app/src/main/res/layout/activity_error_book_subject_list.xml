@@ -15,4 +15,12 @@
         titlebar:showBottomLine="false"
         titlebar:bottomShadowHeight="2dp"/>
 
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

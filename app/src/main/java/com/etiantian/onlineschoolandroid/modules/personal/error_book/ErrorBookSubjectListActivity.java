@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
@@ -21,12 +22,15 @@ public class ErrorBookSubjectListActivity extends BaseActivity implements View.O
     private TextView back_button;
     private CommonTitleBar commonTitleBar;
     private Button knowledgeButton;
+    
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error_book_subject_list);
         initActionBar();
+        initView();
     }
 
     ///
@@ -65,5 +69,27 @@ public class ErrorBookSubjectListActivity extends BaseActivity implements View.O
                 break;
 
         }
+    }
+    
+    ///
+    /// @description 初始化view
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 11/24/20 9:43 AM
+    ///
+    private void initView() {
+        listView = findViewById(R.id.list_view);
+    }
+    
+    ///
+    /// @description 加载数据
+    /// @param 
+    /// @return 
+    /// @author waitwalker
+    /// @time 11/24/20 9:51 AM
+    ///
+    private void initData() {
+        
     }
 }
