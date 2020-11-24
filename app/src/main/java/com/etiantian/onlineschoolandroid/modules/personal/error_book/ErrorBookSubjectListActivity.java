@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,7 +12,9 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.etiantian.lib_network.response_handler.NormalResponseCallBack;
 import com.etiantian.onlineschoolandroid.R;
+import com.etiantian.onlineschoolandroid.api.NetworkManager;
 import com.etiantian.onlineschoolandroid.base.BaseActivity;
 import com.jaeger.library.StatusBarUtil;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
@@ -31,6 +34,7 @@ public class ErrorBookSubjectListActivity extends BaseActivity implements View.O
         setContentView(R.layout.activity_error_book_subject_list);
         initActionBar();
         initView();
+        initData();
     }
 
     ///
@@ -90,6 +94,17 @@ public class ErrorBookSubjectListActivity extends BaseActivity implements View.O
     /// @time 11/24/20 9:51 AM
     ///
     private void initData() {
-        
+        NetworkManager.errorBookSubjectListWebFetch(new NormalResponseCallBack() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                ErrorBookSubjectListModel listModel = (ErrorBookSubjectListModel)responseObj;
+                Log.d("1","获取系统学科列表成功");
+            }
+
+            @Override
+            public void onFailure(Object responseObj) {
+                Log.d("1","获取系统学科列表失败");
+            }
+        });
     }
 }

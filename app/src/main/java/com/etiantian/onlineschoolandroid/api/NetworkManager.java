@@ -26,6 +26,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.Subject
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.KnowledgeGuideModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.MicroCourseModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.wisdom_study.WisdomModel;
+import com.etiantian.onlineschoolandroid.modules.personal.error_book.ErrorBookSubjectListModel;
 import com.etiantian.onlineschoolandroid.modules.personal.my_card_record.MyCardRecordModel;
 import com.etiantian.onlineschoolandroid.singleton.RuntimeDataManager;
 
@@ -148,6 +149,7 @@ public class NetworkManager {
         /// 我的卡记录
         public static String My_Card_Record_URL = Base_URL + "api-study-service/api/card/user/course/card";
 
+        /// 系统错题学科列表
         public static String Error_Book_Subject_List_Web = Base_URL + "api-study-service/api/wrong-notebook/subjects";
 
 
@@ -436,6 +438,18 @@ public class NetworkManager {
     public static void myCardRecordFetch(NormalResponseCallBack callBack) {
         String url = HttpConstants.My_Card_Record_URL;
         getRequest(url,null, getBearerHeaders(), callBack, MyCardRecordModel.class);
+    }
+
+    ///
+    /// @description 错题本学科列表 系统错题类型获取
+    /// @param
+    /// @return
+    /// @author waitwalker
+    /// @time 11/24/20 10:02 AM
+    ///
+    public static void errorBookSubjectListWebFetch(NormalResponseCallBack callBack) {
+        String url =  HttpConstants.Error_Book_Subject_List_Web;
+        getRequest(url,null, getBearerHeaders(), callBack, ErrorBookSubjectListModel.class);
     }
 
 
