@@ -101,6 +101,7 @@ public class ErrorBookEntranceActivity extends BaseActivity implements View.OnCl
         switch (view.getId()) {
             case R.id.back_container:
                 finish();
+                break;
         }
     }
 }

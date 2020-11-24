@@ -1,6 +1,7 @@
 package com.etiantian.onlineschoolandroid.modules.personal.error_book;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +63,8 @@ public class ErrorBookGridViewAdapter extends BaseAdapter {
             public void onClick(View view) {
                 if (type.equals("1")) {
                     Toast.makeText(context, "系统错题", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, ErrorBookSubjectListActivity.class);
+                    context.startActivity(intent);
                 } else if (type.equals("2")) {
                     Toast.makeText(context, "上传错题", Toast.LENGTH_SHORT).show();
                 } else if (type.equals("3")) {
