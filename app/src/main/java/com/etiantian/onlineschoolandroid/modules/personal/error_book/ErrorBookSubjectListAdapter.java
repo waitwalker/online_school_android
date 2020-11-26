@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.etiantian.onlineschoolandroid.R;
 
@@ -38,17 +39,23 @@ public class ErrorBookSubjectListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
+        ErrorBookSubjectListModel.DataBean dataBean = dataBeans.get(i);
         if (view == null) {
             view = View.inflate(context, R.layout.error_book_subject_list_item_layout, null);
             viewHolder = new ViewHolder();
+            viewHolder.subjectTitle = view.findViewById(R.id.subject_title);
+            viewHolder.subjectCount = view.findViewById(R.id.subject_count);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+        viewHolder.subjectTitle.setText(dataBean.getSubjectName());
+        viewHolder.subjectCount.setText(String.valueOf(dataBean.getCnt()));
         return view;
     }
 
     private static class ViewHolder {
-
+        TextView subjectTitle;
+        TextView subjectCount;
     }
 }
