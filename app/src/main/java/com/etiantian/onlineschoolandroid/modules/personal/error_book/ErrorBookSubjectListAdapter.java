@@ -8,13 +8,14 @@ import android.widget.BaseAdapter;
 import com.etiantian.onlineschoolandroid.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ErrorBookSubjectListAdapter extends BaseAdapter {
 
-    private ArrayList <ErrorBookSubjectListModel.DataBean> dataBeans;
+    private List <ErrorBookSubjectListModel.DataBean> dataBeans;
     private Context context;
 
-    public ErrorBookSubjectListAdapter(ArrayList<ErrorBookSubjectListModel.DataBean> dataBeans, Context context) {
+    public ErrorBookSubjectListAdapter(List<ErrorBookSubjectListModel.DataBean> dataBeans, Context context) {
         this.dataBeans = dataBeans;
         this.context = context;
     }
@@ -38,7 +39,7 @@ public class ErrorBookSubjectListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if (view == null) {
-            view = View.inflate(context, R.layout.error_book_entrance_card_layout, null);
+            view = View.inflate(context, R.layout.error_book_subject_list_item_layout, null);
             viewHolder = new ViewHolder();
             view.setTag(viewHolder);
         } else {
