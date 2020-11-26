@@ -99,7 +99,7 @@ public class ErrorBookSubjectListActivity extends BaseActivity implements View.O
             public void onSuccess(Object responseObj) {
                 ErrorBookSubjectListModel listModel = (ErrorBookSubjectListModel)responseObj;
                 Log.d("1","获取系统学科列表成功");
-                ErrorBookSubjectListAdapter adapter = new ErrorBookSubjectListAdapter(listModel.getData(), getApplicationContext());
+                ErrorBookSubjectListAdapter adapter = new ErrorBookSubjectListAdapter(listModel.getData(), ErrorBookSubjectListActivity.this);
                 listView.setAdapter(adapter);
             }
 
