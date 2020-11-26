@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.etiantian.onlineschoolandroid.R;
+
 import java.util.ArrayList;
 
 public class ErrorBookSubjectListAdapter extends BaseAdapter {
@@ -34,6 +36,18 @@ public class ErrorBookSubjectListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        ViewHolder viewHolder;
+        if (view == null) {
+            view = View.inflate(context, R.layout.error_book_entrance_card_layout, null);
+            viewHolder = new ViewHolder();
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        return view;
+    }
+
+    private static class ViewHolder {
+
     }
 }
