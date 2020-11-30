@@ -4,6 +4,7 @@ package com.etiantian.onlineschoolandroid.modules.common_tools;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,6 +81,7 @@ public class CommonWebViewActivity extends BaseActivity implements CompoundButto
             titleTextView.setText(title);
             webView.loadUrl(url);
             WebSettings webSettings = webView.getSettings();
+            webSettings.setDomStorageEnabled(true);
             webSettings.setJavaScriptEnabled(true);// 允许使用js
             webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);//缓存默认
             webSettings.setAllowFileAccess(true);//设置可以访问文件

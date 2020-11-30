@@ -95,7 +95,7 @@ public class NetworkManager {
         public static String Test_AB_URL = "https://item.etiantian.com/nwx-app/ab.html?token=" + getToken();
 
         /// 错题本系统错题
-        public static String Web_Error_Book_URL = "https://item.etiantian.com/nwx-app/errorbooklist.html?token=" + getToken();
+        public static String Web_Error_Book_URL = "https://item.etiantian.com/nwx-app/errorbooklist.html?token=";
 
         /// AI测试
         public static String AI_Test_Html_URL = "https://item.etiantian.com/nwx-app/ai.html?token=" + getToken();

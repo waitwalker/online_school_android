@@ -61,7 +61,7 @@ public class ErrorBookSubjectListAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, CommonWebViewActivity.class);
-                String url = NetworkManager.HttpConstants.Web_Error_Book_URL + "&subjectid=" + dataBean.getSubjectId();
+                String url = NetworkManager.HttpConstants.Web_Error_Book_URL + NetworkManager.getToken() + "&subjectid=" + dataBean.getSubjectId();
                 intent.putExtra("url", url);
                 intent.putExtra("title", dataBean.getSubjectName());
                 intent.putExtra("showAnswerCard", false);
