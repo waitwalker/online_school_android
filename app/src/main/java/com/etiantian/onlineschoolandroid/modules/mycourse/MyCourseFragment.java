@@ -34,6 +34,7 @@ import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageA
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.ImageDialogAlert;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.new_semester.NewSemesterActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.activity_course.primary.PrimaryActivity;
+import com.etiantian.onlineschoolandroid.modules.mycourse.class_schedule.ClassScheduleActivity;
 import com.etiantian.onlineschoolandroid.modules.mycourse.recommend.RecommendModel;
 import com.etiantian.onlineschoolandroid.modules.mycourse.subject_detail.SubjectDetailActivity;
 import com.google.gson.Gson;
@@ -186,6 +187,7 @@ public class MyCourseFragment extends BaseFragment implements CompoundButton.OnC
             case R.id.course_menu_container:
             case R.id.course_button:
                 showToast("点击了课程按钮,这里应该跳转到课程表");
+                navigateTo(ClassScheduleActivity.class);
                 break;
             case R.id.union_activity_relative:
                 showToast("点击了联通活动课");
