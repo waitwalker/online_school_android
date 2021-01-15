@@ -32,7 +32,7 @@ dependencies {
     implementation this.rootProject.dependenciesLibrary.appcompat
     implementation this.rootProject.dependenciesLibrary.constraintlayout
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
     testImplementation this.rootProject.dependenciesLibrary.junit
@@ -59,6 +59,7 @@ dependencies {
     implementation rootProject.dependenciesLibrary.butterKnife
     implementation rootProject.dependenciesLibrary.pdfreader
     implementation rootProject.dependenciesLibrary.filedownloader
+    implementation rootProject.dependenciesLibrary.calendarview
 
     // If you need use ThreadDebugger.
     debugImplementation'cn.dreamtobe.threaddebugger:threaddebugger:1.6.3'
